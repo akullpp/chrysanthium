@@ -19,6 +19,8 @@ Although the definition does not include specific technologies, we will look at 
 
 This will be a very detailed step by step tutorial, so if you are interested in the solution, you can find the final page [hosted on Netlify](https://friendly-williams-3154af.netlify.com) and the [code on GitHub](https://github.com/akullpp/gatsby-demo).
 
+After the positive experience with Gatsby and Netlify, I decided to migrate this website and blog. The code can be found [on GitHub](https://github.com/akullpp/chrysanthium) and shows a complete example of a productive system.
+
 ## Netlify
 
 To say that [Netlify](https://www.netlify.com) is a hosting platform is an understatement. Not only did they coin the term **JAM** but their service is probably the best thing that happened for web development since GitHub and far better than GitHub Pages. For me it rivals the awesomeness of [Zeit's Now](https://zeit.co/now) and is one reason I would say that you only need your own backend systems if it is a legal obligation.
