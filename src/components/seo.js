@@ -27,6 +27,10 @@ const seoRender = (title, url, excerpt) => ({
         <meta name="twitter:creator" content={twitterUsername} />
         <meta name="twitter:title" content={displayTitle} />
         <meta name="twitter:description" content={displayDescription} />
+        <meta
+          name="twitter:image"
+          content="https://chrysanthium.com/logo.png"
+        />
       </Helmet>
     </>
   )
