@@ -52,6 +52,7 @@ const seoRender = (title, url, excerpt) => ({
         <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5" />
         <meta name="msapplication-TileColor" content="#603cba" />
         <meta name="theme-color" content="#ffffff" />
+        <html lang="en" />
       </Helmet>
     </>
   )
