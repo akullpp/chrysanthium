@@ -8,7 +8,6 @@ exports.createPages = ({ actions: { createPage }, graphql }) =>
           node {
             html
             frontmatter {
-              category
               path
             }
           }
@@ -19,7 +18,7 @@ exports.createPages = ({ actions: { createPage }, graphql }) =>
     edges.forEach(({ node: { frontmatter } }) =>
       createPage({
         path: frontmatter.path,
-        component: path.resolve(`src/templates/${frontmatter.category}.js`),
+        component: path.resolve(`src/templates/page.js`),
       })
     )
   )

@@ -9,9 +9,9 @@ const Layout = styled.div`
   flex: 1 0 auto;
 `
 
-export default ({ title, path, children }) => (
+export default ({ title, path, excerpt, children }) => (
   <Layout>
-    <SEO {...{ title, path }} />
+    <SEO {...{ title, path, excerpt }} />
     <Header />
     {children}
     <Footer />

@@ -7,11 +7,12 @@ export default ({
   data: {
     markdownRemark: {
       html,
+      excerpt,
       frontmatter: { title, path },
     },
   },
 }) => (
-  <Layout {...{ title, path }}>
+  <Layout {...{ title, path, excerpt }}>
     <div>
       <h1>{title}</h1>
       <div dangerouslySetInnerHTML={{ __html: html }} />
@@ -23,6 +24,7 @@ export const pageQuery = graphql`
   query PageQuery($path: String!) {
     markdownRemark(frontmatter: { path: { eq: $path } }) {
       html
+      excerpt
       frontmatter {
         title
         path
