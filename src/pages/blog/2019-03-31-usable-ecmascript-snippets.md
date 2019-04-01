@@ -334,7 +334,7 @@ const compose = (...fns) =>
 // abc() === 'a' 'b' 'c'
 ```
 
-Currying allows for conciseness and expressiveness as explained in the [first post](http://localhost:8000/notes-on-functional-programming-i/) of functional programming series:
+Currying allows for conciseness and expressiveness as explained in the [first post](/notes-on-functional-programming-i) of functional programming series:
 
 ```js
 const curry = (fn, arity = fn.length, ...args) =>
