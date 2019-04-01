@@ -23,7 +23,7 @@ const seoRender = (title, url, excerpt) => ({
         <meta property="og:url" content={displayUrl} />
         <meta property="og:title" content={displayTitle} />
         <meta property="og:description" content={displayDescription} />
-        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:card" content="summary" />
         <meta name="twitter:creator" content={twitterUsername} />
         <meta name="twitter:title" content={displayTitle} />
         <meta name="twitter:description" content={displayDescription} />
