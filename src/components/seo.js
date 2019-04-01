@@ -17,7 +17,12 @@ const seoQuery = graphql`
 
 const seoRender = (title, url) => ({
   site: {
-    siteMetadata: { title: defaultTitle, description, siteUrl: defaultUrl },
+    siteMetadata: {
+      title: defaultTitle,
+      description,
+      siteUrl: defaultUrl,
+      twitterUsername,
+    },
   },
 }) => {
   const displayTitle = title ? `${defaultTitle} // ${title}` : defaultTitle
@@ -30,6 +35,10 @@ const seoRender = (title, url) => ({
         <meta property="og:url" content={displayUrl} />
         <meta property="og:title" content={displayTitle} />
         <meta property="og:description" content={description} />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:creator" content={twitterUsername} />
+        <meta name="twitter:title" content={displayTitle} />
+        <meta name="twitter:description" content={description} />
       </Helmet>
     </>
   )

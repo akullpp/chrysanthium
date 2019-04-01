@@ -1,6 +1,6 @@
 ---
 title: "Usable ECMAScript Snippets"
-date: 2019-03-20
+date: 2019-03-31
 category: post
 path: /usable-ecmascript-snippets
 ---
