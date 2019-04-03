@@ -246,7 +246,15 @@ const defaults = (obj, ...defs) =>
 // defaults({ a: 1 }, { b: 2 }, { b: 6 }, { a: 3 }) === { a: 1, b: 2 }
 ```
 
-One of the ugliest parts in many languages is to access deeply nested values. This code uses a specific string syntax with `[n]` to indicate array indices and paths separated by `.`:
+Conditionally set the properties of an object, thanks to [Andrea Simone Costa](https://dev.to/jfet97/the-shortest-way-to-conditional-insert-properties-into-an-object-literal-4ag7):
+
+```js
+const obj = {
+    ...condition && { prop: value },
+}
+```
+
+Also one of the ugliest parts in many languages is to access deeply nested values. This code uses a specific string syntax with `[n]` to indicate array indices and paths separated by `.`:
 
 ```js
 const get = (from, ...selectors) =>
