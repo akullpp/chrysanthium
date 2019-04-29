@@ -4,7 +4,7 @@ category: page
 path: /about
 ---
 
-I am a full-stack software engineer who studied computer science, computational linguistics and English linguistics in the beautiful city of Heidelberg. I live with my wife and dog near Karlsruhe, Germany.
+I am a full-stack software engineer who studied computer science, computational linguistics and English linguistics in the beautiful city of Heidelberg and live near Karlsruhe, Germany.
 
 My passion is to design and implement scalable architectures for distributed applications with state-of-the-art technologies. I am particular proficient in testing, functional programming and tooling in combination with long-term and large-scale projects, especially in the financial sector.
 
