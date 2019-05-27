@@ -9,144 +9,17 @@ Initially, I had the tendency to outsource utility functionality to external mod
 
 Many good snippets can be found on the [30 seconds of code](https://30secondsofcode.org) page which is a great resource and I want to share some stuff which I find myself reusing between projects relatively often.
 
-## Console
+## Table Of Content
 
-This one is easy, yet it saves so much time if you have the names of the variables included automatically:
-
-```js
-console.log({ x, y, z })
-// {x: "1", y: "2", z: "3"}
-```
-
-The `console#log` function returns `undefined` which is a falsy value and therefore you can pipe another expression:
-
-```js
-console.log() ||
-```
-
-Especially valuable if you work with React's functional components and want to log out props:
-
-```jsx
-export default () => ({ x, y }) => console.log({ x, y }) || (
-  <H1 blink={x}>
-    {y}
-  </H1>
-)
-```
-
-## Destructuring
-
-I think that it is common to destructure object properties and you know the basics of nesting and naming so I included it with arrays because it is lesser known and can provide better readability:
-
-```js
-const [x, y, z] = [1, 2, 3]
-// x === 1, x === 2, x === 3
-```
-
-This is interesting if you are calling a function which returns multiple values, e.g.
-
-```js
-const [count, setCount] = useState(0);
-```
-
-## Random
-
-Sometimes you just need a seemingly random number or string. Instead of `Math#random` which produces a floating point number in the interval of [0 1) and has a very high chance of collisions, I like to use the modern crypto API to get a random integer or string. The `toString` method takes an optional radix parameter between 2 and 36 which converts to a specific base, e.g. 2 would generate binary and 16 hex:
-
-```js
-crypto.getRandomValues(new Uint32Array(1))[0]
-// 3179082265
-crypto.getRandomValues(new Uint32Array(1))[0].toString(36)
-// '13cqv2'
-crypto.getRandomValues(new Uint32Array(1))[0] * Math.pow(2, -32)
-// 0.8998060114681721
-```
-
-Picking up the example from before we want to often want to generate RFC4122 UUIDs of the form `xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx` where `x` can be in the range of `[0 F]` and `y` in `[8 B]`. The code replaces the numbers `0 1 8` with values in the said limits. The bit shifting is really awesome and explained [here](https://gist.github.com/jed/982883#gistcomment-55231):
-
-```js
-`${1e7}-${1e3}-${4e3}-${8e3}-${1e11}`.replace(/[018]/g, c =>
-  (
-    c ^
-    (crypto.getRandomValues(new Uint8Array(1))[0] & (15 >> (c / 4)))
-  ).toString(16)
-)
-// "d0b744a0-635d-48d7-9137-9c0ce255b924"
-```
-
-## Validation
-
-Many developers test specifically for `undefined` or `null` but in many cases cognitive complexity can be reduced by rejecting all falsy values, i.e. `false null undefined 0 '' "" NaN`:
-
-```js
-!x
-```
-
-If, e.g. an empty string is a valid value, you should do it in a concise manner:
-
-```js
-const isNil = (x) => [undefined, null].includes(x)
-// isNil('') === false
-```
-
-Another option would be check for emptiness, e.g. `{}`, `[]` or `''`:
-
-```js
-const isEmpty = x => x == null || !(Object.keys(x) || x).length
-```
-
-Often we want to find out if something is a number:
-
-```js
-const isNumber = x => !isNaN(parseFloat(x)) &&
-                      isFinite(x) &&
-                      Number(x) == x
-```
-
-Or more generally has a specific type:
-
-```js
-const is = (type, x) => ![undefined, null].includes(x) &&
-                          x.constructor === type
-// is(Number, 1) === true
-```
-
-We can also check the truthiness of value by evaluating a predicate which might trigger a conditional:
-
-```js
-const when = (p, then) => x => (p(x) ? then(x) : x)
-```
-
-## String
-
-Sanitize input by removing every characters that are not printable ASCII.
-
-```js
-const sanitizeAscii = s => s.replace(/[^\x20-\x7E]/g, '')
-```
-
-Often you need to display long strings for preview by truncating them:
-
-```js
-const truncate = (s, n) => s.length > n ?
-                           `${s.substring(0, n - 1)}…` :
-                           s
-// truncate('Hello World', 5) === "Hell…"
-```
-
-Parses the parameters from a valid URL into an object:
-
-```js
-const parseParameters = url =>
-  (url.match(/([^?=&]+)(=([^&]*))/g) || []).reduce((a, v) =>
-    (
-      (a[v.slice(0, v.indexOf("="))] = v.slice(v.indexOf("=") + 1)), a
-    ),
-    {}
-  )
-// const url = 'https://www.example.com?q=foo&s=bar'
-// getParameters(url) === {q: "foo", s: "bar"}
-```
+* [Array](#array)
+* [Console](#console)
+* [Date](#date)
+* [Destructuring](#destructuring)
+* [Function](#function)
+* [Object](#object)
+* [Random](#random)
+* [String](#string)
+* [Validation](#validation)
 
 ## Array
 
@@ -236,6 +109,88 @@ const partition = (xs, fn) =>
 // ]
 ```
 
+## Console
+
+This one is easy, yet it saves so much time if you have the names of the variables included automatically:
+
+```js
+console.log({ x, y, z })
+// {x: "1", y: "2", z: "3"}
+```
+
+The `console#log` function returns `undefined` which is a falsy value and therefore you can pipe another expression:
+
+```js
+console.log() ||
+```
+
+Especially valuable if you work with React's functional components and want to log out props:
+
+```jsx
+export default () => ({ x, y }) => console.log({ x, y }) || (
+  <H1 blink={x}>
+    {y}
+  </H1>
+)
+```
+
+## Date
+
+Often a library like [Day.js](https://github.com/iamkun/dayjs) is not necessary in small applications which are not to concerned with complex time arithmetic:
+
+```js
+const isAfter = (a, b) => a > b
+const isBefore = (a, b) => a < b
+const isSame = (a, b) => a.toISOString() === b.toISOString()
+const daysBetween = (from, to) => (to - from) / (1000 * 3600 * 24)
+```
+
+## Destructuring
+
+I think that it is common to destructure object properties and you know the basics of nesting and naming so I included it with arrays because it is lesser known and can provide better readability:
+
+```js
+const [x, y, z] = [1, 2, 3]
+// x === 1, x === 2, x === 3
+```
+
+This is interesting if you are calling a function which returns multiple values, e.g.
+
+```js
+const [count, setCount] = useState(0);
+```
+
+## Function
+
+Sometimes you might want to throttle (asynchronous) function calls or need to simulate something:
+
+```js
+const sleep = ms => data =>
+  new Promise(resolve => setTimeout(resolve, ms, data))
+```
+
+I [explained](/notes-on-functional-programming-ii) the advantages of function composition to create complex data flows before and like to do it from right to left:
+
+```js
+const compose = (...fns) =>
+  fns.reduce((f, g) => (...args) => f(g(...args)))
+// const a = () => console.log('a')
+// const b = () => console.log('b')
+// const c = () => console.log('c')
+// const abc = compose(c, b, a)
+// abc() === 'a' 'b' 'c'
+```
+
+Currying allows for conciseness and expressiveness as explained in the [first post](/notes-on-functional-programming-i) of functional programming series:
+
+```js
+const curry = (fn, arity = fn.length, ...args) =>
+  arity <= args.length ?
+  fn(...args) :
+  curry.bind(null, fn, arity, ...args)
+//  curry(Math.pow)(2)(10) === 1024
+```
+
 ## Object
 
 Assign default values for all `undefined` properties in multiple objects:
@@ -310,44 +265,101 @@ const deepClone = obj => {
 // b !== a && b.foo[0].bar !== a.foo[0].bar
 ```
 
-## Date
+## Random
 
-Often a library like [Day.js](https://github.com/iamkun/dayjs) is not necessary in small applications which are not to concerned with complex time arithmetic:
+Sometimes you just need a seemingly random number or string. Instead of `Math#random` which produces a floating point number in the interval of [0 1) and has a very high chance of collisions, I like to use the modern crypto API to get a random integer or string. The `toString` method takes an optional radix parameter between 2 and 36 which converts to a specific base, e.g. 2 would generate binary and 16 hex:
 
 ```js
-const isAfter = (a, b) => a > b
-const isBefore = (a, b) => a < b
-const isSame = (a, b) => a.toISOString() === b.toISOString()
-const daysBetween = (from, to) => (to - from) / (1000 * 3600 * 24)
+crypto.getRandomValues(new Uint32Array(1))[0]
+// 3179082265
+crypto.getRandomValues(new Uint32Array(1))[0].toString(36)
+// '13cqv2'
+crypto.getRandomValues(new Uint32Array(1))[0] * Math.pow(2, -32)
+// 0.8998060114681721
 ```
 
-## Function
-
-Sometimes you might want to throttle (asynchronous) function calls or need to simulate something:
+Picking up the example from before we want to often want to generate RFC4122 UUIDs of the form `xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx` where `x` can be in the range of `[0 F]` and `y` in `[8 B]`. The code replaces the numbers `0 1 8` with values in the said limits. The bit shifting is really awesome and explained [here](https://gist.github.com/jed/982883#gistcomment-55231):
 
 ```js
-const sleep = ms => data =>
-  new Promise(resolve => setTimeout(resolve, ms, data))
+`${1e7}-${1e3}-${4e3}-${8e3}-${1e11}`.replace(/[018]/g, c =>
+  (
+    c ^
+    (crypto.getRandomValues(new Uint8Array(1))[0] & (15 >> (c / 4)))
+  ).toString(16)
+)
+// "d0b744a0-635d-48d7-9137-9c0ce255b924"
 ```
 
-I [explained](/notes-on-functional-programming-ii) the advantages of function composition to create complex data flows before and like to do it from right to left:
+## String
+
+Sanitize input by removing every characters that are not printable ASCII.
 
 ```js
-const compose = (...fns) =>
-  fns.reduce((f, g) => (...args) => f(g(...args)))
-// const a = () => console.log('a')
-// const b = () => console.log('b')
-// const c = () => console.log('c')
-// const abc = compose(c, b, a)
-// abc() === 'a' 'b' 'c'
+const sanitizeAscii = s => s.replace(/[^\x20-\x7E]/g, '')
 ```
 
-Currying allows for conciseness and expressiveness as explained in the [first post](/notes-on-functional-programming-i) of functional programming series:
+Often you need to display long strings for preview by truncating them:
 
 ```js
-const curry = (fn, arity = fn.length, ...args) =>
-  arity <= args.length ?
-  fn(...args) :
-  curry.bind(null, fn, arity, ...args)
-//  curry(Math.pow)(2)(10) === 1024
+const truncate = (s, n) => s.length > n ?
+                           `${s.substring(0, n - 1)}…` :
+                           s
+// truncate('Hello World', 5) === "Hell…"
+```
+
+Parses the parameters from a valid URL into an object:
+
+```js
+const parseParameters = url =>
+  (url.match(/([^?=&]+)(=([^&]*))/g) || []).reduce((a, v) =>
+    (
+      (a[v.slice(0, v.indexOf("="))] = v.slice(v.indexOf("=") + 1)), a
+    ),
+    {}
+  )
+// const url = 'https://www.example.com?q=foo&s=bar'
+// getParameters(url) === {q: "foo", s: "bar"}
+```
+
+## Validation
+
+Many developers test specifically for `undefined` or `null` but in many cases cognitive complexity can be reduced by rejecting all falsy values, i.e. `false null undefined 0 '' "" NaN`:
+
+```js
+!x
+```
+
+If, e.g. an empty string is a valid value, you should do it in a concise manner:
+
+```js
+const isNil = (x) => [undefined, null].includes(x)
+// isNil('') === false
+```
+
+Another option would be check for emptiness, e.g. `{}`, `[]` or `''`:
+
+```js
+const isEmpty = x => x == null || !(Object.keys(x) || x).length
+```
+
+Often we want to find out if something is a number:
+
+```js
+const isNumber = x => !isNaN(parseFloat(x)) &&
+                      isFinite(x) &&
+                      Number(x) == x
+```
+
+Or more generally has a specific type:
+
+```js
+const is = (type, x) => ![undefined, null].includes(x) &&
+                          x.constructor === type
+// is(Number, 1) === true
+```
+
+We can also check the truthiness of value by evaluating a predicate which might trigger a conditional:
+
+```js
+const when = (p, then) => x => (p(x) ? then(x) : x)
 ```

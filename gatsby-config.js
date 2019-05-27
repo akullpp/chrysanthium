@@ -27,9 +27,11 @@ module.exports = {
             resolve: 'gatsby-remark-images',
             maxWidth: 480,
           },
+          'gatsby-remark-autolink-headers',
           'gatsby-remark-prismjs',
         ],
       },
     },
+    'gatsby-plugin-catch-links',
   ],
 }

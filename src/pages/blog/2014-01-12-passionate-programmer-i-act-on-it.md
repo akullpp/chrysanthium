@@ -7,7 +7,7 @@ path: /passionate-programmer-i-act-on-it
 
 Based on the highly acclaimed book [The Passionate Programmer](http://www.amazon.com/The-Passionate-Programmer-Remarkable-Development/dp/1934356344/) by Chad Fowler, I decided to compile a list of actions which might help others to find the passion in software engineering and ultimately might strengthen their career. This list is loosely based on the "Act On It!" paragraphs at the end of each chapter in the book and I strongly recommend reading it. After each point, you should of course reflect your current career path and how you could improve it, to bring more enjoyment in your life.
 
-## <a name="toc"> Table Of Content</a>
+## <a name="toc">Table Of Content</a>
 
 [Part I: Choosing Your Market](#market)
 
