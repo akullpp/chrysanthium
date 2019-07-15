@@ -73,8 +73,8 @@ The next step and the first of the every implementation is to write tests agains
 
 > Consumer-driven development helps to write tests early on
 
-Disregard your stack, the provider should provide a simple mock which generates random data, this is done in about an hour or so at most. Only in situations where direct communication is not possible, you should set up your own mock. Nevertheless, if everything works out fine, there will be no recognizable downtime if the provider is ready to switch for the real thing and your API certainly should not break, otherwise the process was done wrong.
+Disregard your stack, the provider should provide a simple mock which generates random data, this is done in about an hour or so at most. Only in situations where direct communication is impossible, you should set up your own mock. Nevertheless, if everything works out fine, there will be no recognizable downtime if the provider takes the real thing online and your integration certainly should not break, otherwise the process was done wrong.
 
 > Consumer-driven development nullifies the cost of integration
 
-Whenever the provider changes the interface, or more precisely, whenever the tests are executed - which should be fairly often - **broken tests will indicate a breaking change or infrastructural issue**.
+Whenever the provider changes the interface in the future, or more precisely, whenever the tests are executed - which should be fairly often - **broken tests will indicate a breaking change or infrastructural issue**.
