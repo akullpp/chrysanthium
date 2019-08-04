@@ -1,4 +1,42 @@
 import React, { useEffect, useState } from 'react'
+import styled from '@emotion/styled'
+
+const Wrapper = styled.div`
+  margin: 0 auto;
+  max-width: 50em;
+  line-height: 1.5;
+  padding: 4em 1em;
+  color: #566b78;
+`
+
+const DateWrapper = styled.div`
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+`
+
+const WrapperQuote = styled.div`
+  margin-top: 1em;
+  padding-top: 1em;
+  font-size: 20px;
+`
+
+const WrapperMeta = styled.div`
+  padding-top: 3em;
+  font-size: 14px;
+  text-align: right;
+`
+
+const Hidzuke = styled.h1`
+  text-align: center;
+  color: gainsboro;
+`
+
+const Enso = styled.img`
+  display: block;
+  margin: auto;
+`
 
 const getToday = () => {
   const today = new Date()
@@ -68,13 +106,20 @@ export default () => {
   }).format(Date.now())
 
   return (
-    <div>
-      <img src="enso.svg" alt="" />
-      <p>{quote.quote}</p>
-      <p>
+    <Wrapper>
+      <a href="/">
+        <Enso src="enso.svg" alt="" />
+      </a>
+
+      <WrapperQuote>{quote.quote}</WrapperQuote>
+
+      <WrapperMeta>
         {quote.author} - {quote.from}
-      </p>
-      <span>{date}</span>
-    </div>
+      </WrapperMeta>
+
+      <DateWrapper>
+        <Hidzuke>{date}</Hidzuke>
+      </DateWrapper>
+    </Wrapper>
   )
 }
