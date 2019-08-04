@@ -10,6 +10,9 @@ export default () => (
         <Link to="/">Blog</Link>
       </li>
       <li>
+        <Link to="/senshi">Senshi</Link>
+      </li>
+      <li>
         <Link to="/about">About</Link>
       </li>
     </ul>
