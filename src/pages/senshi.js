@@ -108,7 +108,7 @@ export default () => {
   return (
     <Wrapper>
       <a href="/">
-        <Enso src="enso.svg" alt="" />
+        <Enso src="/enso.svg" alt="" />
       </a>
 
       <WrapperQuote>{quote.quote}</WrapperQuote>
