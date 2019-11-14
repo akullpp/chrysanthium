@@ -23,7 +23,7 @@ import org.springframework.mock.env.MockEnvironment;
 /**
  * Create a initializer for MockEnvironment so it can be autowired.
  *
- * Usage: @ContextConfiguration(initializers = {MockEnvironmentApplicationContextInitializer.class })
+ * Usage: @ContextConfiguration(initializers = { MockEnvironmentApplicationContextInitializer.class })
  */
 public class MockEnvironmentApplicationContextInitializer implements ApplicationContextInitializer<ConfigurableApplicationContext> {
 
