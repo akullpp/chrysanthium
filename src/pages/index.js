@@ -6,8 +6,7 @@ import Layout from '../layout'
 
 const Post = styled.div`
   position: relative;
-  margin: 2em 0 2em 0;
-  text-align: center;
+  margin-bottom: 0.25em;
 
   &:after {
     position: absolute;
@@ -27,18 +26,21 @@ const Post = styled.div`
   }
 `
 
-const PostTitle = styled.div`
-  color: black;
-  font-weight: bold;
+const PostText = styled.div`
+  margin-left: 1em;
 `
 
-const PostDate = styled.div`
-  display: block;
+const PostDate = styled.span`
   width: 100%;
+  margin-right: 1em;
   font-family: 'Consolas', monospace;
-  font-size: 0.6em;
   font-weight: normal;
   color: #333;
+`
+
+const PostTitle = styled.span`
+  color: black;
+  font-weight: bold;
 `
 
 export default ({
@@ -50,8 +52,10 @@ export default ({
     {edges.map(({ node: { frontmatter: { title, date, path } } }) => (
       <Post key={path}>
         <Link to={path}>
-          <PostTitle>{title}</PostTitle>
-          <PostDate>{date}</PostDate>
+          <PostText>
+            <PostDate>{date}</PostDate>
+            <PostTitle>{title}</PostTitle>
+          </PostText>
         </Link>
       </Post>
     ))}
