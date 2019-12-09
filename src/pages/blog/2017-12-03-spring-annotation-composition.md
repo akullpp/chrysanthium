@@ -94,14 +94,12 @@ We immediately recognize that we already use the composed annotations as describ
 @Documented
 @Controller
 @ResponseBody
-@RequestMapping(
-  consumes = APPLICATION_JSON_VALUE,
-  produces = APPLICATION_JSON_VALUE
-)
+@RequestMapping
+@CrossOrigin
 public @interface ApiController {
 
-  @AliasFor(annotation = RequestMapping.class, attribute = "path")
-  String[] value() default {};
+    @AliasFor(annotation = RequestMapping.class, attribute = "path")
+    String[] value() default {};
 }
 ```
 
