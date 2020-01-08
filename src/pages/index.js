@@ -72,7 +72,7 @@ export const blogQuery = graphql`
         node {
           frontmatter {
             title
-            date(formatString: "DD.MM.YYYY")
+            date(formatString: "DD/MM/YYYY")
             category
             path
           }
