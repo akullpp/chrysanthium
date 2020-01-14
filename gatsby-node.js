@@ -6,9 +6,13 @@ exports.onCreateNode = ({ actions: { createNodeField }, node }) => {
     childProcess.exec(
       `git log -1 --pretty=format:%aI -- ${node.fileAbsolutePath}`,
       (_, stdout) => {
+        const output = stdout.trim()
+        if (!output.length) {
+          return
+        }
         let authorDate = new Date(node.frontmatter.date)
-        if (stdout.trim().length) {
-          authorDate = new Date(stdout)
+        if (output.length) {
+          authorDate = new Date(output)
         }
         const [year, month, day] = new Date(
           authorDate.getTime() - authorDate.getTimezoneOffset() * 60000
@@ -45,12 +49,12 @@ exports.createPages = ({ actions: { createPage }, graphql }) =>
       }
     }
   `).then(({ data: { allMarkdownRemark: { edges } } }) =>
-    edges.forEach(({ node: { frontmatter, fields: { authorDate } } }) =>
+    edges.forEach(({ node: { frontmatter, fields } }) =>
       createPage({
         path: frontmatter.path,
         component: path.resolve(`src/templates/page.js`),
         context: {
-          authorDate,
+          authorDate: fields && fields.authorDate,
         },
       })
     )
