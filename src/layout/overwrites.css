@@ -1,0 +1,10 @@
+.gatsby-resp-image-wrapper {
+  margin: 0 !important;
+  max-width: 100% !important;
+}
+
+.language-text {
+  background: none !important;
+  text-shadow: none !important;
+  color: #333 !important;
+}

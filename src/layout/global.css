@@ -134,9 +134,3 @@ ul + h4 {
 ol + h4 {
   margin-top: 1em;
 }
-
-.language-text {
-  background: none !important;
-  text-shadow: none !important;
-  color: #333 !important;
-}
