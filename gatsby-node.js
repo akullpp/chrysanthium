@@ -6,9 +6,12 @@ exports.onCreateNode = ({ actions: { createNodeField }, node }) => {
     childProcess.exec(
       `git log -1 --pretty=format:%aI -- ${node.fileAbsolutePath}`,
       (_, stdout) => {
-        const date = new Date(stdout)
+        let authorDate = new Date(node.frontmatter.date)
+        if (stdout.trim().length) {
+          authorDate = new Date(stdout)
+        }
         const [year, month, day] = new Date(
-          date.getTime() - date.getTimezoneOffset() * 60000
+          authorDate.getTime() - authorDate.getTimezoneOffset() * 60000
         )
           .toISOString()
           .split('T')[0]
