@@ -10,13 +10,6 @@ module.exports = {
   plugins: [
     'gatsby-plugin-react-helmet',
     'gatsby-plugin-sitemap',
-    {
-      resolve: 'gatsby-source-filesystem',
-      options: {
-        name: 'pages',
-        path: `${__dirname}/src/pages`,
-      },
-    },
     'gatsby-plugin-emotion',
     'gatsby-plugin-sharp',
     {
@@ -27,9 +20,17 @@ module.exports = {
             resolve: 'gatsby-remark-images',
             maxWidth: 480,
           },
+          'gatsby-remark-static-images',
           'gatsby-remark-autolink-headers',
           'gatsby-remark-prismjs',
         ],
+      },
+    },
+    {
+      resolve: 'gatsby-source-filesystem',
+      options: {
+        name: 'pages',
+        path: `${__dirname}/src/pages`,
       },
     },
     'gatsby-plugin-catch-links',
