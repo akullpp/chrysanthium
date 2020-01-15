@@ -35,6 +35,10 @@ body {
   max-width: 40em;
 }
 
+img {
+  max-width: 100%;
+}
+
 p {
   margin: 1em 0 1em 0;
 }
