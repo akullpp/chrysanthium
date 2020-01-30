@@ -40,7 +40,6 @@ Regardless whether you agree or not, for me this is the most convenient browser 
 
 - [Clickable Links](https://chrome.google.com/webstore/detail/clickable-links/mgamelhnfokapndfdodnmfiningckjia) makes links in plain text clickable
 - [ColorZilla](https://chrome.google.com/webstore/detail/colorzilla/bhlhnicpbhignbdhedgjhgdocnmhomnp) is a color picker
-- [Dark Reader](https://chrome.google.com/webstore/detail/dark-reader/eimadpbcbfnmbkopoojfekhnkhdbieeh) converts everything to dark mode
 - [Hacker News Collapse](https://chrome.google.com/webstore/detail/hacker-news-collapse/bbkfcamiocfccgmcjngdljolljhifdph) makes comments collapsible
 - [I don't care about cookies](https://chrome.google.com/webstore/detail/i-dont-care-about-cookies/fihnjjcciajhdojfnbdddfaoknhalnja) hides cookie notifications
 - [Imagus](https://chrome.google.com/webstore/detail/imagus/immpkjjlgappgfkkfieppnmlhakdmaab) enables mouse-over enlargement of media
