@@ -35,10 +35,6 @@ body {
   max-width: 40em;
 }
 
-img {
-  max-width: 100%;
-}
-
 p {
   margin: 1em 0 1em 0;
 }
@@ -137,4 +133,13 @@ ul + h4 {
 }
 ol + h4 {
   margin-top: 1em;
+}
+
+.center {
+  display: flex;
+  justify-content: center;
+}
+
+.gif {
+  max-width: 650px;
 }

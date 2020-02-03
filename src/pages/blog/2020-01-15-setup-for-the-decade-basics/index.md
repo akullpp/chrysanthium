@@ -30,7 +30,7 @@ The next part of the series focuses on the [configuration of the shell](/setup-f
 
 ## iTerm2 [>>](https://iterm2.com)
 
-![iTerm2](iTerm2.png)
+![iterm2](images/iterm2.png)
 
 First of all you need a good terminal emulator. The best general-purpose one is iTerm2 since it has good color-support, customizability, hotkeys and replay features. In contrast the default Terminal.app has unique OSX features but only gets updates sparsely.
 
@@ -55,7 +55,7 @@ Regardless whether you agree or not, for me this is the most convenient browser 
 
 ## Visual Studio Code [>>](https://code.visualstudio.com)
 
-![Visual Studio code](vsc.png)
+![vsc](images/vsc.png)
 
 The best IDE out of the box I ever had and I tried everything from Sublime to Code::Blocks to NetBeans to Vim. The only custom hotkeys I have is `ctrl+]` for next and `ctrl+[` for previous editor tab and `ctrl+shift+d` to copy the active line down:
 
@@ -144,6 +144,7 @@ Manual saving often causes unnecessary mistakes as I know from pair programming.
 "files.insertFinalNewline": true,
 "files.trimTrailingWhitespace": true,
 ```
+
 Unbelievable that this is not the default. A missing new line and unnecessary whitespaces can be pretty annoying in diffs.
 
 ```json
@@ -184,37 +185,45 @@ I do not need or want to be bothered by recommendations.
 
 [Auto Close Tag](https://marketplace.visualstudio.com/items?itemName=formulahendry.auto-close-tag)
 
-![Auto Close Tag](autoclosetag.gif)
+<div class="center">
+  <img class="gif" src="images/autoclosetag.gif" />
+</div>
 
 Automatically adds a closing tag when you type in the closing bracket of the opening tag. After the closing tag is inserted, the cursor is located between the opening and closing tag.
 
 [Auto Rename Tag](https://marketplace.visualstudio.com/items?itemName=formulahendry.auto-rename-tag)
 
-![Auto Rename Tag](autorenametag.gif)
+<div class="center">
+  <img class="gif" src="images/autorenametag.gif" />
+</div>
 
 Automatically rename paired HTML/XML tags.
 
 [Babel JavaScript](https://marketplace.visualstudio.com/items?itemName=mgmcdermott.vscode-language-babel)
 
-![Babel JavaScript](babel.png)
+![babel](images/babel.png)
 
 JavaScript syntax highlighting for ES201x, React JSX, Flow and GraphQL.
 
 [Bracket Pair Colorizer 2](https://marketplace.visualstudio.com/items?itemName=CoenraadS.bracket-pair-colorizer-2)
 
-![Bracket Pair Colorizer 2](brackets.png)
+![brackets](images/brackets.png)
 
 This extension allows matching brackets to be identified with colours. The user can define which tokens to match, and which colours to use.
 
 [change-case](https://marketplace.visualstudio.com/items?itemName=wmaurer.change-case)
 
-![change-case](case.gif)
+<div class="center">
+  <img class="gif" src="images/case.gif" />
+</div>
 
 Quickly change the case of the current selection or current word.
 
 [Code Spell Checker](https://marketplace.visualstudio.com/items?itemName=streetsidesoftware.code-spell-checker)
 
-![Code Spell Checker](spell.gif)
+<div class="center">
+  <img class="gif" src="images/spell.gif" />
+</div>
 
 A basic spell checker that works well with camelCase code to help catch common spelling errors while keeping the number of false positives low.
 
@@ -240,7 +249,9 @@ Adds language support for [Go](https://golang.org).
 
 [htmltagwrap](https://marketplace.visualstudio.com/items?itemName=bradgashler.htmltagwrap)
 
-![htmltagwrap](wrap.gif)
+<div class="center">
+  <img class="gif" src="images/wrap.gif" />
+</div>
 
 Wraps your selection in HTML tags. Can wrap inline selections and selections that span multiple lines (works with both single selections and multiple selections at once).
 
@@ -254,25 +265,29 @@ Lint and style checking for Markdown since formatting can be inconsistent or eve
 
 [Monokai Pro](https://marketplace.visualstudio.com/items?itemName=monokai.theme-monokai-pro-vscode)
 
-![Monokai Pro](monokai.png)
+![monokai](images/monokai.png)
 
 A complete color scheme, customized user interface theme and icon set designed by the author of the original Monokai colors.
 
 [npm](https://marketplace.visualstudio.com/items?itemName=eg2.vscode-npm-script)
 
-![npm](npm.png)
+![npm](images/npm.png)
 
 Validates the `package.json` and installed modules.
 
 [npm Intellisense](https://marketplace.visualstudio.com/items?itemName=christian-kohler.npm-intellisense)
 
-![npm Intellisense](npmi.gif)
+<div class="center">
+  <img class="gif" src="images/npmi.gif" />
+</div>
 
 Autocompletes modules in import statements.
 
 [Path Intellisense](https://marketplace.visualstudio.com/items?itemName=christian-kohler.path-intellisense)
 
-![path Intellisense](pathi.gif)
+<div class="center">
+  <img class="gif" src="images/pathi.gif" />
+</div>
 
 Autocompletes filenames.
 
@@ -290,7 +305,9 @@ Alphabetically sorts the keys in selected JSON objects.
 
 [Sort lines](https://marketplace.visualstudio.com/items?itemName=Tyriar.sort-lines)
 
-![sort](sort.gif)
+<div class="center">
+  <img class="gif" src="images/sort.gif" />
+</div>
 
 Sort lines of text.
 
@@ -300,7 +317,9 @@ Multilingual, offline and lightweight spellchecker.
 
 [Visual Studio IntelliCode](https://marketplace.visualstudio.com/items?itemName=VisualStudioExptTeam.vscodeintellicode)
 
-![Visual Studio IntelliCode](intellicode.gif)
+<div class="center">
+  <img class="gif" src="images/intellicode.gif" />
+</div>
 
 Provides AI-assisted development features for Python, TypeScript/JavaScript and Java, with insights based on understanding your code context combined with machine learning.
 
@@ -314,7 +333,7 @@ YAML language support with Kubernetes syntax support.
 
 ## IntelliJ IDEA [>>](https://www.jetbrains.com/idea)
 
-![IntelliJ IDEA](idea.png)
+![idea](images/idea.png)
 
 As in Visual Studio Code, I use the Operator Mono font. For plugins I use:
 
@@ -326,7 +345,7 @@ For code styles (Editor > Code Style > Java) I use the bundled GoogleStyle. The 
 
 ## Sourcetree [>>](https://www.sourcetreeapp.com)
 
-![Sourcetree](sourcetree.png)
+![sourcetree](images/sourcetree.png)
 
 Git GUI which I use sometimes if I am lazy and, e.g. want to add single lines to separate commits via click.
 
@@ -344,13 +363,13 @@ The node version manager manages as the name implies multiple active node.js ver
 
 ## insomnia [>>](https://insomnia.rest/)
 
-![insomnia](insomnia.png)
+![insomnia](images/insomnia.png)
 
 Free and open-source REST client for all major platforms which is a modern alternative to Postman.
 
 ## KeePassXC [>>](https://keepassxc.org)
 
-![KeePassXC](keepassxc.png)
+![keepassxc](images/keepassxc.png)
 
 Open-source application that stores passwords offline in a database. Also it supports every major operating system, has browser integration and is not owned by a shady company like LastPass. I suggest synchronizing the database via Google Drive or something similar.
 
@@ -360,7 +379,7 @@ Caffeine is a tiny program that puts an icon in the right side of your menu bar.
 
 ## f.lux [>>](https://justgetflux.com)
 
-![f.lux](flux.png)
+![flux](images/flux.png)
 
 Ever notice how people texting at night have that eerie blue glow?
 
@@ -378,12 +397,12 @@ Tell f.lux what kind of lighting you have, and where you live. Then forget about
 
 ## numi [>>](https://numi.app)
 
-![numi](numi.png)
+![numi](images/numi.png)
 
 An intelligent calculator and converter.
 
 ## Rectangle [>>](https://rectangleapp.com)
 
-![rectangle](rectangle.png)
+![rectangle](images/rectangle.png)
 
 Since [Spectacle](https://github.com/eczarny/spectacle#important-note) is not maintained anymore, Rectangle has become the only free open-source solution to resize windows with hotkeys.

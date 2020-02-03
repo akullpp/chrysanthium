@@ -17,7 +17,7 @@ This compose function takes two functions `g` and `h` and will return an anonymo
 
 It's basically chaining functions from inside out where each return value becomes the argument for the next function. So instead of adding cognitive complexity by going step by step, we encapsulate them and go the whole path at once:
 
-![Functional Composition Paths](composition.png)
+![composition](images/composition.png)
 
 Here's a more general version which accepts a number of functions and arguments:
 

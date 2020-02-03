@@ -44,7 +44,7 @@ My suggestion is using the `PUBLIC_URL` environment variable which will substitu
 
 Unfortunately, the DevOps part is littered with pitfalls so I decided to write an explicit example for the following containerized components:
 
-![Components](components.png)
+![full](images/components.png)
 
 with the following relevant folder structure:
 

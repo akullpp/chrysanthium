@@ -1,9 +1,9 @@
-.gatsby-resp-image-wrapper {
-  margin: 0 !important;
-  max-width: 100% !important;
+.gatsby-highlight {
+  font-size: 0.75em;
 }
 
 .language-text {
+  font-size: 0.75em;
   background: none !important;
   text-shadow: none !important;
   color: #333 !important;

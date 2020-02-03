@@ -9,7 +9,7 @@ path: /icon-fonts
 
 I wanted a plus icon and got a glimpse of hell. Without even a single line of written JavaScript and only to have a plus icon, I loaded almost 100kb sans gzip which contains 2000 lines of CSS and 605 icons. That is 5 times the size of the used MVC framework and roughly 1/3 less than a well known _superheroic_ framework.
 
-![Styles sorted by size](hell.png)
+![hell](images/hell.png)
 
 <script src="//assets.codepen.io/assets/embed/ei.js"></script>
 
@@ -19,7 +19,7 @@ Will I ever use the 603 other icons? I don't know, do you?
 
 It could even be worse as a recent enter~~prise~~bloat project shows: it included Bootstrap with Glyphicons **and** Font Awesome - a total of staggering 250kb from which 6 icons and 20% of the rules were used. In size more than all JavaScript dependencies combined.
 
-![100% unused CSS rules](100.png)
+![100](images/100.png)
 
 Also in the very same project, the icons where used for essential functionality. Sometimes the icon would load late or in some browsers not at all. In this case you couldn't edit a record at all.
 
