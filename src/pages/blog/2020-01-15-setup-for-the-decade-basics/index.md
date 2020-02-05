@@ -13,22 +13,22 @@ The next part of the series focuses on the [configuration of the shell](/setup-f
 
 ## Content
 
-- [iTerm2](#iterm2-)
-- [Google Chrome](#google-chrome-)
-- [Visual Studio Code](#visual-studio-code-)
-- [IntelliJ Idea](#intellij-idea-)
-- [Sourcetree](#sourcetree-)
-- [Docker](#docker-)
-- [homebrew](#homebrew-)
-- [nvm](#nvm-)
-- [insomnia](#insomnia-)
-- [KeePassXC](#keepassxc-)
-- [Caffeine](#caffeine-)
-- [f.lux](#flux-)
-- [numi](#numi-)
-- [Rectangle](#rectangle-)
+- [iTerm2](#iterm2)
+- [Google Chrome](#google-chrome)
+- [Visual Studio Code](#visual-studio-code)
+- [IntelliJ Idea](#intellij-idea)
+- [Sourcetree](#sourcetree)
+- [Docker](#docker)
+- [homebrew](#homebrew)
+- [nvm](#nvm)
+- [insomnia](#insomnia)
+- [KeePassXC](#keepassxc)
+- [Caffeine](#caffeine)
+- [f.lux](#flux)
+- [numi](#numi)
+- [Rectangle](#rectangle)
 
-## iTerm2 [>>](https://iterm2.com)
+## [iTerm2](https://iterm2.com)
 
 ![iterm2](images/iterm2.png)
 
@@ -53,7 +53,7 @@ Regardless whether you agree or not, for me this is the most convenient browser 
 - [uBlock Origin](https://chrome.google.com/webstore/detail/ublock-origin/cjpalhdlnbpafiamejdnhcphjbkeiagm) blocks advertisement
 - [View Image](https://chrome.google.com/webstore/detail/view-image/jpcmhcelnjdmblfmjabdeclccemkghjk) adds the view image button back to Google's image search
 
-## Visual Studio Code [>>](https://code.visualstudio.com)
+## [Visual Studio Code](https://code.visualstudio.com)
 
 ![vsc](images/vsc.png)
 
@@ -77,7 +77,7 @@ The best IDE out of the box I ever had and I tried everything from Sublime to Co
 ]
 ```
 
-### Settings
+### VSC Settings
 
 The entire JSON can be found [here](https://github.com/akullpp/settings/blob/master/vsc/settings.json). Following, I will explain the important decisions line by line:
 
@@ -181,203 +181,217 @@ Start with a clean slate and not the same information over and over. I want to u
 
 I do not need or want to be bothered by recommendations.
 
-### Plugins
+### VSC Plugins
 
-[Auto Close Tag](https://marketplace.visualstudio.com/items?itemName=formulahendry.auto-close-tag)
+#### [Auto Close Tag](https://marketplace.visualstudio.com/items?itemName=formulahendry.auto-close-tag)
+
+Automatically adds a closing tag when you type in the closing bracket of the opening tag. After the closing tag is inserted, the cursor is located between the opening and closing tag:
 
 <div class="center">
   <img class="gif" src="images/autoclosetag.gif" />
 </div>
 
-Automatically adds a closing tag when you type in the closing bracket of the opening tag. After the closing tag is inserted, the cursor is located between the opening and closing tag.
+#### [Auto Rename Tag](https://marketplace.visualstudio.com/items?itemName=formulahendry.auto-rename-tag)
 
-[Auto Rename Tag](https://marketplace.visualstudio.com/items?itemName=formulahendry.auto-rename-tag)
+Automatically rename paired HTML/XML tags:
 
 <div class="center">
   <img class="gif" src="images/autorenametag.gif" />
 </div>
 
-Automatically rename paired HTML/XML tags.
+#### [Babel JavaScript](https://marketplace.visualstudio.com/items?itemName=mgmcdermott.vscode-language-babel)
 
-[Babel JavaScript](https://marketplace.visualstudio.com/items?itemName=mgmcdermott.vscode-language-babel)
+JavaScript syntax highlighting for ES201x, React JSX, Flow and GraphQL:
 
 ![babel](images/babel.png)
 
-JavaScript syntax highlighting for ES201x, React JSX, Flow and GraphQL.
+#### [Bracket Pair Colorizer 2](https://marketplace.visualstudio.com/items?itemName=CoenraadS.bracket-pair-colorizer-2)
 
-[Bracket Pair Colorizer 2](https://marketplace.visualstudio.com/items?itemName=CoenraadS.bracket-pair-colorizer-2)
+This extension allows matching brackets to be identified with colors. The user can define which tokens to match, and which colors to use:
 
 ![brackets](images/brackets.png)
 
-This extension allows matching brackets to be identified with colours. The user can define which tokens to match, and which colours to use.
+#### [Code Spell Checker](https://marketplace.visualstudio.com/items?itemName=streetsidesoftware.code-spell-checker)
 
-[change-case](https://marketplace.visualstudio.com/items?itemName=wmaurer.change-case)
-
-<div class="center">
-  <img class="gif" src="images/case.gif" />
-</div>
-
-Quickly change the case of the current selection or current word.
-
-[Code Spell Checker](https://marketplace.visualstudio.com/items?itemName=streetsidesoftware.code-spell-checker)
+A basic spell checker that works well with camelCase code to help catch common spelling errors while keeping the number of false positives low. However for prose I prefer another plugin, that is why I remove `plaintext`, `markdown` and `latex` from `cSpell.enabledLanguageIds`:
 
 <div class="center">
-  <img class="gif" src="images/spell.gif" />
+  <img class="gif" src="images/spellc.gif" />
 </div>
 
-A basic spell checker that works well with camelCase code to help catch common spelling errors while keeping the number of false positives low.
+#### [Docker](https://marketplace.visualstudio.com/items?itemName=PeterJausovec.vscode-docker)
 
-[Docker](https://marketplace.visualstudio.com/items?itemName=PeterJausovec.vscode-docker)
+Provides a myriad of functions to work with Docker and Compose:
 
-Provides a myriad of functions to work with Docker and Compose.
+![docker](images/docker.png)
 
-[EditorConfig for VS Code](https://marketplace.visualstudio.com/items?itemName=editorconfig.editorconfig)
+#### [EditorConfig for VS Code](https://marketplace.visualstudio.com/items?itemName=editorconfig.editorconfig)
 
-Overrides user/workspace settings with settings defined by [EditorConfig](https://editorconfig.org).
+Overrides user/workspace settings with settings defined by [EditorConfig](https://editorconfig.org):
 
-[ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint)
+![editorconfig](images/editorconfig.png)
 
-Integration with [ESLint](https://eslint.org).
+#### [ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint)
 
-[Git History](https://marketplace.visualstudio.com/items?itemName=donjayamanne.githistory)
+Provides integration with [ESLint](https://eslint.org):
 
-Allows to search the git log and view previous versions of a file and compare it with branches or commits. GitLens is another popular plugin which I don't use since I either use the CLI or SourceTree.
+![eslint](images/eslint.png)
 
-[Go](https://marketplace.visualstudio.com/items?itemName=ms-vscode.Go)
+#### [Git History](https://marketplace.visualstudio.com/items?itemName=donjayamanne.githistory)
 
-Adds language support for [Go](https://golang.org).
+Allows to search the git log and view previous versions of a file and compare it with branches or commits. GitLens is another popular plugin which I don't use since I either use the CLI or SourceTree:
 
-[htmltagwrap](https://marketplace.visualstudio.com/items?itemName=bradgashler.htmltagwrap)
+![history](images/history.png)
 
-<div class="center">
-  <img class="gif" src="images/wrap.gif" />
-</div>
+#### [Go](https://marketplace.visualstudio.com/items?itemName=ms-vscode.Go)
 
-Wraps your selection in HTML tags. Can wrap inline selections and selections that span multiple lines (works with both single selections and multiple selections at once).
+Adds language support for [Go](https://golang.org):
 
-[LaTeX Workshop](https://marketplace.visualstudio.com/items?itemName=James-Yu.latex-workshop)
+![go](images/go.png)
 
-Makes VSC a full-fledged IDE for LaTeX with on-the-fly PDF viewing, IntelliSense, linting and snippets.
+#### [LaTeX Workshop](https://marketplace.visualstudio.com/items?itemName=James-Yu.latex-workshop)
 
-[markdownlint](https://marketplace.visualstudio.com/items?itemName=DavidAnson.vscode-markdownlint)
+Makes VSC a full-fledged IDE for LaTeX with on-the-fly PDF viewing, IntelliSense, linting and snippets:
 
-Lint and style checking for Markdown since formatting can be inconsistent or even might cause troubles with certain parsers.
+![latex](images/latex.png)
 
-[Monokai Pro](https://marketplace.visualstudio.com/items?itemName=monokai.theme-monokai-pro-vscode)
+#### [markdownlint](https://marketplace.visualstudio.com/items?itemName=DavidAnson.vscode-markdownlint)
 
-![monokai](images/monokai.png)
+Lint and style checking for Markdown since formatting can be inconsistent or even might cause troubles with certain parsers:
 
-A complete color scheme, customized user interface theme and icon set designed by the author of the original Monokai colors.
+![markdownlint](images/markdownlint.png)
 
-[npm](https://marketplace.visualstudio.com/items?itemName=eg2.vscode-npm-script)
+#### [Monokai Pro](https://marketplace.visualstudio.com/items?itemName=monokai.theme-monokai-pro-vscode)
+
+This is the color scheme you see in all the images. It also provides an icon set and is designed by the author of the original Monokai colors.
+
+#### [npm](https://marketplace.visualstudio.com/items?itemName=eg2.vscode-npm-script)
+
+Validates the `package.json` and installed modules:
 
 ![npm](images/npm.png)
 
-Validates the `package.json` and installed modules.
+#### [npm Intellisense](https://marketplace.visualstudio.com/items?itemName=christian-kohler.npm-intellisense)
 
-[npm Intellisense](https://marketplace.visualstudio.com/items?itemName=christian-kohler.npm-intellisense)
+Autocompletes modules in import statements:
 
 <div class="center">
   <img class="gif" src="images/npmi.gif" />
 </div>
 
-Autocompletes modules in import statements.
+#### [Path Intellisense](https://marketplace.visualstudio.com/items?itemName=christian-kohler.path-intellisense)
 
-[Path Intellisense](https://marketplace.visualstudio.com/items?itemName=christian-kohler.path-intellisense)
+Autocompletes path- and filenames:
 
 <div class="center">
   <img class="gif" src="images/pathi.gif" />
 </div>
 
-Autocompletes filenames.
+#### [Prettier - Code formatter](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)
 
-[Prettier - Code formatter](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)
+Provides integration with [Prettier](https://prettier.io):
 
-Provides integration with [Prettier](https://prettier.io).
+<div class="center">
+  <img class="gif" src="images/prettier.gif" />
+</div>
 
-[Settings Sync](https://marketplace.visualstudio.com/items?itemName=shan.code-settings-sync)
+#### [Settings Sync](https://marketplace.visualstudio.com/items?itemName=shan.code-settings-sync)
 
 Syncs all the VSC settings with a Gist.
 
-[Sort JSON objects](https://marketplace.visualstudio.com/items?itemName=richie5um2.vscode-sort-json)
+#### [Sort lines](https://marketplace.visualstudio.com/items?itemName=Tyriar.sort-lines)
 
-Alphabetically sorts the keys in selected JSON objects.
-
-[Sort lines](https://marketplace.visualstudio.com/items?itemName=Tyriar.sort-lines)
+Sort lines of text according to sensitivity, ascending or descending:
 
 <div class="center">
   <img class="gif" src="images/sort.gif" />
 </div>
 
-Sort lines of text.
+#### [Spell Right](https://marketplace.visualstudio.com/items?itemName=ban.spellright)
 
-[Spell Right](https://marketplace.visualstudio.com/items?itemName=ban.spellright)
+Multilingual, offline and lightweight spellchecker:
 
-Multilingual, offline and lightweight spellchecker.
+![spellright](images/spellright.png)
 
-[Visual Studio IntelliCode](https://marketplace.visualstudio.com/items?itemName=VisualStudioExptTeam.vscodeintellicode)
+I use it mainly for prose and not code for which I feel cSpell does a better job:
+
+```json
+"spellright.documentTypes": [
+  "plaintext",
+  "markdown",
+  "latex"
+]
+```
+
+#### [Visual Studio IntelliCode](https://marketplace.visualstudio.com/items?itemName=VisualStudioExptTeam.vscodeintellicode)
+
+Provides AI-assisted development features for Python, TypeScript/JavaScript and Java, with insights based on understanding your code context combined with machine learning:
 
 <div class="center">
   <img class="gif" src="images/intellicode.gif" />
 </div>
 
-Provides AI-assisted development features for Python, TypeScript/JavaScript and Java, with insights based on understanding your code context combined with machine learning.
-
-[XML Tools](https://marketplace.visualstudio.com/items?itemName=DotJoshJohnson.xml)
-
-XML language support formatting.
-
-[YAML](https://marketplace.visualstudio.com/items?itemName=redhat.vscode-yaml)
-
-YAML language support with Kubernetes syntax support.
-
-## IntelliJ IDEA [>>](https://www.jetbrains.com/idea)
+## [IntelliJ IDEA](https://www.jetbrains.com/idea)
 
 ![idea](images/idea.png)
 
 As in Visual Studio Code, I use the Operator Mono font. For plugins I use:
 
-- [Lombok](https://plugins.jetbrains.com/plugin/6317-lombok) which adds first-class support for [Project Lombok](https://projectlombok.org) which I use in plain Java projects
-- [Material Theme UI](https://plugins.jetbrains.com/plugin/8006-material-theme-ui) which changes the entire look and feel to [Material Design](https://material.io)
-- [PlantUML integration](https://plugins.jetbrains.com/plugin/7017-plantuml-integration) which provides a diagram tool for PantUML because I like it for my data models
+### IDEA Plugins
+
+#### [Lombok](https://plugins.jetbrains.com/plugin/6317-lombok)
+
+Adds first-class support for [Project Lombok](https://projectlombok.org) which I often use in plain Java projects. Without it IDEA will not process the annotations correctly and therefore the project will not compile at all.
+
+#### [Material Theme UI](https://plugins.jetbrains.com/plugin/8006-material-theme-ui)
+
+Changes the entire look and feel to [Material Design](https://material.io) as you can see in the screenshot above.
+
+#### [PlantUML integration](https://plugins.jetbrains.com/plugin/7017-plantuml-integration)
+
+Provides a diagram tool for PantUML because I like it for my data models:
+
+![idea](images/puml.png)
+
+### IDEA Settings
 
 For code styles (Editor > Code Style > Java) I use the bundled GoogleStyle. The entire settings can be found [here](https://github.com/akullpp/settings/tree/master/idea).
 
-## Sourcetree [>>](https://www.sourcetreeapp.com)
+## [Sourcetree](https://www.sourcetreeapp.com)
 
 ![sourcetree](images/sourcetree.png)
 
 Git GUI which I use sometimes if I am lazy and, e.g. want to add single lines to separate commits via click.
 
-## Docker [>>](https://www.docker.com)
+## [Docker](https://www.docker.com)
 
 Containerization to build and run software everywhere anytime.
 
-## homebrew [>>](https://brew.sh)
+## [homebrew](https://brew.sh)
 
 The missing package manager for OSX.
 
-## nvm [>>](https://github.com/nvm-sh/nvm)
+## [nvm](https://github.com/nvm-sh/nvm)
 
 The node version manager manages as the name implies multiple active node.js versions.
 
-## insomnia [>>](https://insomnia.rest/)
+## [insomnia](https://insomnia.rest/)
 
 ![insomnia](images/insomnia.png)
 
 Free and open-source REST client for all major platforms which is a modern alternative to Postman.
 
-## KeePassXC [>>](https://keepassxc.org)
+## [KeePassXC](https://keepassxc.org)
 
 ![keepassxc](images/keepassxc.png)
 
 Open-source application that stores passwords offline in a database. Also it supports every major operating system, has browser integration and is not owned by a shady company like LastPass. I suggest synchronizing the database via Google Drive or something similar.
 
-## Caffeine [>>](http://lightheadsw.com/caffeine)
+## [Caffeine](http://lightheadsw.com/caffeine)
 
 Caffeine is a tiny program that puts an icon in the right side of your menu bar. Click it to prevent your Mac from automatically going to sleep, dimming the screen or starting screen savers. Click it again to go back. Right-click (or ⌘-click) the icon to show the menu.
 
-## f.lux [>>](https://justgetflux.com)
+## [f.lux](https://justgetflux.com)
 
 ![flux](images/flux.png)
 
@@ -395,13 +409,13 @@ f.lux makes your computer screen look like the room you're in, all the time. Whe
 
 Tell f.lux what kind of lighting you have, and where you live. Then forget about it. f.lux will do the rest, automatically.
 
-## numi [>>](https://numi.app)
+## [numi](https://numi.app)
 
 ![numi](images/numi.png)
 
 An intelligent calculator and converter.
 
-## Rectangle [>>](https://rectangleapp.com)
+## [Rectangle](https://rectangleapp.com)
 
 ![rectangle](images/rectangle.png)
 
