@@ -5,11 +5,11 @@ category: post
 path: /setup-for-the-decade-basics
 ---
 
+[Second Part: Setup for the Decade: Shell](/setup-for-the-decade-shell)
+
 In this article I want to describe the opinionated productivity setup of my work environment which is currently OSX-based and refined over the last decade.
 
 The entire configuration can be found on [GitHub](https://github.com/akullpp/settings).
-
-The next part of the series focuses on the [configuration of the shell](/setup-for-the-decade-shell) which is zsh and prezto.
 
 ## Content
 
@@ -375,10 +375,6 @@ The missing package manager for OSX.
 ## [nvm](https://github.com/nvm-sh/nvm)
 
 The node version manager manages as the name implies multiple active Node.js versions.
-
-## [pyenv](https://github.com/pyenv/pyenv)
-
-Same as nvm but with Python because version changes in Python are pretty awful.
 
 ## [insomnia](https://insomnia.rest/)
 
