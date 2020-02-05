@@ -21,6 +21,7 @@ The next part of the series focuses on the [configuration of the shell](/setup-f
 - [Docker](#docker)
 - [homebrew](#homebrew)
 - [nvm](#nvm)
+- [pyenv](#pyenv)
 - [insomnia](#insomnia)
 - [KeePassXC](#keepassxc)
 - [Caffeine](#caffeine)
@@ -373,7 +374,11 @@ The missing package manager for OSX.
 
 ## [nvm](https://github.com/nvm-sh/nvm)
 
-The node version manager manages as the name implies multiple active node.js versions.
+The node version manager manages as the name implies multiple active Node.js versions.
+
+## [pyenv](https://github.com/pyenv/pyenv)
+
+Same as nvm but with Python because version changes in Python are pretty awful.
 
 ## [insomnia](https://insomnia.rest/)
 
