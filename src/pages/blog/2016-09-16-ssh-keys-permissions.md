@@ -9,13 +9,13 @@ Somehow the default permissions of new SSH keys on OS X are `0644` which is not 
 
 You probably generated your key with:
 
-```console
+```shell
 ssh-keygen -t rsa -C "foo@bar.baz"
 ```
 
 Now you want to push some stuff which results in this beautiful error message:
 
-```console
+```shell
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 @         WARNING: UNPROTECTED PRIVATE KEY FILE!          @
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
@@ -32,14 +32,14 @@ and the repository exists.
 
 The quick fix is to set the permissions to `600` for the private key and then to add it:
 
-```console
+```shell
 chmod 600 ~/.ssh/id_rsa_bar
 ssh-add -K ~/.ssh/id_rsa_bar
 ```
 
 If this won't help, you should try to generate a new key first and then repeat the steps:
 
-```console
+```shell
 ssh-keygen -y -f ~/.ssh/id_rsa_bar > ~/.ssh/id_rsa_bar.pub
 ```
 
