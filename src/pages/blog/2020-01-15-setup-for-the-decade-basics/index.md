@@ -20,8 +20,6 @@ The entire configuration can be found on [GitHub](https://github.com/akullpp/set
 - [Sourcetree](#sourcetree)
 - [Docker](#docker)
 - [homebrew](#homebrew)
-- [nvm](#nvm)
-- [pyenv](#pyenv)
 - [insomnia](#insomnia)
 - [KeePassXC](#keepassxc)
 - [Caffeine](#caffeine)
@@ -371,10 +369,6 @@ Containerization to build and run software everywhere anytime.
 ## [homebrew](https://brew.sh)
 
 The missing package manager for OSX.
-
-## [nvm](https://github.com/nvm-sh/nvm)
-
-The node version manager manages as the name implies multiple active Node.js versions.
 
 ## [insomnia](https://insomnia.rest/)
 

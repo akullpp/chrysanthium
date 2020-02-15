@@ -286,13 +286,9 @@ http get 'https://api.github.com/users/akullpp/repos' | jq '.[].name'
 ...
 ```
 
-### [pyenv](https://github.com/pyenv/pyenv)
+### [asdf-vm](https://asdf-vm.com/#/)
 
-Same as nvm but with Python because version changes in Python are pretty awful. Requires to be initialized properly:
-
-```shell
-eval "$(pyenv init -)"
-```
+Recently, I uninstalled `nvm` and `pyenv` and found a general version manager which allows me not only to manage Node.js and Python versions but also Go and Java. It is based on a open-source plugin system and while I found the user experience less than ideal so far, it is a small hinderance compared to the features.
 
 ### [thefuck](https://github.com/nvbn/thefuck)
 
@@ -314,13 +310,21 @@ alias fu='fuck'
 Here's the full `.zshrc` with all aliases, exports and tools configured:
 
 ```shell
+
 ##########
 # prezto #
 ##########
 
 if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
-  source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
+	source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
 fi
+
+########
+# asdf #
+########
+
+. /usr/local/opt/asdf/asdf.sh
+. /usr/local/opt/asdf/etc/bash_completion.d/asdf.bash
 
 ############
 # autojump #
@@ -328,25 +332,11 @@ fi
 
 [ -f /usr/local/etc/profile.d/autojump.sh ] && . /usr/local/etc/profile.d/autojump.sh
 
-#########
-# pyenv #
-#########
-
-eval "$(pyenv init -)"
-
 ###########
 # thefuck #
 ###########
 
 eval $(thefuck --alias)
-
-#######
-# nvm #
-#######
-
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
 
 ###########
 # Aliases #
