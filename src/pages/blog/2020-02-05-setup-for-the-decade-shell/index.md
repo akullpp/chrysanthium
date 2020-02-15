@@ -99,7 +99,7 @@ zstyle ':prezto:module:terminal:window-title' format '%s'
 zstyle ':prezto:module:terminal:tab-title' format '%c'
 ```
 
-## Tools
+## Tools provided by npm
 
 First we start with the tools installed by `npm i -g <name>`.
 
@@ -189,6 +189,8 @@ QED. Therefore better replace `man` with `tldr`:
 ```shell
 alias man='tldr'
 ```
+
+## Tools provided by homebrew
 
 Let us continue with the tools installed with `brew install <name>`.
 
