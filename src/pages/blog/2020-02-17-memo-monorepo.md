@@ -20,3 +20,7 @@ Sooner or later however you will face a more challenging issue: Most of  us use 
 > Are you ready to build your own VCS?
 
 I almost cannot imagine a company that would see the business value in answering answering "Yes" to this question.
+
+## Postscript
+
+I was made aware of [VFS for Git](https://vfsforgit.org) which advertises with great statistics but have not tried it yet.
