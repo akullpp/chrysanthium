@@ -62,6 +62,14 @@ The most important part is to make the annotation processors work together by us
 </plugin>
 ```
 
+Or if you use Gradle:
+
+```groovy
+compileJava {
+  options.compilerArgs << "-Amapstruct.defaultComponentModel=spring"
+}
+```
+
 This enables Lombok's processing before MapStruct's and instructs it to use the Spring component model for dependency injection.
 
 ## Code
