@@ -9,6 +9,8 @@ Every time I setup a new Spring project which requires object mapping MapStruct 
 
 ## Dependencies
 
+### Maven
+
 ```xml
 <dependency>
   <groupId>org.mapstruct</groupId>
@@ -18,6 +20,8 @@ Every time I setup a new Spring project which requires object mapping MapStruct 
 ```
 
 Many tutorials include `mapstruct-jdk8` which is wrong because you do not need it anymore.
+
+Now for Lombok:
 
 ```xml
 <dependency>
@@ -30,7 +34,35 @@ Many tutorials include `mapstruct-jdk8` which is wrong because you do not need i
 
 This should come with Spring Initializr and is self-explanatory.
 
+### Gradle
+
+For Gradle you should use the plugin:
+
+```groovy
+plugins {
+    id 'io.freefair.lombok' version '5.0.1'
+}
+generateLombokConfig.enabled = false
+```
+
+We disabled the generation of the `lombok.config` because we will provide our own:
+
+```properties
+config.stopBubbling = true
+lombok.addLombokGeneratedAnnotation = true
+lombok.anyConstructor.addConstructorProperties = true
+```
+
+No further Lombok dependencies are required, only MapStruct:
+
+```groovy
+implementation "org.mapstruct:mapstruct:$mapstructVersion"
+annotationProcessor "org.mapstruct:mapstruct-processor:$mapstructVersion"
+```
+
 ## Build
+
+### Maven
 
 The most important part is to make the annotation processors work together by using the `maven-compiler-plugin`:
 
@@ -55,22 +87,23 @@ The most important part is to make the annotation processors work together by us
       </path>
     </annotationProcessorPaths>
     <compilerArgs>
-      <arg>-Amapstruct.suppressGeneratorTimestamp=true</arg>
       <arg>-Amapstruct.defaultComponentModel=spring</arg>
     </compilerArgs>
   </configuration>
 </plugin>
 ```
 
-Or if you use Gradle:
+This enables Lombok's processing before MapStruct's and instructs it to use the Spring component model for dependency injection.
+
+### Gradle
+
+For Gradle we can set the default component model in the `compileJava`:
 
 ```groovy
 compileJava {
   options.compilerArgs << "-Amapstruct.defaultComponentModel=spring"
 }
 ```
-
-This enables Lombok's processing before MapStruct's and instructs it to use the Spring component model for dependency injection.
 
 ## Code
 
