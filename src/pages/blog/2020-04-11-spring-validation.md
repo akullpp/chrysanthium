@@ -54,6 +54,35 @@ public void foo(long id, @Valid DTO dto)
 
 Important here is that the errors thrown are generally service-level errors which should be remapped to controller-level error responses, typically via the global controller advices. It’s generally fine for service-level errors to be runtime exceptions that use technical keys, e.g. `DUPLICATE_USER` with additional - but not implementation or platform details - context provided to the consumer, e.g. provided parameters.
 
+The service-level exceptions should always have a common base class:
+
+```java
+public class FooException extends RuntimeException {
+
+    private final String key;
+
+    public FooException(String key, String message) {
+        super(message);
+        this.key = key;
+    }
+
+    public getKey() {
+      return this.key;
+    }
+}
+```
+
+which then can be extended for specific exceptions:
+
+```java
+public class FooNotFoundException extends FooException {
+
+    public FooNotFoundException() {
+        super("FOO_NOT_FOUND", "Foo could not be retrieved from database");
+    }
+}
+```
+
 ### Side Note: Optional & Either
 
 This concept plays well with the `Optional` type in Java, e.g. if you have the case where an entity is not found with a well-formed identifier, this is almost always no exception for the service therefore the implementation should follow the guidelines of Spring and return an `Optional<?>` to the caller which then can decide if it’s an error or not.
@@ -111,34 +140,50 @@ It is worthy to note that while something may not be an error on the service-lev
 ```java
 configService.saveConfig(config)
   .map(ResponseEntity::ok)
-  orElseThrow(BadRequestException::new);
+  .orElseThrow(BadRequestException::new);
 ```
 
 ### Controller Advice
 
-All uncaught exceptions get handled centrally with a exception-specific controller advice. The advices itself have precedence, e.g. to handle a specific `RestException` which should be the base class for all other REST-specific exceptions, e.g. a `NotFoundException`:
+All uncaught exceptions get handled centrally with a exception-specific controller advice. The advices itself have precedence, e.g. to handle a specific `FooException` which should be the base class for all other specific exceptions, e.g. a `FooNotFoundException`:
 
 ```java
 @ControllerAdvice
 @Order(HIGHEST_PRECEDENCE)
-public class RestExceptionHandler {
-  private final Logger logger = LoggerFactory.getLogger(getClass().getSimpleName());
+public class FooExceptionHandler {
 
   @ResponseBody
-  @ExceptionHandler(NotFoundException.class)
-  private ExceptionResponse handleNotFoundException(NotFoundException e, HttpServletResponse response) {
-    response.setStatus(e.getStatus().value());
-    return new ExceptionResponse(UUID.randomUUID(), e.getMessage());
+  @ResponseStatus(BAD_REQUEST)
+  @ExceptionHandler(FooNotFoundException.class)
+  private ExceptionResponse handleFooNotFoundException(FooNotFoundException e) {
+    return new ExceptionResponse(e);
   }
 
   @ResponseBody
-  @ExceptionHandler(RestException.class)
-  private ExceptionResponse handleRestException(RestException e, HttpServletResponse response) {
-    UUID uuid = UUID.randomUUID();
-    log.error("{} - {} - {}", uuid, e.getStatus(), e.getMessage());
-    response.setStatus(e.getStatus().value());
-    return new ExceptionResponse(uuid, e.getMessage());
+  @ExceptionHandler(FooException.class)
+  private ExceptionResponse handleFooException(FooException e) {
+    return new ExceptionResponse(e);
   }
+```
+
+Where the exception response should like this:
+
+```java
+public class ExceptionResponse {
+
+  private final Logger log = LoggerFactory.getLogger(getClass().getSimpleName());
+
+  UUID id;
+  String key;
+  String message;
+
+  public ExceptionResponse(FooException exception) {
+    this.id = UUID.randomUUID();
+    this.key = exception.getKey();
+    this.message = exception.getMessage();
+    log.error("{} - {} - {}\n", id, key, message, exception.getCause());
+  }
+}
 ```
 
 The context which needs to be logged or provided back to the user depends on the exception thrown, e.g. if there is a validation exception it should be indicated which field of the request was actually invalid and - if applicable - what form is expected. Important part is to be able to find the log fast by providing a unique identfier and in case of distributed systems an identifier of the caller.
@@ -149,16 +194,11 @@ All other exceptions at runtime that do not have explicit exception handlers sho
 @ControllerAdvice
 @Priority(LOWEST_PRECEDENCE)
 public class RuntimeExceptionHandler extends ResponseEntityExceptionHandler {
-  private final Logger log = LoggerFactory.getLogger(getClass().getSimpleName());
 
   @ResponseBody
   @ExceptionHandler(RuntimeException.class)
-  private ExceptionResponse handleRuntimeException(RuntimeException e, HttpServletResponse response) {
-    UUID uuid = UUID.randomUUID();
-    InternalException internal = new InternalException();
-    log.error("{} - {} - {}", uuid, internal.getStatus(), e);
-    response.setStatus(internal.getStatus().value());
-    return new ExceptionResponse(uuid, internal.getMessage());
+  private ExceptionResponse handleRuntimeException(RuntimeException e) {
+    return new ExceptionResponse(e);
   }
 }
 ```
