@@ -25,14 +25,47 @@ body {
 }
 
 body {
+  --bg: #f9f9f9;
+  --text: #333333;
+
   display: flex;
   flex-direction: column;
-  color: #333;
   font-family: 'Raleway Regular', sans-serif;
   font-size: 1.25em;
   line-height: 1.5;
   margin: 0 auto;
   max-width: 40em;
+
+  background-color: var(--bg);
+  color: var(--text);
+}
+
+body.dark {
+  -webkit-font-smoothing: antialiased;
+
+  --bg: #131217;
+  --text: #d9d7e0;
+}
+
+body.dark table {
+  color: #d9d7e0;
+  background-color: #111111;
+}
+
+body.dark .language-text {
+  color: #eae8f1 !important;
+}
+
+body.dark .post-date {
+  color: #b7b5c0;
+}
+
+body.dark .post-title {
+  color: #d9d7e0;
+}
+
+body.dark .toggle-theme {
+  color: red;
 }
 
 p {
@@ -142,4 +175,8 @@ ol + h4 {
 
 .gif {
   max-width: 650px;
+}
+
+.clickable {
+  cursor: pointer;
 }

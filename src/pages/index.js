@@ -53,8 +53,8 @@ export default ({
       <Post key={path}>
         <Link to={path}>
           <PostText>
-            <PostDate>{date}</PostDate>
-            <PostTitle>{title}</PostTitle>
+            <PostDate className="post-date">{date}</PostDate>
+            <PostTitle className="post-title">{title}</PostTitle>
           </PostText>
         </Link>
       </Post>
