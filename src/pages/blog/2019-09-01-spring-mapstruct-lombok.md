@@ -36,16 +36,16 @@ This should come with Spring Initializr and is self-explanatory.
 
 ### Gradle
 
-For Gradle you should use the plugin:
+For Gradle you should use the [plugin](https://plugins.gradle.org/plugin/io.freefair.lombok):
 
 ```groovy
 plugins {
-    id 'io.freefair.lombok' version '5.0.1'
+    id 'io.freefair.lombok' version '5.1.0'
 }
 generateLombokConfig.enabled = false
 ```
 
-We disabled the generation of the `lombok.config` because we will provide our own:
+We disabled the generation of the `lombok.config` because we will provide our own at the root:
 
 ```properties
 config.stopBubbling = true

@@ -25,7 +25,6 @@ In regard to timezone it’s safer if you use the just use the `Offset*` version
 
 Here's the conversion table for Java/SQL:
 
-
 | Java | SQL |
 | ---- | --- |
 | LocalDate | DATE |
