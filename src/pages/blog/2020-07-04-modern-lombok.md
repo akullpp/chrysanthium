@@ -31,11 +31,14 @@ Constructors for classes that use dependency injection should be omitted, instea
 ```java
 @Component
 @RequiredArgsConstructor
+@FieldDefaults(makeFinal = true, level = PRIVATE)
 public class FooComponent {
 
-  private final OtherComponent other;
+  OtherComponent other;
 }
 ```
+
+Here we also introduce the experimental annotation `@FieldDefaults` and make the fields private and final which would be included otherwise in `@Value`.
 
 ## Classes with inheritance
 
@@ -46,9 +49,10 @@ The parent needs to look like this:
 ```java
 @Getter
 @SuperBuilder
+@FieldDefaults(makeFinal = true, level = PRIVATE)
 public class Parent {
 
-  private String parent;
+  String parent;
 }
 ```
 
@@ -59,9 +63,10 @@ While the child looks like this:
 @ToString
 @SuperBuilder
 @EqualsAndHashCode(callSuper = false)
+@FieldDefaults(makeFinal = true, level = PRIVATE)
 public class Child extends Parent {
 
-  private String child;
+  String child;
 }
 ```
 
