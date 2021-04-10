@@ -43,25 +43,6 @@ const PostTitle = styled.span`
   font-weight: bold;
 `
 
-export default ({
-  data: {
-    allMarkdownRemark: { edges },
-  },
-}) => (
-  <Layout title="Blog">
-    {edges.map(({ node: { frontmatter: { title, date, path } } }) => (
-      <Post key={path}>
-        <Link to={path}>
-          <PostText>
-            <PostDate className="post-date">{date}</PostDate>
-            <PostTitle className="post-title">{title}</PostTitle>
-          </PostText>
-        </Link>
-      </Post>
-    ))}
-  </Layout>
-)
-
 export const blogQuery = graphql`
   query BlogQuery {
     allMarkdownRemark(
@@ -81,3 +62,24 @@ export const blogQuery = graphql`
     }
   }
 `
+
+const Blog = ({
+  data: {
+    allMarkdownRemark: { edges },
+  },
+}) => (
+  <Layout title="Blog">
+    {edges.map(({ node: { frontmatter: { title, date, path } } }) => (
+      <Post key={path}>
+        <Link to={path}>
+          <PostText>
+            <PostDate className="post-date">{date}</PostDate>
+            <PostTitle className="post-title">{title}</PostTitle>
+          </PostText>
+        </Link>
+      </Post>
+    ))}
+  </Layout>
+)
+
+export default Blog

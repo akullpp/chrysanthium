@@ -2,8 +2,10 @@ import React from 'react'
 
 import Layout from '../layout'
 
-export default () => (
+const NotFoundPage = () => (
   <Layout>
     <h1>Page not found</h1>
   </Layout>
 )
+
+export default NotFoundPage

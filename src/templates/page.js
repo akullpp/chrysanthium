@@ -3,7 +3,21 @@ import { graphql } from 'gatsby'
 
 import Layout from '../layout'
 
-export default ({
+export const pageQuery = graphql`
+  query PageQuery($path: String!) {
+    markdownRemark(frontmatter: { path: { eq: $path } }) {
+      html
+      excerpt
+      frontmatter {
+        title
+        path
+        date
+      }
+    }
+  }
+`
+
+const Page = ({
   pageContext: { authorDate },
   data: {
     markdownRemark: {
@@ -22,16 +36,4 @@ export default ({
   </Layout>
 )
 
-export const pageQuery = graphql`
-  query PageQuery($path: String!) {
-    markdownRemark(frontmatter: { path: { eq: $path } }) {
-      html
-      excerpt
-      frontmatter {
-        title
-        path
-        date
-      }
-    }
-  }
-`
+export default Page
