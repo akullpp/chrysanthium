@@ -66,6 +66,15 @@ body.dark .toggle-theme {
   color: red;
 }
 
+body.dark blockquote {
+  border-left: 4px solid #999;
+  color: #eee;
+  font-style: italic;
+  letter-spacing: -1px;
+  margin: 1em 0 1em 0;
+  padding-left: 0.5em;
+}
+
 p {
   margin: 1em 0 1em 0;
 }
