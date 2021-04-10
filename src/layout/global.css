@@ -1,13 +1,11 @@
 @font-face {
   font-family: 'Raleway Regular';
-  src: local('Raleway Regular'), local('Raleway-Regular'),
-    url('fonts/Raleway-Regular.ttf');
+  src: local('Raleway Regular'), local('Raleway-Regular'), url('fonts/Raleway-Regular.ttf');
 }
 
 @font-face {
   font-family: 'Raleway ExtraLight';
-  src: local('Raleway ExtraLight'), local('Raleway-ExtraLight'),
-    url('fonts/Raleway-ExtraLight.ttf');
+  src: local('Raleway ExtraLight'), local('Raleway-ExtraLight'), url('fonts/Raleway-ExtraLight.ttf');
 }
 
 * {

@@ -8,6 +8,7 @@ module.exports = {
     siteUrl: 'https://chrysanthium.com',
   },
   plugins: [
+    'gatsby-plugin-preact',
     'gatsby-plugin-react-helmet',
     'gatsby-plugin-sitemap',
     'gatsby-plugin-emotion',
