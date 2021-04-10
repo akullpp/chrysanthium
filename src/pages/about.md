@@ -12,6 +12,10 @@ I love Asia, in particular Japan and South Korea. Japanese culture and aesthetic
 
 If you are interested about the books I have read so far, how I rate them and what I am currently reading, you can find a list on [Goodreads](https://www.goodreads.com/user/show/8547037-andreas).
 
+## Disclaimer
+
+I try to address my reader as an abstract person not assuming gender. Unfortunately, I do not know a fluent manner to use genderless pronouns in my articles and I do not want to subscribe to a particular ideology or terminology. So if I use *he/his* please read it as a gender-neutral pronoun since the noun it relates to is often the role of the person or the word *person* itself and not meant to exclude anyone.
+
 ## Contact
 
 <a href="https://twitter.com/akullpp" target="_blank">Twitter</a><br/>
