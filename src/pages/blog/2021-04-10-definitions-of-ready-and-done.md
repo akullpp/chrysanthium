@@ -1,6 +1,6 @@
 ---
 title: "Definitions of Ready and Done"
-date: 2021-01-07
+date: 2021-04-10
 category: post
 path: /definitions-of-ready-and-done
 ---
