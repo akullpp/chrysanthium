@@ -14,7 +14,7 @@ If you are interested about the books I have read so far, how I rate them and wh
 
 ## Disclaimer
 
-I try to address my reader as an abstract person not assuming gender. Unfortunately, I do not know a fluent manner to use genderless pronouns in my articles and I do not want to subscribe to a particular ideology or terminology. So if I use *he/his* please read it as a gender-neutral pronoun since the noun it relates to is often the role of the person or the word *person* itself and not meant to exclude anyone.
+I try to address persons in an abstract way without attached gender. Unfortunately, I do not know a fluent manner to use genderless pronouns in my articles and do not want to subscribe to a particular ideology or terminology. So if I use *he/his* please read it as a gender-neutral pronoun since the related noun is either the genderless role of the person or the word *person* itself and certainly not meant to exclude anyone.
 
 ## Contact
 
