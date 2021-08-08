@@ -4,11 +4,14 @@ import { ThemeToggler } from 'gatsby-plugin-dark-mode'
 
 import Navigation from './navigation'
 
-const toggleIcon = ({ theme = 'dark', toggleTheme }) => {
+const toggleIcon = ({ theme, toggleTheme }) => {
+  if (theme === null) {
+    return null
+  }
   const isDark = theme === 'dark'
   const next = isDark ? 'light' : 'dark'
   const toggle = () => toggleTheme(next)
-  return <img className="clickable" src={`${next}.svg`} alt="Toggle theme" onClick={toggle} />
+  return <img className="clickable" src={`/${next}.svg`} alt="Toggle theme" onClick={toggle} />
 }
 
 export default () => (
