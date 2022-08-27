@@ -2,7 +2,7 @@ module.exports = {
   siteMetadata: {
     title: 'Chrysanthium',
     description: 'A technical blog about software development and technology',
-    author: 'Andreas Kull',
+    author: 'ak',
     email: 'akullpp@gmail.com',
     twitterUsername: '@akullpp',
     siteUrl: 'https://chrysanthium.com',

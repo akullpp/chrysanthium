@@ -1,6 +1,6 @@
 {
   "private": true,
-  "license": "Andreas Kull <andreas.kull@pm.me>",
+  "license": "All rights belong to the author.",
   "scripts": {
     "build": "gatsby build",
     "start": "gatsby develop",
