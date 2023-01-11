@@ -23,7 +23,7 @@
     "gatsby-remark-prismjs": "^5.3.0",
     "gatsby-remark-static-images": "1.2.1",
     "gatsby-source-filesystem": "^3.2.0",
-    "gatsby-transformer-remark": "^4.3.0",
+    "gatsby-transformer-remark": "^5.25.1",
     "preact": "^10.5.13",
     "preact-compat": "^3.19.0",
     "preact-render-to-string": "^5.1.19",
