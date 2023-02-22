@@ -11,26 +11,25 @@ export const pageQuery = graphql`
       frontmatter {
         title
         path
-        date
+        date(formatString: "MM/YYYY")
       }
     }
   }
 `
 
 const Page = ({
-  pageContext: { authorDate },
   data: {
     markdownRemark: {
       html,
       excerpt,
-      frontmatter: { title, path },
+      frontmatter: { title, path, date },
     },
   },
 }) => (
   <Layout {...{ title, path, excerpt }}>
     <div>
       <h1>{title}</h1>
-      <h6>Last modified: {authorDate}</h6>
+      <h6>Last update on {date}</h6>
       <div dangerouslySetInnerHTML={{ __html: html }} />
     </div>
   </Layout>
