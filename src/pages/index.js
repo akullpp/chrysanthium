@@ -69,16 +69,22 @@ const Blog = ({
   },
 }) => (
   <Layout title="Blog">
-    {edges.map(({ node: { frontmatter: { title, date, path } } }) => (
-      <Post key={path}>
-        <Link to={path}>
-          <PostText>
-            <PostDate className="post-date">{date}</PostDate>
-            <PostTitle className="post-title">{title}</PostTitle>
-          </PostText>
-        </Link>
-      </Post>
-    ))}
+    {edges.map(
+      ({
+        node: {
+          frontmatter: { title, date, path },
+        },
+      }) => (
+        <Post key={path}>
+          <Link to={path}>
+            <PostText>
+              <PostDate className="post-date">{date}</PostDate>
+              <PostTitle className="post-title">{title}</PostTitle>
+            </PostText>
+          </Link>
+        </Post>
+      ),
+    )}
   </Layout>
 )
 

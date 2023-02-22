@@ -32,6 +32,5 @@ module.exports = {
       },
     },
     'gatsby-plugin-catch-links',
-    'gatsby-plugin-dark-mode',
   ],
 }

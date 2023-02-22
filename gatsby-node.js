@@ -43,14 +43,19 @@ exports.createPages = ({ actions: { createPage }, graphql }) =>
         }
       }
     }
-  `).then(({ data: { allMarkdownRemark: { edges } } }) =>
-    edges.forEach(({ node: { frontmatter, fields } }) =>
-      createPage({
-        path: frontmatter.path,
-        component: path.resolve(`src/templates/page.js`),
-        context: {
-          authorDate: fields && fields.authorDate,
-        },
-      }),
-    ),
+  `).then(
+    ({
+      data: {
+        allMarkdownRemark: { edges },
+      },
+    }) =>
+      edges.forEach(({ node: { frontmatter, fields } }) =>
+        createPage({
+          path: frontmatter.path,
+          component: path.resolve(`src/templates/page.js`),
+          context: {
+            authorDate: fields && fields.authorDate,
+          },
+        }),
+      ),
   )
