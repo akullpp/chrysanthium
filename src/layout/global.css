@@ -25,6 +25,10 @@ body {
   color: #d9d7e0;
 }
 
+a.anchor {
+  fill: white;
+}
+
 .gatsby-highlight {
   font-size: 0.8em;
 }
