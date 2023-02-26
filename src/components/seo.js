@@ -9,7 +9,7 @@ const seoRender =
       siteMetadata: { title: defaultTitle, description, siteUrl: defaultUrl, twitterUsername },
     },
   }) => {
-    const displayTitle = title ? `${defaultTitle} // ${title}` : defaultTitle
+    const displayTitle = title ? `${title} || ${defaultTitle}` : defaultTitle
     const displayUrl = url ? `${defaultUrl}${url}` : defaultUrl
     const displayDescription = excerpt || description
 
