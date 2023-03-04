@@ -10,5 +10,13 @@ export default styled.div`
     list-style: none;
     align-items: center;
     justify-content: space-between;
+
+    a {
+      font-weight: 300;
+
+      &:hover {
+        font-weight: 500;
+      }
+    }
   }
 `

@@ -1,5 +1,5 @@
 // Typefaces
-import '@fontsource/raleway/600.css'
+import '@fontsource/raleway/500.css'
 import '@fontsource/raleway/300.css'
 import '@fontsource/raleway/200.css'
 // Normalize

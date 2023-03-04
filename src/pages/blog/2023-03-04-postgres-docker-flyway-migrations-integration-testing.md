@@ -5,7 +5,7 @@ category: post
 path: /postgres-docker-flyway-migrations-integration-testing
 ---
 
-Here's how you set up a Docker image of a PostgreSQL database with migrations (and possibly test data) applied by Flyway - often done for integration testing.
+Here's how you set up a Docker image of a PostgreSQL database with migrations (and possibly test data) applied by Flyway - often for integration testing.
 
 ----
 
@@ -25,7 +25,7 @@ Dockerfile
 flyway.conf
 ```
 
-Ensure to do a `sudo chmod a+x 20_flyway.sh`. The content:
+Ensure to do a `sudo chmod a+x 20_flyway.sh`. The content of the shell script:
 
 ```bash
 #!/bin/bash
@@ -87,5 +87,5 @@ For building and running nothing special is required:
 
 ```shell
 docker build . -t foobar
-docker run -e POSTGRES_USER=admin -e POSTGRES_PASSWORD=admin -e POSTGRES_DB=platform foobar
+docker run -e POSTGRES_USER=admin -e POSTGRES_PASSWORD=admin -e POSTGRES_DB=platform -p 5432:5432 foobar
 ```

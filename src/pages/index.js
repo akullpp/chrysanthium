@@ -40,7 +40,7 @@ const PostDate = styled.span`
 
 const PostTitle = styled.span`
   color: black;
-  font-weight: bold;
+  font-weight: 300;
 `
 
 export const blogQuery = graphql`

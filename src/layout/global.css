@@ -24,6 +24,7 @@ body {
   flex-direction: column;
   font-family: 'Raleway', sans-serif;
   font-size: 1.25em;
+  font-weight: 200;
   line-height: 1.5;
   margin: 0 auto;
   max-width: 40em;
@@ -123,7 +124,7 @@ td:not(:last-child) {
 }
 
 b, strong {
-  font-weight: 600;
+  font-weight: 500;
 }
 
 blockquote {
