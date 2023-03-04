@@ -12,6 +12,13 @@ body {
   height: 100%;
 }
 
+hr {
+  border: none;
+  height: 1px;
+  color: #333;
+  background-color: #333;
+}
+
 body {
   display: flex;
   flex-direction: column;
@@ -113,6 +120,10 @@ table {
 
 td:not(:last-child) {
   padding-right: 1em;
+}
+
+b, strong {
+  font-weight: 600;
 }
 
 blockquote {
