@@ -1,8 +1,8 @@
 ---
-title: "Java EE: Generic Data Access"
+title: 'Java EE: Generic Data Access'
 date: 2014-06-10
 tags: post
-permalink: /java-ee-generic-data-access
+path: /java-ee-generic-data-access
 ---
 
 Here's a simple yet practical generic approach for accessing and storing data in your enterprise model.

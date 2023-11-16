@@ -1,8 +1,8 @@
 ---
-title: "Multiple SQL Load Scripts"
+title: 'Multiple SQL Load Scripts'
 date: 2014-06-12
 tags: post
-permalink: /multiple-sql-load-scripts
+path: /multiple-sql-load-scripts
 ---
 
 SQL files can get extremely large and therefore are very difficult to maintain. In the projects I work, we tend to do database-driven localization for example, so you can imagine the amount of SQL statements.

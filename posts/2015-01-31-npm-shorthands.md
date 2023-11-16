@@ -1,8 +1,8 @@
 ---
-title: "npm shorthands"
+title: 'npm shorthands'
 date: 2015-01-31
 tags: post
-permalink: /npm-shorthands
+path: /npm-shorthands
 ---
 
 [npm](https://www.npmjs.com/) provides several shorthand commands out of the box.

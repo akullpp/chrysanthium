@@ -1,8 +1,8 @@
 ---
-title: "Notes on Functional Programming I: First-class, Pure, Curried Functions"
+title: 'Notes on Functional Programming I: First-class, Pure, Curried Functions'
 date: 2016-09-29
 tags: post
-permalink: /notes-on-functional-programming-i
+path: /notes-on-functional-programming-i
 ---
 
 ## First-class functions
@@ -16,14 +16,14 @@ A necessity for functional programming is the concept of **first-class functions
 JavaScript is one of many languages which consider functions to be just another kind of object and allow their assignment:
 
 ```js
-const square = (x) => x * x;
+const square = (x) => x * x
 // square(2) = 4
 ```
 
 Or to pass them as argument to other functions:
 
 ```js
-const twice = (f) => (x) => f(x) + f(x);
+const twice = (f) => (x) => f(x) + f(x)
 // twice(square)(2) = 8
 ```
 
@@ -37,7 +37,7 @@ The constant `twice` takes a function `f` and returns a function which takes an 
 // Indirection
 const Controller = {
   create: (args) => Db.create(args),
-};
+}
 ```
 
 The explicit wrapping in another function is unnecessary. We can pass the function like any other object to be executed later:
@@ -46,28 +46,28 @@ The explicit wrapping in another function is unnecessary. We can pass the functi
 // Without indirection
 const Controller = {
   create: Db.create,
-};
+}
 ```
 
 **First-class functions allow the maintenance of the application to become less complex since refactoring happens in one place.**
 
 ```js
 // Indirection
-getPost("/api/post", (json) => renderPost(json));
+getPost('/api/post', (json) => renderPost(json))
 ```
 
 If we need to add another parameter, we need make a change in two places:
 
 ```js
 // Refactoring
-getPost("/api/post", (json, err) => renderPost(json, err));
+getPost('/api/post', (json, err) => renderPost(json, err))
 ```
 
 Using the same technique as above, passing the function as object, we move the parameter definition to the implementation:
 
 ```js
 // Better
-getPost("/api/post", renderPost);
+getPost('/api/post', renderPost)
 ```
 
 **First-class functions minimize naming issues which are introduced by coupling to a specific naming. Subjectivity, competence or changing requirements often introduce misnomers.**
@@ -75,14 +75,14 @@ getPost("/api/post", renderPost);
 ```js
 // Specifc
 const validPosts = (posts) =>
-  posts.filter((post) => post !== null && post !== undefined);
+  posts.filter((post) => post !== null && post !== undefined)
 ```
 
 The code above is specifically tied to a certain domain where it doesn't have to be.
 
 ```js
 // Abstract
-const compact = (xs) => xs.filter((x) => x !== null && x !== undefined);
+const compact = (xs) => xs.filter((x) => x !== null && x !== undefined)
 ```
 
 `xs` being the plural of `x` which is common in functional languages, e.g. [Clojure](http://dev.clojure.org/display/community/Library+Coding+Standards).
@@ -108,14 +108,14 @@ const above = n => return n > limit;
 Given the same input it always returns the same output without observable side effects:
 
 ```js
-let foo = [1, 2, 3];
+let foo = [1, 2, 3]
 
 // No side effect
-foo.slice(0, 1);
+foo.slice(0, 1)
 // foo = [1, 2, 3]
 
 // Side effect
-foo.splice(0, 1);
+foo.splice(0, 1)
 // foo = [2, 3]
 ```
 
@@ -126,7 +126,7 @@ const addOne = {
   1: 2,
   2: 3,
   3: 4,
-};
+}
 ```
 
 Indeed the function `f(x) = x + 1` is just a convenience.
@@ -165,8 +165,8 @@ The behavior of a pure function is deterministic. No matter how often the functi
 
 ```js
 // Referential transparency
-const foo = () => "Hello world";
-const foo = "Hello world";
+const foo = () => 'Hello world'
+const foo = 'Hello world'
 ```
 
 Because a pure function is deterministic, we can replace it with its evaluated value. In fact, if our program would only consist of pure functions, we could mathematically proof its behavior and result.
@@ -185,10 +185,10 @@ They don't have shared memory and therefore can't have a race condition.
 
 ```js
 // Uncurried
-const add = (x, y) => x + y;
+const add = (x, y) => x + y
 
 // Curried
-const add = (x) => (y) => x + y;
+const add = (x) => (y) => x + y
 ```
 
 There are libraries which can help to create curried functions like [lodash.curry](https://www.npmjs.com/package/lodash.curry) and functional libraries like [lodash/fp](https://github.com/lodash/lodash/wiki/FP-Guide) or [Ramda](http://ramdajs.com/) provide curried functions by default.
@@ -206,11 +206,11 @@ With growing complexity, the usefulness of currying increases, especially if you
 Let's look at an artificial example:
 
 ```js
-const get = (prop) => (obj) => obj[prop];
-const map = (fn) => (xs) => xs.map(fn);
+const get = (prop) => (obj) => obj[prop]
+const map = (fn) => (xs) => xs.map(fn)
 
-const getIds = map(get("id"));
-getId([{ id: 1 }, { id: 2 }, { id: 3 }]);
+const getIds = map(get('id'))
+getId([{ id: 1 }, { id: 2 }, { id: 3 }])
 // [1, 2, 3]
 ```
 
@@ -229,9 +229,9 @@ const getActiveInternalPersons = _.partial(getPersons, _, true, true);
 If the order is not important, you can use JavaScript's `bind`:
 
 ```js
-const add = (x, y, z) => x + y + z;
-const addOneMore = add.bind(null, 1, 2);
-addOneMore(3);
+const add = (x, y, z) => x + y + z
+const addOneMore = add.bind(null, 1, 2)
+addOneMore(3)
 // 1 + 2 + 3 = 6
 ```
 

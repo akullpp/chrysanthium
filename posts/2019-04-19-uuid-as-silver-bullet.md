@@ -1,8 +1,8 @@
 ---
-title: "UUID as silver bullet"
+title: 'UUID as silver bullet'
 date: 2019-04-19
 tags: post
-permalink: /uuid-as-silver-bullet
+path: /uuid-as-silver-bullet
 ---
 
 We narrow down UUIDs to the ones defined by [RFC4122](https://tools.ietf.org/html/rfc4122) which are therefore 128-bit long values consisting of 36 characters of the form `xxxxxxxx-xxxx-Axxx-Bxxx-xxxxxxxxxxxx` where `A` is the version and `B` the variant. For general use version 4, which draws from a random distribution, is commonly used which leaves 122 bits randomly generated ensuring that collision probability is close to zero. Read up the theoretical background information in the [Wikipedia article](https://en.wikipedia.org/wiki/Universally_unique_identifier) if you would like, since we will focus on practical issues. For generated sequences this comparison assumes 64-bit integers between -2^63 and 2^63 - 1 where the sequence is those of natural numbers.

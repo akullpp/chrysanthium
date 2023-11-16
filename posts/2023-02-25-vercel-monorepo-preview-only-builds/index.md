@@ -1,7 +1,7 @@
 ---
 title: 'Vercel Monorepo Preview Only Builds'
 date: 2023-02-25
-permalink: /vercel-monorepo-preview-only-builds
+path: /vercel-monorepo-preview-only-builds
 ---
 
 Given a mono-repository with multiple packages, e.g. yarn workspaces:

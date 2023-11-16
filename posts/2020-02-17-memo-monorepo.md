@@ -1,8 +1,8 @@
 ---
-title: "Memo: Monorepo"
+title: 'Memo: Monorepo'
 date: 2020-02-17
 tags: post
-permalink: /memo-monorepo
+path: /memo-monorepo
 ---
 
 > My memos are short, subjective and not exhaustively researched thoughts about issues I currently face.

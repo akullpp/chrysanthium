@@ -1,6 +1,6 @@
 ---
 title: Privacy
-permalink: /privacy
+path: /privacy
 ---
 
 As a consumer and creator I am very concerned about privacy. Not only do I honor current European and German law but also adhere to strict ethics which means that I do not actively collect any personal information nor would I ever give data to third parties.

@@ -1,8 +1,8 @@
 ---
-title: "ESLint and CRA"
+title: 'ESLint and CRA'
 date: 2020-11-09
 tags: post
-permalink: /eslint-and-cra
+path: /eslint-and-cra
 ---
 
 create-react-app's handling of ESLint was always bad in the past but with recent changes has become unbearable. There is not only the issue that the dependencies are extremely outdated, extending the configuration is next to impossible - and flaky at best - but also the lacking feature of disabling ESLint has become a near blocker in term of performance for large code bases that do not want to eject.
@@ -36,7 +36,7 @@ module.exports = {
   eslint: {
     enable: false,
   },
-};
+}
 ```
 
 ## Substitute `react-scripts` with `craco`

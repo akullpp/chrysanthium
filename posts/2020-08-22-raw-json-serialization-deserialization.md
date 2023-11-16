@@ -1,8 +1,8 @@
 ---
-title: "Raw JSON Serialization and Deserialization"
+title: 'Raw JSON Serialization and Deserialization'
 date: 2020-08-22
 tags: post
-permalink: /raw-json-serialization-deserialization
+path: /raw-json-serialization-deserialization
 ---
 
 The following allows to serialize JSON to a string:

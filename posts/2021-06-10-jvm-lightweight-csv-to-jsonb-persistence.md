@@ -1,8 +1,8 @@
 ---
-title: "JVM: Lightweight CSV to JSONB persistence"
+title: 'JVM: Lightweight CSV to JSONB persistence'
 date: 2021-06-10
 tags: post
-permalink: /jvm-lightweight-csv-to-jsonb-persistence
+path: /jvm-lightweight-csv-to-jsonb-persistence
 ---
 
 Python has become the de facto language for data processing since it has easy to use and provides popular libraries like pandas. However, Excel or CSV processing can also be done by JVM languages in a concise and efficient manner.

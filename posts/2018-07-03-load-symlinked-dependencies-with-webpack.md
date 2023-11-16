@@ -1,8 +1,8 @@
 ---
-title: "Load symlinked dependencies with webpack"
+title: 'Load symlinked dependencies with webpack'
 date: 2018-07-03
 tags: post
-permalink: /load-symlinked-dependencies-with-webpack
+path: /load-symlinked-dependencies-with-webpack
 ---
 
 Sometimes you need to use a specific webpack loader for a dependency which is only available locally as a symlink via `npm link`. This might be the case if you require the processing of certain file types or the transpilation of ES2015+ files with `babel-loader` as it was in my case with [Storybook](https://storybook.js.org/). Unfortunately, if you face hidden webpack configurations like in [create-react-app](https://github.com/facebook/create-react-app) or aforementioned Storybook this won't work out of the box and requires to overwrite the defaults.
@@ -14,15 +14,15 @@ module: {
   rules: [
     {
       test: /\.js$/,
-      exclude: "node_modules",
+      exclude: 'node_modules',
       use: {
-        loader: "babel-loader",
+        loader: 'babel-loader',
         options: {
-          presets: ["env"],
+          presets: ['env'],
         },
       },
     },
-  ];
+  ]
 }
 ```
 
@@ -43,8 +43,8 @@ Do not forget that you additionally have to install the each used loader as depe
 However webpack couldn't resolve the real path to the symlinked module no matter what. The solution is actually the combination of `fs.realpathSync` with `path.resolve` to get the correct path on the file system. Here's what the final `webpack.config.js` looks like:
 
 ```js
-const path = require("path");
-const fs = require("fs");
+const path = require('path')
+const fs = require('fs')
 
 module.exports = (baseConfig, env, defaultConfig) => {
   defaultConfig.module.rules = [
@@ -56,23 +56,23 @@ module.exports = (baseConfig, env, defaultConfig) => {
           path.resolve(
             path.join(
               __dirname,
-              "..",
-              "node_modules",
-              "single-page-application",
-              "src"
-            )
-          )
+              '..',
+              'node_modules',
+              'single-page-application',
+              'src',
+            ),
+          ),
         ),
       ],
-      loader: "babel-loader",
+      loader: 'babel-loader',
       options: {
-        presets: ["env", "react"],
+        presets: ['env', 'react'],
         babelrc: false,
       },
     },
-  ];
-  return defaultConfig;
-};
+  ]
+  return defaultConfig
+}
 ```
 
 A working example can be found on [GitHub](https://github.com/akullpp/linked-storybook).

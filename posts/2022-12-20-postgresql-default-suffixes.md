@@ -1,8 +1,8 @@
 ---
-title: "PostgreSQL default suffixes"
+title: 'PostgreSQL default suffixes'
 date: 2022-12-20
 tags: post
-permalink: /postgresql-default-suffixes
+path: /postgresql-default-suffixes
 ---
 
 The standard names for indexes in PostgreSQL are

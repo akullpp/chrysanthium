@@ -1,8 +1,8 @@
 ---
-title: "Spring Validation"
+title: 'Spring Validation'
 date: 2020-04-11
 tags: post
-permalink: /spring-validation
+path: /spring-validation
 ---
 
 ## Backend

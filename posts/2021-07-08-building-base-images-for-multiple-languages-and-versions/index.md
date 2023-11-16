@@ -1,7 +1,7 @@
 ---
 title: 'Building base images for multiple languages and versions'
 date: 2021-07-08
-permalink: /building-base-images-for-multiple-languages-and-versions
+path: /building-base-images-for-multiple-languages-and-versions
 ---
 
 It is good practice to have your own base images which you can modify for security, deployment or application-specific reasons. Obviously, they also need to be handled by your CI/CD and pushed to your container registry.

@@ -1,8 +1,8 @@
 ---
-title: "Java: Generate Secure Random String"
+title: 'Java: Generate Secure Random String'
 date: 2019-08-04
 tags: post
-permalink: /java-generate-secure-random-string
+path: /java-generate-secure-random-string
 ---
 
 One neat little exercise is to generate a relatively random strings with a specific amount of certain characters. Of course you could use an Apache library for this but I think it is simple enough to do it yourself.

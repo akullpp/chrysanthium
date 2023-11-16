@@ -1,8 +1,8 @@
 ---
-title: "A Practical Angular Model Layer"
+title: 'A Practical Angular Model Layer'
 date: 2015-08-03
 tags: post
-permalink: /angular-model-layer
+path: /angular-model-layer
 ---
 
 In the Java enterprise world you often have entities and/or data access objects that encapsulate attributes of an object. We want a similar domain model which wraps the truth in a form we can work with. The following pattern powered by [lodash](https://lodash.com/) enables this behavior assuming an HATEOAS REST API.
@@ -18,28 +18,28 @@ That leaves us with the actual model, which is often described as the source of 
 I propose the following pattern for the model layer:
 
 ```js
-angular.service("User", function () {
+angular.service('User', function () {
   function User(resource) {
     var self = _.extend(
       {
         // Resource attributes
       },
-      resource
-    );
+      resource,
+    )
 
     _.extend(self, {
       // Resource functions
-    });
+    })
 
-    return self;
+    return self
   }
 
   _.extend(User, {
     // Global resource functions
-  });
+  })
 
-  return User;
-});
+  return User
+})
 ```
 
 The bonuses you get from this pattern are:
@@ -49,10 +49,10 @@ The bonuses you get from this pattern are:
 ```js
 var self = _.extend(
   {
-    fullname: [resource.firstname, resource.lastname].join(" "),
+    fullname: [resource.firstname, resource.lastname].join(' '),
   },
-  _.omit(resource, ["firstname", "lastname"])
-);
+  _.omit(resource, ['firstname', 'lastname']),
+)
 ```
 
 - The ability to add global functions, e.g. getting an `Address` instance from a resource:
@@ -60,9 +60,9 @@ var self = _.extend(
 ```js
 _.extend(Address, {
   fromResource: function (resource) {
-    return new Address(resource);
+    return new Address(resource)
   },
-});
+})
 ```
 
 Which really shines if you do HATEOAS, e.g. you could now get all addresses from a link in the `User` resource resource via another global `User` method:

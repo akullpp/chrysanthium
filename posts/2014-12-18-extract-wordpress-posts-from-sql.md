@@ -1,8 +1,8 @@
 ---
-title: "Extract WordPress Posts from SQL"
+title: 'Extract WordPress Posts from SQL'
 date: 2014-12-18
 tags: post
-permalink: /extract-wordpress-posts-from-sql
+path: /extract-wordpress-posts-from-sql
 ---
 
 I decided that I didn't need a WordPress blog with SQL database and switched to GitHub pages and Jekyll. Unfortunately, my blog was already down and I only had the SQL backup file left. So here's how you extract WordPress posts from a SQL backup.

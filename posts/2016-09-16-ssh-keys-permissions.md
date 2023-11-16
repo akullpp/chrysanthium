@@ -1,8 +1,8 @@
 ---
-title: "SSH Keys and their permissions"
+title: 'SSH Keys and their permissions'
 date: 2016-09-16
 tags: post
-permalink: /ssh-keys-permissions
+path: /ssh-keys-permissions
 ---
 
 Somehow the default permissions of new SSH keys on OS X are `0644` which is not only bad idea but won't allow you to push stuff. So, how do you fix it?

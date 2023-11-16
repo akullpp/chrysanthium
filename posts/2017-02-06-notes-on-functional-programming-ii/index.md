@@ -1,7 +1,7 @@
 ---
 title: 'Notes on Functional Programming II: Composition & Point-free Style'
 date: 2017-02-06
-permalink: /notes-on-functional-programming-ii
+path: /notes-on-functional-programming-ii
 ---
 
 ## Composition

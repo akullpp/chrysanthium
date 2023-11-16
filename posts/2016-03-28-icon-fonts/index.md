@@ -1,7 +1,7 @@
 ---
 title: 'The Third Circle Of Hell: Icon Fonts'
 date: 2016-03-28
-permalink: /icon-fonts
+path: /icon-fonts
 ---
 
 > TL;DR: Use [IcoMoon](https://icomoon.io/app/#/select).

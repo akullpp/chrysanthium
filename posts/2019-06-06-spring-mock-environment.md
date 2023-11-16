@@ -1,8 +1,8 @@
 ---
-title: "Spring: Mock Environment"
+title: 'Spring: Mock Environment'
 date: 2019-06-06
 tags: post
-permalink: /spring-mock-environment
+path: /spring-mock-environment
 ---
 
 What are you going to do if you want to switch profiles between individual tests and not use one set of profiles for the whole test suite?

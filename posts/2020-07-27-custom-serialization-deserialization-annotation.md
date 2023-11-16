@@ -1,8 +1,8 @@
 ---
-title: "Custom Serialization and Deserialization by Annotation"
+title: 'Custom Serialization and Deserialization by Annotation'
 date: 2020-07-27
 tags: post
-permalink: /custom-serialization-deserialization-annotation
+path: /custom-serialization-deserialization-annotation
 ---
 
 The typical use case where you want to (de-)serialize some field in a request/response is when you map to a graphical user id.

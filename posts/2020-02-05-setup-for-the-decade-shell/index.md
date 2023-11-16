@@ -1,7 +1,7 @@
 ---
 title: 'Setup for the Decade: Shell'
 date: 2020-02-05
-permalink: /setup-for-the-decade-shell
+path: /setup-for-the-decade-shell
 ---
 
 [First Part: Setup for the Decade: Basics](/setup-for-the-decade-basics)

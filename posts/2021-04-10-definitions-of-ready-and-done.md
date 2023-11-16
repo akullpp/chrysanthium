@@ -1,8 +1,8 @@
 ---
-title: "Definitions of Ready and Done"
+title: 'Definitions of Ready and Done'
 date: 2021-04-10
 tags: post
-permalink: /definitions-of-ready-and-done
+path: /definitions-of-ready-and-done
 ---
 
 In many years of developing software, I saw as many **Definition of Ready** and **Definition of Done**. I tried to stay true to the core ideas and abstract them as good as possible and now you see the result of that work. It is certainly not final, it never will be, but I think it is a good starting point for discussion and improvement which should always be based on the specific context of a project.

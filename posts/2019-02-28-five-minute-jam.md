@@ -1,7 +1,7 @@
 ---
 title: 'Five Minute JAM'
 date: 2019-02-28
-permalink: /five-minute-jam
+path: /five-minute-jam
 templateEngineOverride: md
 ---
 
@@ -69,7 +69,7 @@ module.exports = {
       resolve: 'gatsby-source-filesystem',
       options: {
         name: 'pages',
-        permalink: `${__dirname}/src/pages`,
+        path: `${__dirname}/src/pages`,
       },
     },
     'gatsby-transformer-remark',
@@ -104,7 +104,7 @@ Regarding the content of the markdown files I just want to give one small exampl
 title: First Post
 date: 2019-01-01
 
-permalink: /first-post
+path: /first-post
 ---
 
 This is the **first** post.
@@ -138,8 +138,8 @@ export default ({
 )
 
 export const postQuery = graphql`
-  query PostQuery($permalink: String!) {
-    markdownRemark(frontmatter: { permalink: { eq: $path } }) {
+  query PostQuery($path: String!) {
+    markdownRemark(frontmatter: { path: { eq: $path } }) {
       html
       frontmatter {
         title
@@ -184,7 +184,7 @@ exports.createPages = ({ actions: { createPage }, graphql }) =>
     }) =>
       edges.forEach(({ node: { frontmatter } }) =>
         createPage({
-          permalink: frontmatter.path,
+          path: frontmatter.path,
           component: path.resolve(`src/templates/${frontmatter.category}.js`),
         }),
       ),
@@ -306,7 +306,7 @@ Since the about page is mainly content, we also create a markdown file for it, i
 ---
 title: About
 category: page
-permalink: /about
+path: /about
 ---
 
 I am a software developer.
@@ -333,8 +333,8 @@ export default ({
 )
 
 export const pageQuery = graphql`
-  query PageQuery($permalink: String!) {
-    markdownRemark(frontmatter: { permalink: { eq: $path } }) {
+  query PageQuery($path: String!) {
+    markdownRemark(frontmatter: { path: { eq: $path } }) {
       html
       frontmatter {
         title

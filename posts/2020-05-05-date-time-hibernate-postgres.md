@@ -1,8 +1,8 @@
 ---
-title: "Date & Time with Hibernate and Postgres"
+title: 'Date & Time with Hibernate and Postgres'
 date: 2020-05-05
 tags: post
-permalink: /date-time-hibernate-postgres
+path: /date-time-hibernate-postgres
 ---
 
 The Java 8 Date & Time API provides the following new classes which in contrast to `Date` and `Calendar` are immutable and thread-safe:

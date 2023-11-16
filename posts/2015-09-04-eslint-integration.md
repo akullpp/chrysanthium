@@ -1,8 +1,8 @@
 ---
-title: "ESLint Integration"
+title: 'ESLint Integration'
 date: 2015-09-04
 tags: post
-permalink: /eslint-integration
+path: /eslint-integration
 ---
 
 [ESLint](http://eslint.org/) is a JavaScript linter much more capable than JSHint in terms of customizability. This post will give you detailed instructions on how to integrate it in a multi-module project environment independent of its size. The approach presented is itself modular and creates a ESLint environment which is adaptable.
@@ -99,13 +99,13 @@ Note the prefix of the custom rule is the same as the plugin name.
 Custom rules go to `rules` and their respective tests to `test`. They have to be exported inside the `index.js`:
 
 ```js
-"use strict";
+'use strict'
 
 module.exports = {
   rules: {
-    "leftover-only": require("./rules/leftover-only"),
+    'leftover-only': require('./rules/leftover-only'),
   },
-};
+}
 ```
 
 ## Integration

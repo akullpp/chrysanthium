@@ -1,8 +1,8 @@
 ---
-title: "Modern Lombok"
+title: 'Modern Lombok'
 date: 2020-07-04
 tags: post
-permalink: /modern-lombok
+path: /modern-lombok
 ---
 
 There are actually only a handful of Lombok annotations that are worth using in a modern Spring Boot application.

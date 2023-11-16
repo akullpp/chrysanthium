@@ -1,8 +1,8 @@
 ---
-title: "REST and gRPC in parallel"
+title: 'REST and gRPC in parallel'
 date: 2021-05-14
 tags: post
-permalink: /rest-and-grpc-in-parallel
+path: /rest-and-grpc-in-parallel
 ---
 
 I love to use gRPC for inter-service communication since it is very efficient and often a good alternative to messaging solutions like Kafka. It utilizes Protobuf and HTTP2 which brings a lot of benefits such as strong typing, versioning and streaming.

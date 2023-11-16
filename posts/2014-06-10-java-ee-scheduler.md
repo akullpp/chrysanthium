@@ -1,8 +1,8 @@
 ---
-title: "Java EE: Scheduler"
+title: 'Java EE: Scheduler'
 date: 2014-06-10
 tags: post
-permalink: /java-ee-scheduler
+path: /java-ee-scheduler
 ---
 
 Enterprise newcomers often tend to use unnecessary libraries for simple tasks that are possible without. For many scheduling tasks in web applications, you don't need to use libraries like [Quartz](http://quartz-scheduler.org/). Let's say that you want to send an mail every midnight:

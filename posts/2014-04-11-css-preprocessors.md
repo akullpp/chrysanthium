@@ -1,8 +1,8 @@
 ---
-title: "CSS Preprocessors"
+title: 'CSS Preprocessors'
 date: 2014-04-11
 tags: post
-permalink: /css-preprocessors
+path: /css-preprocessors
 ---
 
 A preprocessor is a program that processes input which is then used as input for another program. Take for example the C preprocessor which uses `#` directives for includes. The CPP could be considered a independent language and CSS preprocessors are indeed a kind of scripting language which generate style sheets.
@@ -50,7 +50,7 @@ Variables can be numbers, strings, colors or boolean and the preprocessor substi
 [Sass](http://codepen.io/akullpp/pen/AsEGi/): The declaration begins with `$` and the value is assigned with `:`
 
 ```scss
-$mainfont: "Comic Sans MS", cursive, sans-serif;
+$mainfont: 'Comic Sans MS', cursive, sans-serif;
 
 body {
   font: 500% $mainfont;

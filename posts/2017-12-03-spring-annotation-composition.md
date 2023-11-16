@@ -1,8 +1,8 @@
 ---
-title: "Spring: Annotation Composition"
+title: 'Spring: Annotation Composition'
 date: 2017-12-03
 tags: post
-permalink: /spring-annotation-composition
+path: /spring-annotation-composition
 ---
 
 This article aims to show you how to combine several common annotations in Spring to reduce visual complexity and making your life simpler by the example of combining `@RestController` and `@RequestMapping`.

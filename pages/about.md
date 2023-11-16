@@ -1,6 +1,6 @@
 ---
 title: About
-permalink: /about
+path: /about
 ---
 
 I am a full-stack software engineer who studied computer science and computational linguistics in the beautiful city of Heidelberg and live near Karlsruhe, Germany.

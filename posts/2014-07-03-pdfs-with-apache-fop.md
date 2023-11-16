@@ -1,8 +1,8 @@
 ---
-title: "PDFs with Apache FOP"
+title: 'PDFs with Apache FOP'
 date: 2014-07-03
 tags: post
-permalink: /pdfs-with-apache-fop
+path: /pdfs-with-apache-fop
 ---
 
 We will leverage the power of Apache FOP which will reward your initial efforts with a maximum of freedom, especially regarding the styling. Using a library to generate the PDF programmatically is probably the desired way but you need to be aware of licensing restrictions.

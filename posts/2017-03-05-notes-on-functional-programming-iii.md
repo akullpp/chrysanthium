@@ -1,8 +1,8 @@
 ---
-title: "Notes on Functional Programming III: Functor, Applicative & Monad"
+title: 'Notes on Functional Programming III: Functor, Applicative & Monad'
 date: 2017-03-05
 tags: post
-permalink: /notes-on-functional-programming-iii
+path: /notes-on-functional-programming-iii
 ---
 
 Preliminary: [The Fantasy Land](https://github.com/fantasyland/fantasy-land) algebra is a specification which many good functional libraries implement and covers additional laws of algebraic structures which I won't cover.
@@ -14,9 +14,9 @@ A **functor** is just a container for values with a `map` method that applies a 
 According to this definition an array is a functor:
 
 ```js
-const xs = [1, 2, 3];
+const xs = [1, 2, 3]
 // Array.isArray(xs) === true
-const ys = xs.map((x) => x);
+const ys = xs.map((x) => x)
 // Array.isArray(ys) === true
 ```
 
@@ -27,11 +27,11 @@ Unfortunately, not all data structures have a map function so you might need to 
 ```js
 class Wrapper {
   constructor(value) {
-    this.value = value;
+    this.value = value
   }
 
   map(f) {
-    return new Wrapper(f(this.value));
+    return new Wrapper(f(this.value))
   }
 }
 ```
@@ -50,14 +50,14 @@ An **applicative** is an extension of a functor and is used to be able to apply 
 
 ```js
 Wrapper.prototype.ap = function (wrapped) {
-  return wrapped.map(this.value);
-};
+  return wrapped.map(this.value)
+}
 ```
 
 Additionally, an applicative must provide an `of` method which is used to create an instance with default minimal context:
 
 ```js
-Wrapper.of = (x) => new Wrapper(x);
+Wrapper.of = (x) => new Wrapper(x)
 ```
 
 > Functors which only have an `ap` method are called Apply. Functors which only have an `of` method are called Pointed Functors. If they have both they are called Applicatives.
@@ -73,10 +73,10 @@ Wrapper.prototype.map = function (f) {
 Let's assume we have the following setup:
 
 ```js
-const add = (x) => (y) => x + y;
-const wrapperOne = Wrapper.of(1);
-const wrapperTwo = Wrapper.of(2);
-const wrapperOneAdd = wrapperOne.map(add);
+const add = (x) => (y) => x + y
+const wrapperOne = Wrapper.of(1)
+const wrapperTwo = Wrapper.of(2)
+const wrapperOneAdd = wrapperOne.map(add)
 ```
 
 where `add` is a curried function and `wrapperOneAdd` is an object of type `Wrapper` with the wrapped value of `y => 1 + y`.
@@ -87,7 +87,7 @@ The first box contains the integer `1`. The second box the result, i.e. `y => 1 
 Using the `ap` method would result in a new wrapped value:
 
 ```js
-wrapperOneAdd.ap(wrapperTwo);
+wrapperOneAdd.ap(wrapperTwo)
 // Wrapper {value: 3}
 ```
 
@@ -118,23 +118,23 @@ A **monad** applies a function which returns a wrapped value to a wrapped value.
 ```js
 class Monad {
   static of(value) {
-    return new Monad(value);
+    return new Monad(value)
   }
 
   constructor(value) {
-    this.value = value;
+    this.value = value
   }
 
   map(f) {
-    return Monad.of(f(this.value));
+    return Monad.of(f(this.value))
   }
 
   ap(monad) {
-    return monad.map(this.value);
+    return monad.map(this.value)
   }
 
   chain(f) {
-    return this.map(f).value;
+    return this.map(f).value
   }
 }
 ```
@@ -156,19 +156,19 @@ However, just like general applicatives, a general implementation of a monad doe
 ```js
 class Maybe extends Monad {
   static of(value) {
-    return new Maybe(value);
+    return new Maybe(value)
   }
 
   constructor(value) {
-    super(value);
+    super(value)
   }
 
   isNothing() {
-    return this.value === null || this.value === undefined;
+    return this.value === null || this.value === undefined
   }
 
   map(f) {
-    return this.isNothing() ? Maybe.of(null) : Maybe.of(f(this.value));
+    return this.isNothing() ? Maybe.of(null) : Maybe.of(f(this.value))
   }
 }
 ```
@@ -176,21 +176,21 @@ class Maybe extends Monad {
 It just checks whether the wrapped value is `null` or `undefined` and if it is, returns a wrapped `null`. Why is this interesting? Well, first of all it avoids pesky null checks. Additionally, it provides safety from runtime errors when chaining several methods where one may fail to return a value:
 
 ```js
-const prop = (p) => (o) => o[p];
+const prop = (p) => (o) => o[p]
 
 const getUsername = (account) =>
-  Maybe.of(account).map(prop("personal")).map(prop("user")).map(prop("name"));
+  Maybe.of(account).map(prop('personal')).map(prop('user')).map(prop('name'))
 
 // Might be retrieved async!
 const user = {
   personal: {
     user: {
-      name: "John Doe",
+      name: 'John Doe',
     },
   },
-};
+}
 
-getUsername(user);
+getUsername(user)
 // Maybe { value: 'John Doe' }
 ```
 

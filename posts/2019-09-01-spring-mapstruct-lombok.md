@@ -1,8 +1,8 @@
 ---
-title: "Spring: MapStruct & Lombok"
+title: 'Spring: MapStruct & Lombok'
 date: 2019-09-01
 tags: post
-permalink: /spring-mapstruct-lombok
+path: /spring-mapstruct-lombok
 ---
 
 Every time I setup a new Spring project which requires object mapping MapStruct is the library of choice since it is de facto [the fastest and most versatile around](https://www.baeldung.com/java-performance-mapping-frameworks). But no matter what, I always have a hard time to configure MapStruct to work with Lombok and Spring's dependency injection. There are many outdated resources, so here is the current way to do it right:

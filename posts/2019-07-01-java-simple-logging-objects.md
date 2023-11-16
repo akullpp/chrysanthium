@@ -1,8 +1,8 @@
 ---
-title: "Java: Simple Logging Objects"
+title: 'Java: Simple Logging Objects'
 date: 2019-07-01
 tags: post
-permalink: /java-simple-logging-objects
+path: /java-simple-logging-objects
 ---
 
 My favorite way to do traditional logging in Java is to utilize the simple class name which is often suitable for most reasonably complex cases, i.e. `class#getName` would additionally return the entire package path (e.g. `com.example.foo.Bar`) where as `class#getSimpleName` returns only the name of the class (e.g. `Bar`):

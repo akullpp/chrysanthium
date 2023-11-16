@@ -1,7 +1,7 @@
 ---
 title: 'Multiple SPAs at different paths accessible through a gateway'
 date: 2018-04-22
-permalink: /multiple-spa-paths-gateway
+path: /multiple-spa-paths-gateway
 ---
 
 Normally, you would serve one SPA at a specific domain but sometimes the differentiating criteria has to be the path while the host (e.g. `http://www.example.test`) stays the same which means one application should be available at `/foo` and the other at `/bar`. If you do not want to read the whole explanation how to fix this, you can find the code of my solution on [GitHub](https://github.com/akullpp/multiple-react-nginx).

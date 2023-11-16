@@ -2,7 +2,7 @@
 title: 'Postgres Docker image with Flyway migrations for integration testing'
 date: 2023-03-04
 lastModified: 2023-11-15
-permalink: /postgres-docker-flyway-migrations-integration-testing
+path: /postgres-docker-flyway-migrations-integration-testing
 ---
 
 Here's how you set up a Docker image of a PostgreSQL database with migrations (and possibly test data) applied by Flyway - often for integration testing.

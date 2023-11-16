@@ -1,8 +1,8 @@
 ---
-title: "The Passionate Programmer II: At The Edge with Julia"
+title: 'The Passionate Programmer II: At The Edge with Julia'
 date: 2014-03-20
 tags: post
-permalink: /passionate-programmer-ii-julia
+path: /passionate-programmer-ii-julia
 ---
 
 If you read the post about becoming [a passionate programmer](/act-on-it), you also read the advice to try a new language. Although I recommend to learn a more common language which you haven't had the chance to look at yet, you could also try one of those bleeding edge languages for fun and profit. It also provides you with the excellent opportunity to engage in open source activities and develop libraries or the language itself.
@@ -368,7 +368,7 @@ Macros are convenient to generate code at compile time:
 
 Julia has immense capabilities for [parallel computing](http://docs.julialang.org/en/release-0.2/manual/parallel-computing/).
 
-It can run external commands with the full implications, e.g. `` run(`ls`) ``.
+It can run external commands with the full implications, e.g. ``run(`ls`)``.
 
 You can [call C and Fortran functions](http://docs.julialang.org/en/release-0.2/manual/calling-c-and-fortran-code/) without glue code.
 

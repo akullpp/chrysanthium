@@ -1,8 +1,8 @@
 ---
-title: "Developing Global Node CLI Applications"
+title: 'Developing Global Node CLI Applications'
 date: 2015-04-30
 tags: post
-permalink: /developing-global-node-cli-applications
+path: /developing-global-node-cli-applications
 ---
 
 When you install a global node module via `npm i -g` you can use the module everywhere just like typing a shell command. Developing such a command-line module is a bit different from developing just another node library. I will explain how to do it and what the best practices are in the process.

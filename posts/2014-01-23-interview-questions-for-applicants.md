@@ -1,8 +1,8 @@
 ---
-title: "Interview Questions for Applicants"
+title: 'Interview Questions for Applicants'
 date: 2014-01-23
 tags: post
-permalink: /interview-questions-for-applicants
+path: /interview-questions-for-applicants
 ---
 
 I recently graduated from university and finished my big job hunt so my memories are quite recent. Fortunately, the IT industry is in dire need of qualified and motivated people so it is not particular difficult to get invited to an interview. However, it is difficult to find a company that actually cares about you and which does not want to burn you out and throw you away. A good way is to consult a rating website like [Kununu](http://www.kununu.com/) for German-speaking countries or to ask the right questions during an interview, but what are the right questions? Therefore, I would like to present you a list of questions, which I used to find a good job in a good company. Keep in mind that some of these questions do not apply to certain positions or are answered right away.

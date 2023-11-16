@@ -1,8 +1,8 @@
 ---
-title: "Yeoman Batch Updates in Modular Projects"
+title: 'Yeoman Batch Updates in Modular Projects'
 date: 2015-08-05
 tags: post
-permalink: /yeoman-batch-updates
+path: /yeoman-batch-updates
 ---
 
 If you generated modules with Yeoman and you want to apply changes for each module, you can add these changes to the generator instead and run it on the modules again. This is beneficial in a setup with many modules and complex changes with different roll-out priority.

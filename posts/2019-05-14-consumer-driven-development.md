@@ -1,8 +1,8 @@
 ---
-title: "Consumer-driven Development"
+title: 'Consumer-driven Development'
 date: 2019-05-24
 tags: post
-permalink: /consumer-driven-development
+path: /consumer-driven-development
 ---
 
 **Consumer-driven** in this case means from the viewpoint of the client consuming a REST API by a remote service, indeed it could be any kind of API, even a method, theoretically. We want to assert that the provider returns the expected contract which we defined during the refinement phase.
