@@ -17,4 +17,8 @@ module.exports = (eleventyConfig) => {
     const year = date.getFullYear()
     return `${year}/${month}`
   })
+
+  eleventyConfig.addFilter('removeExtension', (filename) => {
+    return filename.split('.')[0]
+  })
 }
