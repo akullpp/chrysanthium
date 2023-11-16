@@ -1,0 +1,12 @@
+---
+layout: blog
+title: Blog
+---
+
+{%- for post in collections.post | reverse %}
+<div class="post">
+  <a href="{{ post.url }}">
+    <span class="post-date">{{ post.date | formatDate }}</span> <span class="post-title">{{ post.data.title }}</span>
+  </a>
+</div>
+{%- endfor %}

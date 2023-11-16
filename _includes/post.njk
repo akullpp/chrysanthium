@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }} || Chrysanthium</title>
+    <link rel="stylesheet" href="/css/index.css">
+    <link rel="stylesheet" href="/css/post.css">
+    <link rel="stylesheet" href="/css/tomorrow.css">
+  </head>
+
+  <body>
+    <header class="navigation">
+      <ul>
+        <li>
+          <a href="/">Blog</a>
+        </li>
+
+        <li>
+          <a href="/about">About</a>
+        </li>
+      </ul>
+    </header>
+
+    <h1>{{ title }}</h1>
+    {% if lastModified %}
+      <h6>Last modified {{ lastModified | formatDate }}</h6>
+      {% else %}
+      <h6>{{ date | formatDate }}</h6>
+    {% endif %}
+
+    {{ content | safe }}
+
+    <footer class="navigation">
+      <ul>
+        <li>
+          <a href="/privacy">Privacy</a>
+        </li>
+
+        <li>
+          <a href="/legal">Legal</a>
+        </li>
+      </ul>
+    </footer>
+  </body>
+</html>

@@ -1,80 +1,12 @@
 {
-  "private": true,
-  "license": "All rights belong to the author.",
+  "name": "chrysanthium",
   "scripts": {
-    "build": "gatsby build",
-    "start": "gatsby develop",
-    "serve": "gatsby serve"
-  },
-  "dependencies": {
-    "@emotion/core": "^11.0.0",
-    "@emotion/react": "^11.10.6",
-    "@emotion/styled": "^11.10.6",
-    "@fontsource/raleway": "^4.5.12",
-    "gatsby": "latest-v4",
-    "gatsby-plugin-catch-links": "latest-v4",
-    "gatsby-plugin-emotion": "latest-v4",
-    "gatsby-plugin-preact": "latest-v4",
-    "gatsby-plugin-react-helmet": "latest-v4",
-    "gatsby-plugin-sharp": "latest-v4",
-    "gatsby-plugin-sitemap": "latest-v4",
-    "gatsby-remark-autolink-headers": "latest-v4",
-    "gatsby-remark-images": "latest-v4",
-    "gatsby-remark-prismjs": "latest-v4",
-    "gatsby-remark-static-images": "^1.2.1",
-    "gatsby-source-filesystem": "latest-v4",
-    "gatsby-transformer-remark": "latest-v4",
-    "preact": "^10.12.1",
-    "preact-render-to-string": "^5.2.6",
-    "prismjs": "^1.29.0",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2",
-    "react-helmet": "^6.1.0"
+    "dev": "eleventy --serve",
+    "build": "eleventy"
   },
   "devDependencies": {
-    "eslint": "^8.34.0",
-    "eslint-config-airbnb": "^19.0.4",
-    "eslint-config-prettier": "^8.6.0",
-    "eslint-plugin-import": "^2.27.5",
-    "eslint-plugin-jsx-a11y": "^6.7.1",
-    "eslint-plugin-prettier": "^4.2.1",
-    "eslint-plugin-react": "^7.32.2",
-    "prettier": "^2.8.4"
-  },
-  "prettier": {
-    "arrowParens": "avoid",
-    "printWidth": 120,
-    "quoteProps": "consistent",
-    "semi": false,
-    "singleQuote": true,
-    "trailingComma": "all"
-  },
-  "eslintConfig": {
-    "env": {
-      "browser": true,
-      "es6": true
-    },
-    "extends": [
-      "airbnb",
-      "plugin:prettier/recommended"
-    ],
-    "globals": {
-      "Atomics": "readonly",
-      "SharedArrayBuffer": "readonly"
-    },
-    "parserOptions": {
-      "ecmaFeatures": {
-        "jsx": true
-      },
-      "ecmaVersion": 2018,
-      "sourceType": "module"
-    },
-    "plugins": [
-      "react"
-    ],
-    "rules": {
-      "react/prop-types": "off",
-      "react/jsx-filename-extension": "off"
-    }
+    "@11ty/eleventy": "^2.0.1",
+    "@11ty/eleventy-plugin-syntaxhighlight": "^5.0.0",
+    "prettier": "^3.1.0"
   }
 }
