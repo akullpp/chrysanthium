@@ -5,11 +5,13 @@ path: /mui-x-data-grid-many-pages
 templateEngineOverride: md
 ---
 
-When it comes to server-side pagination getting the count of total pages can be a costly operation if the data set is large The page count is often calculated by dividing the total number of rows by the page size, meaning the total number of rows must be fetched additionally from the database.
+When it comes to server-side pagination getting the count of total pages can be a costly operation if the data set is large. The page count is often calculated by dividing the total number of rows by the page size, meaning the total number of rows must be fetched additionally from the database.
 
 There are a few ways to work around this problem, one of the more lazy solutions that can be implemented in the frontend exclusively is to display some kind of placeholder, e.g. "many".
 
-With [MUI X Data Grid](https://mui.com/x/react-data-grid/) we can achieve this by adding to more attributes to the table component:
+![MUI X Pagination](images/mui-datagrid-many.png)
+
+With [MUI X Data Grid](https://mui.com/x/react-data-grid/) we can achieve this by adding two more attributes to the table component:
 
 ```jsx
 rowCount={count || Number.MAX_VALUE}
@@ -19,8 +21,8 @@ In some cases you might want to display the actual count of rows, but only if it
 
 ```jsx
 type LabelDisplayedRowProps = {
-  from: number;
-  to: number;
+  from: number
+  to: number
   count: number
 }
 
