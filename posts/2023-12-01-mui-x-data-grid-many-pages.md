@@ -2,6 +2,7 @@
 title: 'MUI X Data Grid: Many Pages'
 date: 2023-12-01
 path: /mui-x-data-grid-many-pages
+templateEngineOverride: md
 ---
 
 When it comes to server-side pagination getting the count of total pages can be a costly operation if the data set is large The page count is often calculated by dividing the total number of rows by the page size, meaning the total number of rows must be fetched additionally from the database.
