@@ -1,5 +1,5 @@
 ---
-title: 'Conditional Git configs'
+title: 'Conditional Git Configs'
 date: 2023-11-21
 path: /conditional-git-configs
 ---
