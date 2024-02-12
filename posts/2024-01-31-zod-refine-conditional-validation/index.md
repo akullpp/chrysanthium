@@ -4,7 +4,7 @@ date: 2024-01-31
 path: zod-refine-conditional-validation
 ---
 
-If you do conditional validation with zod you'll use `refine` or `superRefine`. Let's say you have a `role` selection and depending on it's value you want to require a `company` field, i.e. if the role is `USER` the company field is required, otherwise not.
+If you do conditional validation with [zod](https://zod.dev/) you'll likely use the `refine` or `superRefine` methods to add logic. Let's say you have a `role` selection and depending on it's value you want to require a `company` field, i.e. if the role is `USER` the company field is required, otherwise not.
 
 Now you define your schema object where `company` might be optional initially and a `superRefine` that checks the role value and adds an issue if it's `USER` and the company is not set. Testing your validation you notice that not all run, in particular the one for company, when you trigger them, e.g. via submit:
 
