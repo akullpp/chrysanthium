@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Predictions 2016 || Chrysanthium</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="akullpp" />
+    <meta name="description" content="About software engineering" />
+    <meta name="email" content="akullpp@gmail.com" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:creator" content="" />
+    <meta name="twitter:title" content="Predictions 2016" />
+    <meta name="twitter:image" content="https://chrysanthium.com/logo.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5" />
+    <link rel="stylesheet" href="/css/index.css">
+    <link rel="stylesheet" href="/css/post.css">
+    <link rel="stylesheet" href="/css/tomorrow.css">
+  </head>
+
+  <body>
+    <header class="navigation">
+      <ul>
+        <li>
+          <a href="/">Blog</a>
+        </li>
+
+        <li>
+          <a href="/about">About</a>
+        </li>
+      </ul>
+    </header>
+
+    <h1>Predictions 2016</h1>
+    
+      <h6>2015/12</h6>
+    
+
+    <p>The era of Java EE developers writing untested spaghetti code with jQuery is to an end and while the transition will be chaotic, motivated individuals will be able to shape the new era, not only with new concepts in development but also business culture as a whole. Never has frontend development been more demanding. Even traditional workplaces must acknowledge the cataclysmic change that clear-cut layers and roles are to be blown apart. The borders between enterprise and non-enterprise frontend development choices became a thin layer to be perforated.</p>
+<p>It's time to evaluate this years frontend decisions which are based on an interconnected idea of modern development that will fit like bricks. Last year we've seen many new trends emerging that finally stabilized in 2015. Many frameworks <a href="/predictions-2015">mentioned last year</a> fell out of favor and can't be recommended for green field projects anymore.</p>
+<p>As always, for projects of smaller scale you can and should get much more experimental for a reflux into mainstream.</p>
+<h2>Backend Language</h2>
+<p>The self-imposed restriction to one language for everything became unjustifiable. There is no jack-of-all-trades language anymore, individuals and companies shouldn't be biased and be prepared to continuously learn new tools required for the optimal solution. Small, self-contained and interoperable services allow for a multiplicity of possibilities. Why should it hurt to write a repository search engine for your project in Python if it solves the issues faster and better?</p>
+<p>The means justify the ends should be your only constant. Sometimes this means using <strong><a href="https://golang.org/">Go</a></strong> if you need a language with strong concurrency or <strong><a href="https://nodejs.org/en/">node</a></strong> if isomorphism gives you advantages.</p>
+<p><strong><a href="http://projects.spring.io/spring-boot/">Spring Boot</a></strong> has clearly won in this regard. It provides a full-fledged, yet elegant JVM-powered backend solution which integrates very well with other tools. The Java monolith was broken down and so a number of languages, e.g. <a href="http://www.groovy-lang.org/">Groovy</a> or <a href="http://www.scala-lang.org/">Scala</a> have to be leveraged for tools like <a href="http://gradle.org/">Gradle</a> or <a href="http://akka.io/">Akka</a>.</p>
+<h2>Frontend Language</h2>
+<p>On the client there is no reason not to use <strong><a href="https://babeljs.io/docs/learn-es2015/">ECMAScript 2015</a></strong> with the excellent transpiler <a href="https://babeljs.io/">Babel</a> handling the brunt of work. Non-isomorphic environments with multi-functional teams benefit greatly when switching between tasks by removing the typical JavaScript gotchas. Maintainability will overall benefit from the new syntactic changes.</p>
+<p>Long-term projects with a large codebase and possibly changing developers will find a veritable alternative in <strong><a href="http://www.typescriptlang.org/">TypeScript</a></strong> which catches many issues during development. Especially for those who work on Angular 1, it is time to consider a migration in order to be future-proof since Angular 2 will be idiomatically written in TypeScript.</p>
+<h2>Build</h2>
+<p>It has become clear that Grunt isn't going to cut it anymore when it comes to a reasonable build tooling since it is too slow and too tedious to maintain and adapt the configuration for all but the most trivial projects. <strong><a href="http://gulpjs.com/">Gulp</a></strong> is the clear winner and primary solution for traditional buildcycle tasks.</p>
+<p>However the issue of the initial pain to set up the code persists and therefore <strong><a href="https://webpack.github.io/">webpack</a></strong> has become the go-to tool for managing a large part of a modern standard build, especially with the rise of transpilation and libraries like React which recommend it. Sometimes the entire buildcycle can be replaced by the module loader, sometimes it needs to be augmented with a simplified Gulp. The complexity is reduced by abstraction and therefore you can start developing without extensive setup time. Also you will see the immense benefit of having a loader with extensibility for your development and delivery process in general.</p>
+<h2>CSS</h2>
+<p>LESS was basically given a death sentence by Bootstrap moving to <strong><a href="http://sass-lang.com/">Sass</a></strong>. Last year's article strongly tied the future of the precompiler to Bootstrap and therefore It will probably fade to irrelevancy. The learning curve for migration is not steep and hence there will be no pain.</p>
+<p>However the traditional way to write CSS is on the retreat with the rise of modularization and libraries like React. Extensible base-frameworks like <strong><a href="https://github.com/postcss/postcss">PostCSS</a></strong> which allow importing and writing of styles as code will become the new CSS if you use said tools.</p>
+<p><strong><a href="http://getbem.com/">BEM</a></strong> continues it's triumph as naming scheme for styles in large-scale projects while not going overboard on the abstraction and complexity like other methodologies. However it hasn't become mainstream yet and depends on the commitment of single developers.</p>
+<p><strong><a href="http://www.google.com/design/spec/material-design/introduction.html">Material Design</a></strong> saw its 1.0 release and is now ready to go for early adopters while promising not to vanish soon. It will bridge the gap between mobile and desktop applications when it comes to user interface components.</p>
+<h2>Dependency Management</h2>
+<p>Bower will probably be dead within the next year and that's a good thing considering its ill design. The argument that bower is the only option for flat client dependencies doesn't work anymore with a module loader like webpack or the more experimental <a href="http://jspm.io/">jspm</a> in combination with a new and improved <strong><a href="http://npmjs.com/">npm</a></strong> which will flatten dependencies as much as possible. Leave the sinking ship as soon as possible.</p>
+<h2>Libraries</h2>
+<p>Large frameworks like <a href="https://angularjs.org/">AngularJS</a> which require many months to get accustomed to are rather frowned upon. Don't take this as a general recommendation to stop using AngularJS for new projects. Under the premise that you use TypeScript in order to be ready for Angular 2 you will be fine.</p>
+<p>However, in most cases libraries that do one thing well are the way to go. Virtual DOM libraries like <strong><a href="https://facebook.github.io/react/">React</a></strong> or <a href="http://mithril.js.org/">Mithril</a> had rightfully an immense impact. React provides a shared rendering technique for partial server-side rendering which is especially powerful in isomorphic environments and a way to write native mobile code. However it is best understood as concepts rather than a library and abstract concepts like efficient DOM diffing or web components are here to stay irregardless of their implementation.</p>
+<p><strong><a href="https://lodash.com/">lodash</a></strong> is the established utility library for JavaScript and finally beat Underscore to a pulp. There is no way to escape it and only to embrace its power.</p>
+<p>Immutability paired with a functional approach bears so strong benefits for a language like JavaScript that the idea should be essential to every large-scale web application. Just like TypeScript: the larger your application, the greater the benefit. <strong><a href="https://facebook.github.io/immutable-js/">Immutable</a></strong> is an excellent library for immutable data types and as such minimizes DOM manipulations. Bonus points if you combine it with a uni-directional dataflow architecture like <a href="http://facebook.github.io/flux/">Flux</a>.</p>
+<h2>What's left</h2>
+<p>Last year we talked about editors, linting and testing separately but the minor changes don't justify an individual section. <a href="http://www.atom.io">Atom</a> has become more popular with simple tasks while <a href="http://www.sublimetext.com/3">Sublime Text 3</a> continues to sit on the throne gained by its performance. <a href="https://www.jetbrains.com/idea/">IntelliJ IDEA</a> is still a viable option if you also work on languages that requires a good debugger or refactoring but for most task it is too slow.</p>
+<p><a href="http://jshint.com/">ESLint</a> has become the standard for linting, especially with the excellent support for ECMAScript 2015 and its modular plugin system.</p>
+<p>The differences between <a href="http://mochajs.org/">Mocha</a>/<a href="http://chaijs.com/">Chai</a>/<a href="http://sinonjs.org/">Sinon</a> and <a href="http://jasmine.github.io/">Jasmine</a> comes down to the preference whether you like the idea of a plugin system which allows you to choose an assertion framework (Mocha) or you want an opinionated all-inclusive testing framework (Jasmine).</p>
+<p>Other concepts like test-driven development or improving the communication between groups will continue to keep us busy to integrate in our workaday life.</p>
+
+
+    <footer class="navigation">
+      <ul>
+        <li>
+          <a href="/privacy">Privacy</a>
+        </li>
+
+        <li>
+          <a href="/legal">Legal</a>
+        </li>
+      </ul>
+    </footer>
+  </body>
+</html>

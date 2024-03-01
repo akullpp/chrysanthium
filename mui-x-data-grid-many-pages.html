@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>MUI X Data Grid: Many Pages || Chrysanthium</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="akullpp" />
+    <meta name="description" content="About software engineering" />
+    <meta name="email" content="akullpp@gmail.com" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:creator" content="" />
+    <meta name="twitter:title" content="MUI X Data Grid: Many Pages" />
+    <meta name="twitter:image" content="https://chrysanthium.com/logo.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5" />
+    <link rel="stylesheet" href="/css/index.css">
+    <link rel="stylesheet" href="/css/post.css">
+    <link rel="stylesheet" href="/css/tomorrow.css">
+  </head>
+
+  <body>
+    <header class="navigation">
+      <ul>
+        <li>
+          <a href="/">Blog</a>
+        </li>
+
+        <li>
+          <a href="/about">About</a>
+        </li>
+      </ul>
+    </header>
+
+    <h1>MUI X Data Grid: Many Pages</h1>
+    
+      <h6>2023/12</h6>
+    
+
+    <p>When it comes to server-side pagination getting the count of total pages can be a costly operation if the data set is large. The page count is often calculated by dividing the total number of rows by the page size, meaning the total number of rows must be fetched additionally from the database.</p>
+<p>There are a few ways to work around this problem, one of the more lazy solutions that can be implemented in the frontend exclusively is to display some kind of placeholder, e.g. &quot;many&quot;.</p>
+<p><img src="images/mui-datagrid-many.png" alt="MUI X Pagination"></p>
+<p>With <a href="https://mui.com/x/react-data-grid/">MUI X Data Grid</a> we can achieve this by adding two more attributes to the table component:</p>
+<pre class="language-jsx"><code class="language-jsx">rowCount<span class="token operator">=</span><span class="token punctuation">{</span>count <span class="token operator">||</span> Number<span class="token punctuation">.</span><span class="token constant">MAX_VALUE</span><span class="token punctuation">}</span></code></pre>
+<p>In some cases you might want to display the actual count of rows, but only if it is not too large, e.g. if you filter the data set and the returned amount of records is actually relevant. Otherwise we just will use the <code>MAX_VALUE</code>, which leads to following logic:</p>
+<pre class="language-jsx"><code class="language-jsx">type LabelDisplayedRowProps <span class="token operator">=</span> <span class="token punctuation">{</span>
+  <span class="token literal-property property">from</span><span class="token operator">:</span> number
+  <span class="token literal-property property">to</span><span class="token operator">:</span> number
+  <span class="token literal-property property">count</span><span class="token operator">:</span> number
+<span class="token punctuation">}</span>
+
+<span class="token keyword">const</span> <span class="token function-variable function">labelDisplayedRows</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token parameter"><span class="token punctuation">{</span> from<span class="token punctuation">,</span> to<span class="token punctuation">,</span> count <span class="token punctuation">}</span><span class="token operator">:</span> LabelDisplayedRowProps</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span><span class="token keyword">from</span><span class="token interpolation-punctuation punctuation">}</span></span><span class="token string"> - </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>to<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string"> of </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>count <span class="token operator">===</span> Number<span class="token punctuation">.</span><span class="token constant">MAX_VALUE</span> <span class="token operator">?</span> <span class="token string">'many'</span> <span class="token operator">:</span> count<span class="token interpolation-punctuation punctuation">}</span></span><span class="token template-punctuation string">`</span></span>
+<span class="token punctuation">}</span></code></pre>
+<p>You can also check the count for a specific value, e.g. <code>1000</code> and display <code>many</code> if the count is larger than that. The last part is to add the <code>localeText</code> attribute to the table component:</p>
+<pre class="language-jsx"><code class="language-jsx">
+localeText<span class="token operator">=</span><span class="token punctuation">{</span><span class="token punctuation">{</span>
+  <span class="token literal-property property">MuiTablePagination</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token literal-property property">labelDisplayedRows</span><span class="token operator">:</span> labelDisplayedRows<span class="token punctuation">,</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">}</span></code></pre>
+
+
+    <footer class="navigation">
+      <ul>
+        <li>
+          <a href="/privacy">Privacy</a>
+        </li>
+
+        <li>
+          <a href="/legal">Legal</a>
+        </li>
+      </ul>
+    </footer>
+  </body>
+</html>
