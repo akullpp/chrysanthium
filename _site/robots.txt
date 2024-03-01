@@ -1,4 +1,0 @@
-User-agent: *
-Sitemap: https://chrysanthium.com/sitemap.xml
-Disallow: /privacy
-Disallow: /legal
