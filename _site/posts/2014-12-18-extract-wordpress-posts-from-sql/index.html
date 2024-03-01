@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Extract WordPress Posts from SQL || Chrysanthium</title>
+    <link rel="stylesheet" href="/css/index.css">
+    <link rel="stylesheet" href="/css/post.css">
+    <link rel="stylesheet" href="/css/tomorrow.css">
+  </head>
+
+  <body>
+    <header class="navigation">
+      <ul>
+        <li>
+          <a href="/">Blog</a>
+        </li>
+
+        <li>
+          <a href="/about">About</a>
+        </li>
+      </ul>
+    </header>
+
+    <h1>Extract WordPress Posts from SQL</h1>
+    
+      <h6>2014/12</h6>
+    
+
+    <p>I decided that I didn't need a WordPress blog with SQL database and switched to GitHub pages and Jekyll. Unfortunately, my blog was already down and I only had the SQL backup file left. So here's how you extract WordPress posts from a SQL backup.</p>
+<p>Step 1: Import SQL backup:</p>
+<pre><code>mysql -u root wp_dump &lt; backup.sql
+</code></pre>
+<p>Step 2: Login:</p>
+<pre><code>mysql -u root
+</code></pre>
+<p>Step 3: Use database:</p>
+<pre><code>use wp_dump;
+</code></pre>
+<p>Step 4 (optional): Show tables:</p>
+<pre><code>show tables;
+</code></pre>
+<p>Step 5 (optional): Show columns in post table:</p>
+<pre><code>show columns from wp_posts;
+</code></pre>
+<p>Step 6: Extract title, date and content of all published posts into an external file:</p>
+<pre><code>select post_title, post_date, post_content from wp_posts
+where post_status like &quot;publish&quot;
+into outfile &quot;~/export.txt&quot;
+fields terminated by &quot;\n+++++++++++++++++++++++++++++\n&quot;
+escaped by &quot;&quot;;
+</code></pre>
+
+
+    <footer class="navigation">
+      <ul>
+        <li>
+          <a href="/privacy">Privacy</a>
+        </li>
+
+        <li>
+          <a href="/legal">Legal</a>
+        </li>
+      </ul>
+    </footer>
+  </body>
+</html>

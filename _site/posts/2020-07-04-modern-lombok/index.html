@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modern Lombok || Chrysanthium</title>
+    <link rel="stylesheet" href="/css/index.css">
+    <link rel="stylesheet" href="/css/post.css">
+    <link rel="stylesheet" href="/css/tomorrow.css">
+  </head>
+
+  <body>
+    <header class="navigation">
+      <ul>
+        <li>
+          <a href="/">Blog</a>
+        </li>
+
+        <li>
+          <a href="/about">About</a>
+        </li>
+      </ul>
+    </header>
+
+    <h1>Modern Lombok</h1>
+    
+      <h6>2020/07</h6>
+    
+
+    <p>There are actually only a handful of Lombok annotations that are worth using in a modern Spring Boot application.</p>
+<h2>Data transfer classes</h2>
+<p>For <strong>requests</strong>, <strong>responses</strong> and <strong>DTOs</strong> we should use <code>@Value</code> and <code>@Builder</code>:</p>
+<pre class="language-java"><code class="language-java"><span class="token annotation punctuation">@Value</span>
+<span class="token annotation punctuation">@Builder</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Foo</span> <span class="token punctuation">{</span>
+
+  <span class="token class-name">String</span> param1<span class="token punctuation">;</span>
+  <span class="token class-name">String</span> param2<span class="token punctuation">;</span>
+  <span class="token class-name">String</span> param3<span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
+<p>This makes the class immutable and forces MapStruct and Jackson to use the builder. The class members will be automatically <code>private final</code> so it even reduces cognitive complexity.</p>
+<h2>Classes with dependency injection</h2>
+<p>Constructors for classes that use dependency injection should be omitted, instead you should make the members <code>private final</code> and use <code>@RequiredArgsConstructor</code>. Typically these are <strong>services</strong>, <strong>repositories</strong> and <strong>controllers</strong>:</p>
+<pre class="language-java"><code class="language-java"><span class="token annotation punctuation">@Component</span>
+<span class="token annotation punctuation">@RequiredArgsConstructor</span>
+<span class="token annotation punctuation">@FieldDefaults</span><span class="token punctuation">(</span>makeFinal <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">,</span> level <span class="token operator">=</span> <span class="token constant">PRIVATE</span><span class="token punctuation">)</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">FooComponent</span> <span class="token punctuation">{</span>
+
+  <span class="token class-name">OtherComponent</span> other<span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
+<p>Here we also introduce the experimental annotation <code>@FieldDefaults</code> and make the fields private and final which would be included otherwise in <code>@Value</code>.</p>
+<h2>Classes with inheritance</h2>
+<p>When it comes to inheritance and immutability we need to be very specific with our annotations and cannot really use a composite annotation.</p>
+<p>The parent needs to look like this:</p>
+<pre class="language-java"><code class="language-java"><span class="token annotation punctuation">@Getter</span>
+<span class="token annotation punctuation">@SuperBuilder</span>
+<span class="token annotation punctuation">@FieldDefaults</span><span class="token punctuation">(</span>makeFinal <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">,</span> level <span class="token operator">=</span> <span class="token constant">PRIVATE</span><span class="token punctuation">)</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Parent</span> <span class="token punctuation">{</span>
+
+  <span class="token class-name">String</span> parent<span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
+<p>While the child looks like this:</p>
+<pre class="language-java"><code class="language-java"><span class="token annotation punctuation">@Getter</span>
+<span class="token annotation punctuation">@ToString</span>
+<span class="token annotation punctuation">@SuperBuilder</span>
+<span class="token annotation punctuation">@EqualsAndHashCode</span><span class="token punctuation">(</span>callSuper <span class="token operator">=</span> <span class="token boolean">false</span><span class="token punctuation">)</span>
+<span class="token annotation punctuation">@FieldDefaults</span><span class="token punctuation">(</span>makeFinal <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">,</span> level <span class="token operator">=</span> <span class="token constant">PRIVATE</span><span class="token punctuation">)</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Child</span> <span class="token keyword">extends</span> <span class="token class-name">Parent</span> <span class="token punctuation">{</span>
+
+  <span class="token class-name">String</span> child<span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
+<p>You have to actually need to decide individually if you want to include the super class into the equals and hash methods, so it either code be <code>callSuper = true</code> if you decide it is necessary.</p>
+<h2>Misc</h2>
+<p>The final annotaion that is commonly used is <code>@Slf4j</code> which sets up a <code>log</code> variable for you to use.</p>
+
+
+    <footer class="navigation">
+      <ul>
+        <li>
+          <a href="/privacy">Privacy</a>
+        </li>
+
+        <li>
+          <a href="/legal">Legal</a>
+        </li>
+      </ul>
+    </footer>
+  </body>
+</html>

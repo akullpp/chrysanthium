@@ -1,0 +1,257 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spring: Annotation Composition || Chrysanthium</title>
+    <link rel="stylesheet" href="/css/index.css">
+    <link rel="stylesheet" href="/css/post.css">
+    <link rel="stylesheet" href="/css/tomorrow.css">
+  </head>
+
+  <body>
+    <header class="navigation">
+      <ul>
+        <li>
+          <a href="/">Blog</a>
+        </li>
+
+        <li>
+          <a href="/about">About</a>
+        </li>
+      </ul>
+    </header>
+
+    <h1>Spring: Annotation Composition</h1>
+    
+      <h6>2017/12</h6>
+    
+
+    <p>This article aims to show you how to combine several common annotations in Spring to reduce visual complexity and making your life simpler by the example of combining <code>@RestController</code> and <code>@RequestMapping</code>.</p>
+<p>First we want to start with a small refresher about Java annotations in general which you can skip if you feel comfortable and <a href="#composition">read the example</a>.</p>
+<h2>Refresher</h2>
+<p>Annotations contain metadata about the source code and can be identified by the <code>@</code> symbol followed by an uppercase letter. There are four build-in annotations <code>@Deprecated</code>, <code>@Override</code>, <code>@SuppressWarnings</code> and <code>@SafeVarargs</code>.</p>
+<p>A minimal declaration of an annotation looks like:</p>
+<pre class="language-java"><code class="language-java"><span class="token annotation punctuation">@Retention</span><span class="token punctuation">(</span><span class="token comment">/* Retention */</span><span class="token punctuation">)</span>
+<span class="token annotation punctuation">@Target</span><span class="token punctuation">(</span><span class="token comment">/* Target */</span><span class="token punctuation">)</span>
+<span class="token annotation punctuation">@interface</span> <span class="token class-name">Foo</span> <span class="token punctuation">{</span><span class="token punctuation">}</span></code></pre>
+<p>and can't be generic or extend other interfaces.</p>
+<p>The <code>RetentionPolicy</code> of the retention meta-annotation signals <strong>when</strong> the annotation is accessible and has three possible values:</p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Availability</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>SOURCE</code></td>
+<td>Pre-compilation</td>
+<td>Useful for build tools</td>
+</tr>
+<tr>
+<td><code>CLASS</code></td>
+<td>Before class loading</td>
+<td>Useful for post-processing</td>
+</tr>
+<tr>
+<td><code>RUNTIME</code></td>
+<td>Runtime</td>
+<td>Can be retrieved via reflection</td>
+</tr>
+</tbody>
+</table>
+<p>The <code>ElementType</code> of the target meta-annotation signals <strong>where</strong> the annotation can be used and has the values:</p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Works on</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ANNOTATION_TYPE</code></td>
+<td>Annotations</td>
+</tr>
+<tr>
+<td><code>CONSTRUCTOR</code></td>
+<td>Constructors</td>
+</tr>
+<tr>
+<td><code>FIELD</code></td>
+<td>Fields and enum constants</td>
+</tr>
+<tr>
+<td><code>LOCAL_VARIABLE</code></td>
+<td>Local variables; not readable at runtime</td>
+</tr>
+<tr>
+<td><code>METHOD</code></td>
+<td>Methods</td>
+</tr>
+<tr>
+<td><code>PACKAGE</code></td>
+<td>Package declarations in <code>package-info.java</code></td>
+</tr>
+<tr>
+<td><code>PARAMETER</code></td>
+<td>Parameters</td>
+</tr>
+<tr>
+<td><code>TYPE</code></td>
+<td>Classes, interfaces, annotations and enums</td>
+</tr>
+</tbody>
+</table>
+<p>With Java 8 two we got the two very powerful targets <code>TYPE_PARAMETER</code> and <code>TYPE_USE</code> which allows the annotation of types as explained by <a href="https://www.mscharhag.com/java/java-8-type-annotations">Michael Scharhag</a>.</p>
+<p>Annotations can have parameterless and non-generic methods which can only return primitives, enums, annotations, arrays, strings or classes. Another restriction is that they can't throw exceptions or recurse.</p>
+<p>A convention is to call the only method of an annotation <code>value</code> which then can be omitted when the parameter is passed; therefore <code>@Foo(true)</code> is equivalent to <code>@Foo(value = true)</code>.</p>
+<p>Arrays are passed as literal, e.g. <code>@Foo({&quot;foo&quot;, &quot;bar&quot;, &quot;baz&quot;})</code> and if there are multiple methods each parameter have to be identified explicitly, e.g. <code>@Foo(value = true, bar = &quot;bar&quot;)</code>. It is also possible to define default values:</p>
+<pre class="language-java"><code class="language-java"><span class="token annotation punctuation">@interface</span> <span class="token class-name">Foo</span> <span class="token punctuation">{</span>
+  <span class="token keyword">boolean</span> <span class="token function">value</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">default</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
+<p>With the <code>RetentionPolicy.RUNTIME</code> it's then possible to retrieve values via <code>Bar.class.getAnnotation(Foo.class).value();</code>.</p>
+<p>The other build-in meta-annotations are <code>@Documented</code> to include it in Javadoc and <code>@Inherited</code> which signals that every subclass gets the annotation via inheritance.</p>
+<h2>Composition</h2>
+<p>Spring in version 4.2 and later provides annotations like <code>@RestController</code> or <code>@GetMapping</code> to simplify configuration and to group behavior by composition. It's a powerful tool to reduce visual complexity but may also lead difficulties regarding reasoning and debugging so be careful how to use it and be sure to communicate it with your team.</p>
+<p>The key element in Spring for composing annotations is the attribute alias annotation <code>@AliasFor</code> which aliases one attribute to another either explicitly or implicitly within a single annotation or in another meta-annotation. We won't look at implicit and transitive aliases since they are rather side-effects and you can <a href="https://docs.spring.io/spring/docs/current/javadoc-api/org/springframework/core/annotation/AliasFor.html">read about it</a> in the Javadoc for Spring.</p>
+<p>Let's look at a common pattern in Spring and decide if we can simplify things a bit more. Often you see controllers that repeat the same boilerplate over and over:</p>
+<pre class="language-java"><code class="language-java"><span class="token annotation punctuation">@RestController</span>
+<span class="token annotation punctuation">@RequestMapping</span><span class="token punctuation">(</span>
+  path <span class="token operator">=</span> <span class="token string">"api/v1/foo"</span><span class="token punctuation">,</span>
+  consumes <span class="token operator">=</span> <span class="token constant">APPLICATION_JSON_VALUE</span><span class="token punctuation">,</span>
+  produces <span class="token operator">=</span> <span class="token constant">APPLICATION_JSON_VALUE</span>
+<span class="token punctuation">)</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">FooController</span> <span class="token punctuation">{</span>
+
+  <span class="token annotation punctuation">@GetMapping</span>
+  <span class="token keyword">public</span> <span class="token class-name">ResponseEntity</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">List</span><span class="token punctuation">&lt;</span><span class="token class-name">Foo</span><span class="token punctuation">></span><span class="token punctuation">></span></span> <span class="token function">getFoos</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment">// ...</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre>
+<p>We immediately recognize that we already use the composed annotations as described before but we can do better and combine <code>@RestController</code> with <code>@RequestMapping</code>:</p>
+<pre class="language-java"><code class="language-java"><span class="token annotation punctuation">@Target</span><span class="token punctuation">(</span><span class="token constant">TYPE</span><span class="token punctuation">)</span>
+<span class="token annotation punctuation">@Retention</span><span class="token punctuation">(</span><span class="token constant">RUNTIME</span><span class="token punctuation">)</span>
+<span class="token annotation punctuation">@Documented</span>
+<span class="token annotation punctuation">@Controller</span>
+<span class="token annotation punctuation">@ResponseBody</span>
+<span class="token annotation punctuation">@RequestMapping</span>
+<span class="token annotation punctuation">@CrossOrigin</span>
+<span class="token keyword">public</span> <span class="token annotation punctuation">@interface</span> <span class="token class-name">ApiController</span> <span class="token punctuation">{</span>
+
+    <span class="token annotation punctuation">@AliasFor</span><span class="token punctuation">(</span>annotation <span class="token operator">=</span> <span class="token class-name">RequestMapping</span><span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">,</span> attribute <span class="token operator">=</span> <span class="token string">"path"</span><span class="token punctuation">)</span>
+    <span class="token class-name">String</span><span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token function">value</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">default</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
+<p>What we did was to start by unfolding the composed annotation of <code>@RestController</code> and annotating the new interface with the media types to avoid the repetition in each controller. Furthermore we alias the <code>path</code> parameter of <code>@RequestMapping</code>. In this case we created an explicit alias to shadow the <code>path</code> method by setting the target annotation and attribute.</p>
+<p>If you inspect <code>@RequestMapping</code> you'll see that it uses an explicit alias within the annotation to alias <code>path</code> and <code>value</code> in order to clarify the semantics of the parameters:</p>
+<pre class="language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token annotation punctuation">@interface</span> <span class="token class-name">RequestMapping</span> <span class="token punctuation">{</span>
+  <span class="token annotation punctuation">@AliasFor</span><span class="token punctuation">(</span><span class="token string">"path"</span><span class="token punctuation">)</span>
+  <span class="token class-name">String</span><span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token function">value</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">default</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+  <span class="token annotation punctuation">@AliasFor</span><span class="token punctuation">(</span><span class="token string">"value"</span><span class="token punctuation">)</span>
+  <span class="token class-name">String</span><span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token function">path</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">default</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">;</span></code></pre>
+<p>Here we can see that both methods must have the same shape, i.e return type and default value.</p>
+<p>Unfortunately it's not possible to have multiple <code>@AliasFor</code> annotations so we can't express the semantics of <code>value</code> clearly in our custom annotation as far as I know. Another small but inconvenient restriction which you need to work around is that you can't have aliases for value attributes in <code>@Qualifier</code> and in stereotype annotations.</p>
+<p>Our controller with the new annotation looks like:</p>
+<pre class="language-java"><code class="language-java"><span class="token annotation punctuation">@ApiController</span><span class="token punctuation">(</span><span class="token string">"api/v1/foo"</span><span class="token punctuation">)</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">FooController</span> <span class="token punctuation">{</span>
+  <span class="token comment">// ...</span>
+<span class="token punctuation">}</span></code></pre>
+<p>We actually have three benefits now:</p>
+<ol>
+<li>Reduced visual complexity</li>
+<li>A custom annotation for hooks</li>
+<li>The possibility to further reduce complexity by adding more meta-information</li>
+</ol>
+<p>Often you use annotations to signal custom behavior, e.g. you don't want to expose every controller to the public via Swagger:</p>
+<pre class="language-java"><code class="language-java"><span class="token annotation punctuation">@Configuration</span>
+<span class="token annotation punctuation">@EnableSwagger2</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">SwaggerConfiguration</span> <span class="token punctuation">{</span>
+
+  <span class="token annotation punctuation">@Bean</span>
+  <span class="token keyword">public</span> <span class="token class-name">Docket</span> <span class="token function">api</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">Docket</span><span class="token punctuation">(</span><span class="token class-name">DocumentationType</span><span class="token punctuation">.</span><span class="token constant">SWAGGER_2</span><span class="token punctuation">)</span>
+      <span class="token punctuation">.</span><span class="token function">select</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+      <span class="token punctuation">.</span><span class="token function">apis</span><span class="token punctuation">(</span><span class="token class-name">RequestHandlerSelectors</span><span class="token punctuation">.</span><span class="token function">withClassAnnotation</span><span class="token punctuation">(</span>
+        <span class="token class-name">ApiController</span><span class="token punctuation">.</span><span class="token keyword">class</span>
+      <span class="token punctuation">)</span><span class="token punctuation">)</span>
+      <span class="token punctuation">.</span><span class="token function">paths</span><span class="token punctuation">(</span><span class="token class-name">PathSelectors</span><span class="token punctuation">.</span><span class="token function">any</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+      <span class="token punctuation">.</span><span class="token function">build</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre>
+<p>This restriction tells Swagger only to document APIs annotated with <code>@ApiController</code>.</p>
+<p>You can now write much simpler logic to reduce the complexity further, e.g. sometimes you see people subclassing an abstract controller class to prefix the path. This is actually not a good idea since you can't compose multiple path segments any further and will lose a lot of flexibility. Let's solve this issue and also version our API by adding another meta-information in our custom annotation:</p>
+<pre class="language-java"><code class="language-java"><span class="token class-name">String</span> <span class="token function">version</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">default</span> <span class="token string">"v1"</span><span class="token punctuation">;</span></code></pre>
+<p>We now can now read the value with a simple configuration bean:</p>
+<pre class="language-java"><code class="language-java"><span class="token annotation punctuation">@Configuration</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">ApiConfiguration</span> <span class="token punctuation">{</span>
+
+  <span class="token annotation punctuation">@Bean</span>
+  <span class="token keyword">public</span> <span class="token class-name">WebMvcRegistrationsAdapter</span> <span class="token function">webMvcRegistrationsHandlerMapping</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">WebMvcRegistrationsAdapter</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token annotation punctuation">@Override</span>
+      <span class="token keyword">public</span> <span class="token class-name">RequestMappingHandlerMapping</span> <span class="token function">getRequestMappingHandlerMapping</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">RequestMappingHandlerMapping</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+          <span class="token keyword">private</span> <span class="token keyword">static</span> <span class="token keyword">final</span> <span class="token class-name">String</span> <span class="token constant">API_BASE_PATH</span> <span class="token operator">=</span> <span class="token string">"api"</span><span class="token punctuation">;</span>
+
+          <span class="token annotation punctuation">@Override</span>
+          <span class="token keyword">protected</span> <span class="token keyword">void</span> <span class="token function">registerHandlerMethod</span><span class="token punctuation">(</span>
+            <span class="token class-name">Object</span> handler<span class="token punctuation">,</span>
+            <span class="token class-name">Method</span> method<span class="token punctuation">,</span>
+            <span class="token class-name">RequestMappingInfo</span> mapping
+          <span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token class-name">Class</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token operator">?</span><span class="token punctuation">></span></span> beanType <span class="token operator">=</span> method<span class="token punctuation">.</span><span class="token function">getDeclaringClass</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+            <span class="token class-name">ApiController</span> annotation <span class="token operator">=</span> <span class="token class-name">AnnotationUtils</span>
+              <span class="token punctuation">.</span><span class="token function">findAnnotation</span><span class="token punctuation">(</span>beanType<span class="token punctuation">,</span> <span class="token class-name">ApiController</span><span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>annotation <span class="token operator">!=</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+              <span class="token class-name">PatternsRequestCondition</span> apiPattern <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">PatternsRequestCondition</span><span class="token punctuation">(</span>
+                <span class="token constant">API_BASE_PATH</span> <span class="token operator">+</span> <span class="token string">"/"</span> <span class="token operator">+</span> annotation<span class="token punctuation">.</span><span class="token function">version</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+              <span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">combine</span><span class="token punctuation">(</span>mapping<span class="token punctuation">.</span><span class="token function">getPatternsCondition</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+              mapping <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">RequestMappingInfo</span><span class="token punctuation">(</span>
+                mapping<span class="token punctuation">.</span><span class="token function">getName</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+                apiPattern<span class="token punctuation">,</span>
+                mapping<span class="token punctuation">.</span><span class="token function">getMethodsCondition</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+                mapping<span class="token punctuation">.</span><span class="token function">getParamsCondition</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+                mapping<span class="token punctuation">.</span><span class="token function">getHeadersCondition</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+                mapping<span class="token punctuation">.</span><span class="token function">getConsumesCondition</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+                mapping<span class="token punctuation">.</span><span class="token function">getProducesCondition</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+                mapping<span class="token punctuation">.</span><span class="token function">getCustomCondition</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+              <span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+            <span class="token keyword">super</span><span class="token punctuation">.</span><span class="token function">registerHandlerMethod</span><span class="token punctuation">(</span>handler<span class="token punctuation">,</span> method<span class="token punctuation">,</span> mapping<span class="token punctuation">)</span><span class="token punctuation">;</span>
+          <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre>
+<p>This automatically prefixes every path with <code>api</code> and the version which allows us to simplify the path parameter:</p>
+<pre class="language-java"><code class="language-java"><span class="token annotation punctuation">@ApiController</span><span class="token punctuation">(</span><span class="token string">"foo"</span><span class="token punctuation">)</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">FooController</span> <span class="token punctuation">{</span>
+  <span class="token comment">// ...</span>
+<span class="token punctuation">}</span></code></pre>
+<p>In the future we can version our API with the explicit parameter:</p>
+<pre class="language-java"><code class="language-java"><span class="token annotation punctuation">@ApiController</span><span class="token punctuation">(</span>value <span class="token operator">=</span> <span class="token string">"foo"</span><span class="token punctuation">,</span> version <span class="token operator">=</span> <span class="token string">"v2"</span><span class="token punctuation">)</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">FooController</span> <span class="token punctuation">{</span>
+  <span class="token comment">// ...</span>
+<span class="token punctuation">}</span></code></pre>
+
+
+    <footer class="navigation">
+      <ul>
+        <li>
+          <a href="/privacy">Privacy</a>
+        </li>
+
+        <li>
+          <a href="/legal">Legal</a>
+        </li>
+      </ul>
+    </footer>
+  </body>
+</html>

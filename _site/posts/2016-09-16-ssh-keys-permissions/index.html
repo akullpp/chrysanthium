@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SSH Keys and their permissions || Chrysanthium</title>
+    <link rel="stylesheet" href="/css/index.css">
+    <link rel="stylesheet" href="/css/post.css">
+    <link rel="stylesheet" href="/css/tomorrow.css">
+  </head>
+
+  <body>
+    <header class="navigation">
+      <ul>
+        <li>
+          <a href="/">Blog</a>
+        </li>
+
+        <li>
+          <a href="/about">About</a>
+        </li>
+      </ul>
+    </header>
+
+    <h1>SSH Keys and their permissions</h1>
+    
+      <h6>2016/09</h6>
+    
+
+    <p>Somehow the default permissions of new SSH keys on OS X are <code>0644</code> which is not only bad idea but won't allow you to push stuff. So, how do you fix it?</p>
+<p>You probably generated your key with:</p>
+<pre class="language-shell"><code class="language-shell">ssh-keygen <span class="token parameter variable">-t</span> rsa <span class="token parameter variable">-C</span> <span class="token string">"foo@bar.baz"</span></code></pre>
+<p>Now you want to push some stuff which results in this beautiful error message:</p>
+<pre class="language-shell"><code class="language-shell">@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@         WARNING: UNPROTECTED PRIVATE KEY FILE<span class="token operator">!</span>          @
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+Permissions 0644 <span class="token keyword">for</span> <span class="token string">'/Users/akull/.ssh/id_rsa_bar.pub'</span> are too open.
+It is required that your private key files are NOT accessible by others.
+This private key will be ignored.
+Load key <span class="token string">"/Users/akull/.ssh/id_rsa_bar.pub"</span><span class="token builtin class-name">:</span> bad permissions
+Permission denied <span class="token punctuation">(</span>publickey<span class="token punctuation">)</span>.
+fatal: Could not <span class="token builtin class-name">read</span> from remote repository.
+
+Please <span class="token function">make</span> sure you have the correct access rights
+and the repository exists.</code></pre>
+<p>The quick fix is to set the permissions to <code>600</code> for the private key and then to add it:</p>
+<pre class="language-shell"><code class="language-shell"><span class="token function">chmod</span> <span class="token number">600</span> ~/.ssh/id_rsa_bar
+ssh-add <span class="token parameter variable">-K</span> ~/.ssh/id_rsa_bar</code></pre>
+<p>If this won't help, you should try to generate a new key first and then repeat the steps:</p>
+<pre class="language-shell"><code class="language-shell">ssh-keygen <span class="token parameter variable">-y</span> <span class="token parameter variable">-f</span> ~/.ssh/id_rsa_bar <span class="token operator">></span> ~/.ssh/id_rsa_bar.pub</code></pre>
+<h2>Bonus</h2>
+<p>If you need to set the key only for a specific host, create a <code>~/.ssh/config</code> file with the following content:</p>
+<pre><code>Host foo.bar.baz
+RSAAuthentication yes
+IdentityFile ~/.ssh/id_rsa_bar.pub
+</code></pre>
+
+
+    <footer class="navigation">
+      <ul>
+        <li>
+          <a href="/privacy">Privacy</a>
+        </li>
+
+        <li>
+          <a href="/legal">Legal</a>
+        </li>
+      </ul>
+    </footer>
+  </body>
+</html>

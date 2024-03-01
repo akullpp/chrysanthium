@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Third Circle Of Hell: Icon Fonts || Chrysanthium</title>
+    <link rel="stylesheet" href="/css/index.css">
+    <link rel="stylesheet" href="/css/post.css">
+    <link rel="stylesheet" href="/css/tomorrow.css">
+  </head>
+
+  <body>
+    <header class="navigation">
+      <ul>
+        <li>
+          <a href="/">Blog</a>
+        </li>
+
+        <li>
+          <a href="/about">About</a>
+        </li>
+      </ul>
+    </header>
+
+    <h1>The Third Circle Of Hell: Icon Fonts</h1>
+    
+      <h6>2016/03</h6>
+    
+
+    <blockquote>
+<p>TL;DR: Use <a href="https://icomoon.io/app/#/select">IcoMoon</a>.</p>
+</blockquote>
+<p>I wanted a plus icon and got a glimpse of hell. Without even a single line of written JavaScript and only to have a plus icon, I loaded almost 100kb sans gzip which contains 2000 lines of CSS and 605 icons. That is 5 times the size of the used MVC framework and roughly 1/3 less than a well known <em>superheroic</em> framework.</p>
+<p><img src="images/hell.png" alt="hell"></p>
+<script src="//assets.codepen.io/assets/embed/ei.js"></script>
+<h2>Font Awful</h2>
+<p>Will I ever use the 603 other icons? I don't know, do you?</p>
+<p>It could even be worse as a recent enter<s>prise</s>bloat project shows: it included Bootstrap with Glyphicons <strong>and</strong> Font Awesome - a total of staggering 250kb from which 6 icons and 20% of the rules were used. In size more than all JavaScript dependencies combined.</p>
+<p><img src="images/100.png" alt="100"></p>
+<p>Also in the very same project, the icons where used for essential functionality. Sometimes the icon would load late or in some browsers not at all. In this case you couldn't edit a record at all.</p>
+<p>Am I saying something crazy here? The actual functionality should never be chained to a font.</p>
+<h2><code>i</code> stands for <code>italic</code> <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/i">*</a></h2>
+<p>Whose brilliant idea was it that the letter <code>Z</code> should substitute for a Chinese company's icon? Probably the same guy who invented WingDings. And why does everybody use <code>i</code> for pseudo-elements?</p>
+<p>It makes no sense at all. Icon fonts like Font Awesome are obsolete hacks. Why not use SVG or CSS like it was intended? We have a 94.91% browser support (IE9+) for SVG.</p>
+<p>Don't get me wrong, there are cases where it's not feasible or possible to use these technologies and you might need to fall back to icon fonts. But at least use something like <a href="http://fontello.com/">fontello</a>.</p>
+<p>To be clear: if you have the option, you should not use icon fonts anymore.</p>
+<h2>Works for me</h2>
+<h3>Plus</h3>
+<p>In my case <code>+</code> is actually on my keyboard, probably on yours too, so I used it. It doesn't look as good but you could style it with limited means.</p>
+<p data-slug-hash="NNvGrJ" data-default-tab="result" class="codepen">See the code at <a href="http://codepen.io/akullpp/pen/NNvGrJ/">NNvGrJ</a></p>
+<h3>CSS</h3>
+<p>Here is a simple CSS solution. I'm not a designer or even know CSS well, so there are certainly better solutions.</p>
+<p>If you use a preprocessor you can even minimize the repetitions. Obviously this is specific for my use case and there are many possible scenarios where this wouldn't work.</p>
+<p data-slug-hash="eZENmQ" data-default-tab="result" class="codepen">See the code at <a href="http://codepen.io/akullpp/pen/eZENmQ/">eZENmQ</a></p>
+<h3>SVG</h3>
+<p>This option seems like overkill for a simple plus icon, but the more complicated your icon gets, the more sense SVG makes. I took the path from <a href="https://useiconic.com/open/">Open Iconic</a>.</p>
+<p data-slug-hash="xVLwZR" data-default-tab="result" class="codepen">See the code at <a href="http://codepen.io/akullpp/pen/xVLwZR/">xVLwZR</a></p>
+
+
+    <footer class="navigation">
+      <ul>
+        <li>
+          <a href="/privacy">Privacy</a>
+        </li>
+
+        <li>
+          <a href="/legal">Legal</a>
+        </li>
+      </ul>
+    </footer>
+  </body>
+</html>

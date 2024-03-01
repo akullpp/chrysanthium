@@ -1,0 +1,283 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Passionate Programmer I: Act On It || Chrysanthium</title>
+    <link rel="stylesheet" href="/css/index.css">
+    <link rel="stylesheet" href="/css/post.css">
+    <link rel="stylesheet" href="/css/tomorrow.css">
+  </head>
+
+  <body>
+    <header class="navigation">
+      <ul>
+        <li>
+          <a href="/">Blog</a>
+        </li>
+
+        <li>
+          <a href="/about">About</a>
+        </li>
+      </ul>
+    </header>
+
+    <h1>The Passionate Programmer I: Act On It</h1>
+    
+      <h6>2014/01</h6>
+    
+
+    <p>Based on the highly acclaimed book <a href="http://www.amazon.com/The-Passionate-Programmer-Remarkable-Development/dp/1934356344/">The Passionate Programmer</a> by Chad Fowler, I decided to compile a list of actions which might help others to find the passion in software engineering and ultimately might strengthen their career. This list is loosely based on the &quot;Act On It!&quot; paragraphs at the end of each chapter in the book and I strongly recommend reading it. After each point, you should of course reflect your current career path and how you could improve it, to bring more enjoyment in your life.</p>
+<h2><a name="toc">Table Of Content</a></h2>
+<p><a href="#market">Part I: Choosing Your Market</a></p>
+<ul>
+<li><a href="#lead">Lead Or Bleed?</a></li>
+<li><a href="#supply">Supply And Demand</a></li>
+<li><a href="#coding">Coding Don't Cut It Anymore</a></li>
+<li><a href="#worst">Be The Worst</a></li>
+<li><a href="#invest">Invest In Your Intelligence</a></li>
+<li><a href="#listen">Don't Listen To Your Parents</a></li>
+<li><a href="#generalist">Be A Generalist</a></li>
+<li><a href="#specialist">Be A Specialist</a></li>
+<li><a href="#eggs">Don’t Put All Your Eggs In Someone Else's Basket</a></li>
+<li><a href="#love">Love It Or Leave It</a></li>
+</ul>
+<p><a href="#product">Part II: Investing In Your Product</a></p>
+<ul>
+<li><a href="#fish">Learn To Fish</a></li>
+<li><a href="#business">Learn How Businesses Really Work</a></li>
+<li><a href="#findmentor">Find A Mentor</a></li>
+<li><a href="#bementor">Be A Mentor</a></li>
+<li><a href="#practice">Practice, Practice, Practice</a></li>
+<li><a href="#way">The Way You Do it</a></li>
+<li><a href="#giants">On The Shoulder Of Giants</a></li>
+<li><a href="#automate">Automate Yourself Into A Job</a></li>
+</ul>
+<p><a href="#executing">Part III: Executing</a></p>
+<ul>
+<li><a href="#now">Right Now</a></li>
+<li><a href="#mind">Mind Reader</a></li>
+<li><a href="#daily">Daily Hit</a></li>
+<li><a href="#remember">Remember Who You Work For</a></li>
+<li><a href="#where">Be Where You're At</a></li>
+<li><a href="#where">How Good A Job Can I Do Today?</a></li>
+<li><a href="#worth">How Much Are You Worth?</a></li>
+<li><a href="#pebble">A Pebble In A Bucket Of Water</a></li>
+<li><a href="#maintenance">Learn To Love Maintenance</a></li>
+<li><a href="#burn">Eight-Hour Burn</a></li>
+<li><a href="#fail">Learn How To Fail</a></li>
+<li><a href="#no">Say &quot;No&quot;</a></li>
+<li><a href="#panic">Don't Panic</a></li>
+<li><a href="#it">Say It, Do It, Show It</a></li>
+</ul>
+<p><a href="#marketing">Part IV: Marketing Not Just For Suits</a></p>
+<ul>
+<li><a href="#perceptions">Perceptions, Perschmeptions</a></li>
+<li><a href="#adventure">Adventure Tour Guide</a></li>
+<li><a href="#rite">Me Rite Reel Nice</a></li>
+<li><a href="#present">Being Present</a></li>
+<li><a href="#suit">Suit Speak</a></li>
+<li><a href="#change">Change The World</a></li>
+<li><a href="#voice">Let Your Voice Be Heard</a></li>
+<li><a href="#brand">Build Your Brand</a></li>
+<li><a href="#release">Release Your Code</a></li>
+<li><a href="#remarkability">Remarkability</a></li>
+<li><a href="#hang">Making The Hang</a></li>
+</ul>
+<p><a href="#edge">Part V: Maintaining Your Edge</a></p>
+<ul>
+<li><a href="#obsolete">Already Obsolete</a></li>
+<li><a href="#already">You've Already Lost Your Job</a></li>
+<li><a href="#path">Path With No Destination</a></li>
+<li><a href="#map">Make Yourself A Map</a></li>
+<li><a href="#watch">Watch The Market</a></li>
+<li><a href="#mirror">The Fat Man In The Mirror</a></li>
+<li><a href="#monkey">The South Indian Monkey Trap</a></li>
+<li><a href="#waterfall">Avoid Waterfall Career Planning</a></li>
+<li><a href="#better">Better Than Yesterday</a></li>
+<li><a href="#independent">Go Independent</a></div></li>
+</ul>
+<h2><a name="market"><a href="#toc">Choosing Your Market</a></a></h2>
+<h3><a name="lead"><a href="#toc">Lead Or Bleed?</a></a></h3>
+<p>Map - from left to right - emerging, standard and dying technologies on a sheet of paper. Mark the technologies you are strong with, the ones you have basic knowledge of and finally the ones you have a special interest in, each in a different color.</p>
+<p>Do your skills and interests cluster?</p>
+<h3><a name="supply"><a href="#toc">Supply And Demand</a></a></h3>
+<p>Search for job advertisements in your particular field of expertise and note down the most common requirements they share. I tend to do this every three months regardless of my employment status since it will help to see where you stand on the demand and supply ladder. Afterwards, rate your knowledge in these fields from 1 to 10.</p>
+<p>Do you need to freshen up your skillset?</p>
+<h3><a name="coding"><a href="#toc">Coding Don't Cut It Anymore</a></a></h3>
+<p>While it would be quality time to spend lunch with a business person, most of us will not have this chance. Therefore, I suggest finding a magazine or website that covers your trade. Reading it on a daily basis, will help you a lot to understand the needs and even the emerging issues in your industry and ultimately in your company. I subscribe to <a href="http://www.heise.de/ix/">iX</a>, read <a href="http://www.ijug.eu/java-aktuell/das-magazin.html">Java Aktuell</a>, <a href="http://www.sigs-datacom.de/fachzeitschriften/javaspektrum.html">Java Spektrum</a> and <a href="http://www.heise.de/">Heise</a> for example.</p>
+<h3><a name="worst"><a href="#toc">Be The Worst</a></a></h3>
+<p>Start working on a project where you are not the go-to person but can actually learn from others. Open source projects not only provide a safe environment to be overwhelmed but also allow you to gain experience for your future by failing. You can find interesting projects just by searching for one in your field of expertise with a search engine or use <a href="https://github.com/explore">GitHub</a>, <a href="http://sourceforge.net/directory/os:windows/freshness:recently-updated/">SourceForge</a> or <a href="https://bitbucket.org/repo/all">Bitbucket</a>.</p>
+<p>After you have found an interesting project, you just look at their issue tracker. The first thing I do, is to look how many issues have been created, how they are classified and if the developers create regular fixes. Start with the trivial issues and work yourself up to the blockers. You could also write one of the core developers and ask if you can help on a specific task, even it is localization or documentation.</p>
+<p>Another approach is to attend regional user groups for a technology you are interested in. In Germany we have a lot of different organizations, e.g. the <a href="https://www.java.net/jugs/java-user-groups">Java User Groups</a> or the <a href="https://en.wikipedia.org/wiki/Linux_user_group">Linux User Groups</a>. These meetings are often organized and attended by seasoned developers which might shape your future.</p>
+<h3><a name="invest"><a href="#toc">Invest In Your Intelligence</a></a></h3>
+<p>It is reasonable to learn a new programming language but you should either choose a language which is in high demand and you did not mark in <a href="#supply">Supply And Demand</a> or you should choose a language which is unlike anything you ever did.</p>
+<p>For me it would be <a href="https://en.wikipedia.org/wiki/JavaScript">JavaScript</a> and <a href="https://en.wikipedia.org/wiki/Haskell_%28programming_language%29">Haskell</a>. JavaScript is very different since it is functional in nature and has prototyping. It is incredibly hard to use <a href="http://www.amazon.com/JavaScript-Good-Parts-Douglas-Crockford/dp/0596517742">good</a> and incredibly easy to use badly. It is also the most established language in frontend web development and emerging in the backend section.</p>
+<p><a href="http://www.haskell.org/haskellwiki/Haskell">Haskell </a>has a great community and is like a playground for challenging concepts which are beyond anything any programming language has ever dared to even think of.</p>
+<p>If you don't know <a href="http://www.python.org/">Python</a>, you could learn it in a few days since it has neat tutorials. It is also becoming the standard language in scientific computing, especially in <a href="http://www.amazon.com/Python-Data-Analysis-Wrangling-IPython/dp/1449319793">data analysis</a>.</p>
+<h3><a name="listen"><a href="#toc">Don't Listen To Your Parents</a></a></h3>
+<p>Write down your last career choices and try to find the underlying motivation for your decision.</p>
+<p>Were they driven by emotions, instinct or reason?</p>
+<p>Would you choose differently now?</p>
+<h3><a name="generalist"><a href="#toc">Be A Generalist</a></a></h3>
+<p>Be generally useful, don't be <em>Just-A-x</em> where <em>x</em> is for example <em>Java-Developer</em> or <em>Tester</em>.</p>
+<p>So how do become a generalist? You already should be. If you are easily interested in things, you just want to learn. There are several dimensions in which you can improve your general knowledge, e.g. operating systems, natural as well as programming languages or general eduction. It doesn't matter just become curious!</p>
+<h3><a name="specialist"><a href="#toc">Be A Specialist</a></a></h3>
+<p>If your current job is focused on a single technology, you should try to become a true specialist by understanding the fundamentals. No matter which frameworks will come and go, you will always have a deep understanding of their foundations and a much easier time to understand their benefits for productivity. If you are a Java EE developer, learn about the intrinsics of the JVM.</p>
+<p>If possible, try to help people with your knowledge. The best way to learn is to teach. If this is not possible in your job, e.g. with students, interns or new colleagues, you can always offer to hold a presentation about an interesting technology - either at a conference, local meeting or in your company, even if it is just an informal brown bag session.</p>
+<h3><a name="eggs"><a href="#toc">Don't Put All Your Eggs In Someone Else's Basket</a></a></h3>
+<p>Try to program a game in your most productive language. Why a game you ask? Because it requires the most fundamental and also broadest knowledge.</p>
+<p><a href="https://en.wikipedia.org/wiki/Conway%27s_game_of_life">Conway's Game Of Life</a> is an excellent choice and you could always add some professional flavor by using <a href="https://en.wikipedia.org/wiki/Test-driven_development">Test-Driven-Development</a> or new tools, e.g. for <a href="https://en.wikipedia.org/wiki/Continuous_Integration">Continuous Integration</a>. Afterwards, do the same in the language you choose in <a href="#invest">Invest In Your Intelligence</a>.</p>
+<h3><a name="love"><a href="#toc">Love It Or Leave It</a></a></h3>
+<p>Some jobs are inherently bad for you and can't be changed from within. However, there are personal or economic situations where a job change might not be possible and you should always have an <a href="http://www.wisebread.com/figuring-the-size-of-your-emergency-fund">emergency fund</a> for at least six months. If you are ready for change, I compiled a <a href="/interview-questions">list of questions</a> to ask in an interview.</p>
+<p>A bad job does not only harm your career in the long run by impeding your professional development, but can also ruin your mood which in turn will have effects on your private life and health. I strongly recommend to read <a href="http://www.amazon.com/The-Clean-Coder-Professional-Programmers/dp/0137081073">The Clean Coder</a> by Robert C. Martin, it will change the way you define professionalism in software engineering. It will also answer the question how you actually know that your job is bad and when you should leave the sinking ship.</p>
+<p>Another way is to create an excitement log. For every workday in the next two weeks, rate your level of excitement from 1 to 10.</p>
+<p>Do you see peaks and what are their reasons?
+What is your average excitement?
+What can you do to increase your excitement level next week?</p>
+<p>Try to actively raise your excitement as much as possible. If you cannot change the levels no matter how hard you try, you should talk to your superior if possible or think about a way to change your current assignment or even the job.</p>
+<h2><a name="product"><a href="#toc">Investing In Your Product</a></a></h2>
+<h3><a name="fish"><a href="#toc">Learn To Fish</a></a></h3>
+<p>Do you use a specific technology on a daily basis which you don't really know about? Learn how to use it and understand it. Pick an often neglected tool, e.g. the version control system, and learn the intrinsics. Become the go-to-person for this tool.</p>
+<p>Why is it particular useful for your current project and are there alternatives?</p>
+<h3><a name="business"><a href="#toc">Learn How Businesses Really Work</a></a></h3>
+<p>Reading a dedicated business book might help to understand the decisions of your company and also might help you to evaluate your own position and possibilities. I recommend either <a href="http://www.amazon.com/The-Personal-MBA-Master-Business/dp/1591845572/">The Personal MBA</a> or <a href="http://www.amazon.com/The-Ten-Day-MBA-Step---Step/dp/0062199579/">The Ten-Day MBA</a>. Try to talk about it with your managers or superiors and apply it to your current situation.</p>
+<h3><a name="findmentor"><a href="#toc">Find A Mentor</a></a></h3>
+<p>Did you ever encounter a person in your line of work that you admired?</p>
+<p>Write down the attributes and characteristics of this person and rate their importance from 1 to 10. Afterwards, rate your own expertise in these abilities and subtract your rating from the importance rating. You will be left with a priority list, e.g. you admire the technological breadth of your role model and find it quite important so you assigned an 8. You think that you are not as versed in different technical disciplines and rate yourself at a 4. Basically, this sets you up with a below-medium priority of 4 for strengthening your knowledge in other technologies. You can then come up with a list of ideas to improve these abilities and try to emulate your role model.</p>
+<p>Also, you should always try to stick around these people, as they will help you to develop and you will generally have a good time.</p>
+<h3><a name="bementor"><a href="#toc">Be A Mentor</a></a></h3>
+<p>Try to help people. Whether it is a new colleague or an unknown person in an online forum. Just keep an eye open and you will always find someone asking for help. It is an art to offer help without appearing to be condescending.</p>
+<h3><a name="practice"><a href="#toc">Practice, Practice, Practice</a></a></h3>
+<p>Some people like to do <a href="http://codekata.com/">code kata</a> and others use <a href="http://www.codechef.com/">Code Chef</a> or something similar. I wholeheartedly recommend <a href="https://projecteuler.net/">Project Euler</a>. It may be too much for you right now and I think that you can get enough practice by volunteering in open source projects and generally helping others. But you should always diversify your practice projects, i.e. if you work on a web application, you should try some game development.</p>
+<h3><a name="way"><a href="#toc">The Way You Do it</a></a></h3>
+<p>Pick a <a href="http://en.wikipedia.org/wiki/Software_development_methodology">software methodology</a> and learn about it. I like <a href="http://en.wikipedia.org/wiki/Agile_software_development">agile methods</a>, but you should never become a zealot and question their usefulness and implementation.</p>
+<p>Why and when is this particular methodology useful? Could your daily work profit from it?</p>
+<h3><a name="giants"><a href="#toc">On The Shoulder Of Giants</a></a></h3>
+<p>Pick a project, maybe an open source project that you like to work on, and read it from top to bottom. Make notes about the good and the bad things. Try to understand the decisions and thoughts behind in critical code block.</p>
+<h3><a name="automate"><a href="#toc">Automate Yourself Into A Job</a></a></h3>
+<p>Pick a menial task you do often and automate it.</p>
+<p>The Passionate Programmer suggests that you take a look at <a href="http://en.wikipedia.org/wiki/Model-driven_architecture">model-driven architecture</a>.</p>
+<h2><a name="executing"><a href="#toc">Executing</a></a></h2>
+<h3><a name="now"><a href="#toc">Right Now</a></a></h3>
+<p>We all have half-finished projects and things we always wanted to do - like writing a blog. Pick one and work out a schedule for completion and then work on it with a determination to finish it as soon and as good as possible. Don't try to be perfect, just give it your best and be sure to finish even it is a first draft.</p>
+<h3><a name="mind"><a href="#toc">Mind Reader</a></a></h3>
+<p>Try to come up with a few features for your current or next project which have not yet been discussed and which you think will become relevant. Try to think about the implementation costs and maybe even prototype it.</p>
+<h3><a name="daily"><a href="#toc">Daily Hit</a></a></h3>
+<p>Write down the little annoyances which you are facing daily and start solving them one each day starting tomorrow.</p>
+<h3><a name="remember"><a href="#toc">Remember Who You Work For</a></a></h3>
+<p>Talk to your manager and ask him about the team's goals.</p>
+<p>What are the immediate goals you need to achieve this week?</p>
+<p>What are the long-range goals?</p>
+<p>Prioritize your tasks accordingly.</p>
+<h3><a name="where"><a href="#toc">Be Where You're At</a></a></h3>
+<p>Recapitulate and ask yourself what you did accomplish in your current job.</p>
+<p>What do you want to accomplish from here on and how long will it take?</p>
+<p>Work actively to &quot;complete your job&quot;.</p>
+<h3><a name="worth"><a href="#toc">How Good A Job Can I Do Today?</a></a></h3>
+<p>Some tasks we do are boring and after a few years they rob us of our motivation. Maybe you can bring back motivation by creating a competition. You could compete with your colleagues or with yourself. Find metrics like unit tests and try to increase your performance and maybe give yourself a little price at the end.</p>
+<h3><a name="worth"><a href="#toc">How Much Are You Worth?</a></a></h3>
+<p>Think about your current salary and double it, this is roughly how much you cost the company.</p>
+<p>Are you currently worth the investment?</p>
+<h3><a name="pebble"><a href="#toc">A Pebble In A Bucket Of Water</a></a></h3>
+<p>Make your team less dependent on you whether it be the code or documentation. Make documents easily accessible in a way that if you left tomorrow, your team could continue.</p>
+<h3><a name="maintenance"><a href="#toc">Learn To Love Maintenance</a></a></h3>
+<p>If you maintain software and/or work with legacy code, create quality measurements like the number of unhandled exceptions, responsiveness times or the usability. Improve these factors and measure again. Can you actually improve the old system without breaking it?</p>
+<h3><a name="burn"><a href="#toc">Eight-Hour Burn</a></a></h3>
+<p>Set an exact time to start and finish your eight hour work day. Plan as much as possible, beginning with the breakfast, lunch time and ending with your commute home. Work in these eight hours, no reading news, just work until you are done. Then go home and do not take work home with you, no e-mails, nothing!</p>
+<h3><a name="fail"><a href="#toc">Learn How To Fail</a></a></h3>
+<p>If an issue occurs, you should behave according to these four steps:</p>
+<ol>
+<li>Raise the issue as early as you know about it</li>
+<li>Take the blame if necessary to move on</li>
+<li>Offer a solution</li>
+<li>Ask for help if necessary</li>
+</ol>
+<h3><a name="no"><a href="#toc">Say &quot;No&quot;</a></a></h3>
+<p>Do not make commitments you can't keep. Either just say &quot;no&quot; or provide a good estimate. As soon as an issue arises that endangers your commitment, you should inform every participant.</p>
+<p>Keep a list of every commitment you make:</p>
+<ul>
+<li>What did you commit to?</li>
+<li>Did you deliver on time?</li>
+<li>Did you fulfill the commitment?</li>
+</ul>
+<p>Evaluate your hit rate.</p>
+<h3><a name="panic"><a href="#toc">Don't Panic</a></a></h3>
+<p>If you care about your job, it is inevitable that you will panic at times. Keep note of these situations and record why you panicked. At the end of the week, you should review your records and think about how it went and if the emotional stress was really worth it.</p>
+<h3><a name="it"><a href="#toc">Say It, Do It, Show It</a></a></h3>
+<p>Create a plan for the next day containing items you want to do. You will sometimes overcommit and not finish your list but you just can transfer the undone items to the next day. After you completed a week, you should communicate your task list to your superior.</p>
+<h2><a name="marketing"><a href="#toc">Marketing Not Just For Suits</a></a></h2>
+<h3><a name="perceptions"><a href="#toc">Perceptions, Perschmeptions</a></a></h3>
+<p>Make a list of the groups of people in your office and what they perceive as important, e.g.:</p>
+<p>Teammates - programming skills, social skills
+Secretaries - social skills</p>
+<p>How do you interact with the members of these groups, do they perceive you in a good way or do you need to adjust your interactions with them?</p>
+<h3><a name="adventure"><a href="#toc">Adventure Tour Guide</a></a></h3>
+<p>Take a look at your conversations with people that are not as well versed in the technical aspects as you are and ask yourself what they might have perceived. Did you get arrogant or aggressive? Did you make your position clear in a manner they could understand? Think about what it would be like in a position where you are not the expert and need help from specialists.</p>
+<h3><a name="rite"><a href="#toc">Me Rite Reel Nice</a></a></h3>
+<p>You should always keep your writing clean and concise. Clean means that you check for spelling and grammatical errors. Due to the nature of our work, many things are done by e-mail which increases the status of writing and becomes as important as your general attire in a face-to-face conversation.</p>
+<p>Maybe start writing a diary or a blog. Reading literature also improves your language skills and is a good way to disconnect from work and especially technology. <a href="http://www.goodreads.com/shelf/show/reddit-top-200">The top 200 most popular books of Reddit</a> is a good place to start.</p>
+<h3><a name="present"><a href="#toc">Being Present</a></a></h3>
+<p>Make yourself known by showing presence. Don't write an e-mail but phone the person or visit him in his office. Try to make human connections with your coworkers by doing smalltalk. The most important place is often next to the coffee machine.</p>
+<h3><a name="suit"><a href="#toc">Suit Speak</a></a></h3>
+<p>What did you accomplish and what was its business value?
+What do you currently work and what is the benefit?</p>
+<h3><a name="change"><a href="#toc">Change The World</a></a></h3>
+<p>Do you know someone who has a mission at your office, maybe someone who is a defender of agile methods or particular engaged in a local user group? How do they behave and when do they misstep?</p>
+<p>By now you should know a lot of technologies and methodologies. If there is one among them which you think might improve your business, you should make it your mission to advertise for it.</p>
+<h3><a name="voice"><a href="#toc">Let Your Voice Be Heard</a></a></h3>
+<p>Create a weblog and write articles. Focus on a specific range of topics that are connected.</p>
+<p>If you accumulated a list of articles, you should contact relevant magazines and offer to write for them.</p>
+<h3><a name="brand"><a href="#toc">Build Your Brand</a></a></h3>
+<p>Google yourself and look at the first page results. Do you appear? If you do, are the appearances positive?</p>
+<h3><a name="release"><a href="#toc">Release Your Code</a></a></h3>
+<p>By now you should be involved in an open source project. You should use a code coverage analyzer and find the parts of the code that are not unit tested. Are they testable? If yes, refactor - else write unit tests and commit the patch.</p>
+<h3><a name="remarkability"><a href="#toc">Remarkability</a></a></h3>
+<p>Do something remarkable on your current project. Maybe you can implement a feature as suggested in <a href="#mind">Mind Reader</a> or you could finish a task much earlier - even it means extra hours.</p>
+<h3><a name="hang"><a href="#toc">Making The Hang</a></a></h3>
+<p>Get in contact with the creator of an important piece of software, thank him and maybe offer him some help. You could write an article in your <a href="#voice">blog</a> about the software which will make introductions easier.</p>
+<h2><a name="edge"><a href="#toc">Maintaining Your Edge</a></a></h2>
+<h3><a name="obsolete"><a href="#toc">Already Obsolete</a></a></h3>
+<p>What are the latest technologies and trends? Research them, get a grip of them and do some tutorials. It could be a languages like <a href="http://www.rust-lang.org/">Rust</a>, <a href="https://www.dartlang.org/">Dart</a> or <a href="http://julialang.org/">Julia</a>, technologies or concepts - just go for the bleeding edge.</p>
+<h3><a name="already"><a href="#toc">You've Already Lost Your Job</a></a></h3>
+<p>Do a bit of roleplay and change your job for a day by pretending to be a tester or project manager.</p>
+<h3><a name="path"><a href="#toc">Path With No Destination</a></a></h3>
+<p>Focus on a menial task like washing dishes. Don't rush it, but experience the moment - be mindful.</p>
+<h3><a name="map"><a href="#toc">Make Yourself A Map</a></a></h3>
+<p>Make a map of your career history. Where did you start and which technologies were involved. This should help you to perceive the correct dimensions for further career development.</p>
+<h3><a name="watch"><a href="#toc">Watch The Market</a></a></h3>
+<p>If you found a bleeding edge technology, try to become an alpha geek and if you have the chance, surround yourself with people that don't stand still.</p>
+<h3><a name="mirror"><a href="#toc">That Fat Man In The Mirror</a></a></h3>
+<p>Get some honest feedback about yourself from colleagues, customers, peers or managers.</p>
+<p>Create a questionnaire containing the characteristics which you value as essential to professionalism and let your reviewers rate you. Maybe you can think of additional questions that you could ask?</p>
+<p>Evaluate and share the answers with your reviewers.</p>
+<h3><a name="monkey"><a href="#toc">The South Indian Monkey Trap</a></a></h3>
+<p>Review your values which you hold dearly. Are you right to do so or are you just rigid? Did you become an evangelist for a certain kind of technology or methodology?</p>
+<p>If you must answer one of these questions with <em>yes</em>, you should let go for some time and experience something new. Pick a technology you hate and do a project in it.</p>
+<h3><a name="waterfall"><a href="#toc">Avoid Waterfall Career Planning</a></a></h3>
+<p>What do you want, really want? Do you want to be a CEO? A project leader or lead developer? Maybe you just want to hop from one start up to the next which is fine too but think about the consequences. Is it money you want? Fame? Or do you want to balance work/life? Are you currently working on the wrong issues to fulfill this ambition?</p>
+<h3><a name="better"><a href="#toc">Better Than Yesterday</a></a></h3>
+<p>Make a list of complex improvements. How can you do something today to get closer? Even if it is a tiny step like running a single lap more or writing one unit test more. Do it, today.</p>
+<h3><a name="independent"><a href="#toc">Go Independent</a></a></h3>
+<p>Ultimately, you should know what you want. There are three big choices:</p>
+<ol>
+<li>Work in a large corporation in which you have a certain kind of safety net that is likely to make you lethargic and complecent</li>
+<li>Work in a start-up and get your pay checks with a relative direct kind of feedback and responsibility but also with a certain kind of risk</li>
+<li>Go independent and accept the possibility of failing at the cost of an immense rate of learning</li>
+</ol>
+<h2>Have fun.</h2>
+
+
+    <footer class="navigation">
+      <ul>
+        <li>
+          <a href="/privacy">Privacy</a>
+        </li>
+
+        <li>
+          <a href="/legal">Legal</a>
+        </li>
+      </ul>
+    </footer>
+  </body>
+</html>

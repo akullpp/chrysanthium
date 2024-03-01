@@ -1,0 +1,305 @@
+
+<?xml version="1.0" encoding="utf-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  
+    <url>
+      <loc>/passionate-programmer-i-act-on-it</loc>
+      <lastmod>2014-01-12T00:00:00.000Z</lastmod>
+    </url>
+  
+    <url>
+      <loc>/interview-questions-for-applicants</loc>
+      <lastmod>2014-01-23T00:00:00.000Z</lastmod>
+    </url>
+  
+    <url>
+      <loc>/passionate-programmer-ii-julia</loc>
+      <lastmod>2014-03-20T00:00:00.000Z</lastmod>
+    </url>
+  
+    <url>
+      <loc>/css-preprocessors</loc>
+      <lastmod>2014-04-11T00:00:00.000Z</lastmod>
+    </url>
+  
+    <url>
+      <loc>/java-ee-generic-data-access</loc>
+      <lastmod>2014-06-10T00:00:00.000Z</lastmod>
+    </url>
+  
+    <url>
+      <loc>/java-ee-scheduler</loc>
+      <lastmod>2014-06-10T00:00:00.000Z</lastmod>
+    </url>
+  
+    <url>
+      <loc>/multiple-sql-load-scripts</loc>
+      <lastmod>2014-06-12T00:00:00.000Z</lastmod>
+    </url>
+  
+    <url>
+      <loc>/pdfs-with-apache-fop</loc>
+      <lastmod>2014-07-03T00:00:00.000Z</lastmod>
+    </url>
+  
+    <url>
+      <loc>/extract-wordpress-posts-from-sql</loc>
+      <lastmod>2014-12-18T00:00:00.000Z</lastmod>
+    </url>
+  
+    <url>
+      <loc>/npm-shorthands</loc>
+      <lastmod>2015-01-31T00:00:00.000Z</lastmod>
+    </url>
+  
+    <url>
+      <loc>/predictions-2015</loc>
+      <lastmod>2015-03-08T00:00:00.000Z</lastmod>
+    </url>
+  
+    <url>
+      <loc>/developing-global-node-cli-applications</loc>
+      <lastmod>2015-04-30T00:00:00.000Z</lastmod>
+    </url>
+  
+    <url>
+      <loc>/angular-model-layer</loc>
+      <lastmod>2015-08-03T00:00:00.000Z</lastmod>
+    </url>
+  
+    <url>
+      <loc>/yeoman-batch-updates</loc>
+      <lastmod>2015-08-05T00:00:00.000Z</lastmod>
+    </url>
+  
+    <url>
+      <loc>/eslint-integration</loc>
+      <lastmod>2015-09-04T00:00:00.000Z</lastmod>
+    </url>
+  
+    <url>
+      <loc>/predictions-2016</loc>
+      <lastmod>2015-12-22T00:00:00.000Z</lastmod>
+    </url>
+  
+    <url>
+      <loc>/icon-fonts</loc>
+      <lastmod>2016-03-28T00:00:00.000Z</lastmod>
+    </url>
+  
+    <url>
+      <loc>/ssh-keys-permissions</loc>
+      <lastmod>2016-09-16T00:00:00.000Z</lastmod>
+    </url>
+  
+    <url>
+      <loc>/notes-on-functional-programming-i</loc>
+      <lastmod>2016-09-29T00:00:00.000Z</lastmod>
+    </url>
+  
+    <url>
+      <loc>/predictions-2017</loc>
+      <lastmod>2017-01-13T00:00:00.000Z</lastmod>
+    </url>
+  
+    <url>
+      <loc>/notes-on-functional-programming-ii</loc>
+      <lastmod>2017-02-06T00:00:00.000Z</lastmod>
+    </url>
+  
+    <url>
+      <loc>/notes-on-functional-programming-iii</loc>
+      <lastmod>2017-03-05T00:00:00.000Z</lastmod>
+    </url>
+  
+    <url>
+      <loc>/spring-annotation-composition</loc>
+      <lastmod>2017-12-03T00:00:00.000Z</lastmod>
+    </url>
+  
+    <url>
+      <loc>/multiple-spa-paths-gateway</loc>
+      <lastmod>2018-04-22T00:00:00.000Z</lastmod>
+    </url>
+  
+    <url>
+      <loc>/load-symlinked-dependencies-with-webpack</loc>
+      <lastmod>2018-07-03T00:00:00.000Z</lastmod>
+    </url>
+  
+    <url>
+      <loc>/five-minute-jam</loc>
+      <lastmod>2019-02-28T00:00:00.000Z</lastmod>
+    </url>
+  
+    <url>
+      <loc>/usable-ecmascript-snippets</loc>
+      <lastmod>2019-03-31T00:00:00.000Z</lastmod>
+    </url>
+  
+    <url>
+      <loc>/uuid-as-silver-bullet</loc>
+      <lastmod>2019-04-19T00:00:00.000Z</lastmod>
+    </url>
+  
+    <url>
+      <loc>/consumer-driven-development</loc>
+      <lastmod>2019-05-24T00:00:00.000Z</lastmod>
+    </url>
+  
+    <url>
+      <loc>/spring-mock-environment</loc>
+      <lastmod>2019-06-06T00:00:00.000Z</lastmod>
+    </url>
+  
+    <url>
+      <loc>/java-simple-logging-objects</loc>
+      <lastmod>2019-07-01T00:00:00.000Z</lastmod>
+    </url>
+  
+    <url>
+      <loc>/java-generate-secure-random-string</loc>
+      <lastmod>2019-08-04T00:00:00.000Z</lastmod>
+    </url>
+  
+    <url>
+      <loc>/spring-mapstruct-lombok</loc>
+      <lastmod>2019-09-01T00:00:00.000Z</lastmod>
+    </url>
+  
+    <url>
+      <loc>/setup-for-the-decade-basics</loc>
+      <lastmod>2020-01-15T00:00:00.000Z</lastmod>
+    </url>
+  
+    <url>
+      <loc>/setup-for-the-decade-shell</loc>
+      <lastmod>2020-02-05T00:00:00.000Z</lastmod>
+    </url>
+  
+    <url>
+      <loc>/memo-monorepo</loc>
+      <lastmod>2020-02-17T00:00:00.000Z</lastmod>
+    </url>
+  
+    <url>
+      <loc>/spring-validation</loc>
+      <lastmod>2020-04-11T00:00:00.000Z</lastmod>
+    </url>
+  
+    <url>
+      <loc>/date-time-hibernate-postgres</loc>
+      <lastmod>2020-05-05T00:00:00.000Z</lastmod>
+    </url>
+  
+    <url>
+      <loc>/modern-lombok</loc>
+      <lastmod>2020-07-04T00:00:00.000Z</lastmod>
+    </url>
+  
+    <url>
+      <loc>/custom-serialization-deserialization-annotation</loc>
+      <lastmod>2020-07-27T00:00:00.000Z</lastmod>
+    </url>
+  
+    <url>
+      <loc>/raw-json-serialization-deserialization</loc>
+      <lastmod>2020-08-22T00:00:00.000Z</lastmod>
+    </url>
+  
+    <url>
+      <loc>/eslint-and-cra</loc>
+      <lastmod>2020-11-09T00:00:00.000Z</lastmod>
+    </url>
+  
+    <url>
+      <loc>/definitions-of-ready-and-done</loc>
+      <lastmod>2021-04-10T00:00:00.000Z</lastmod>
+    </url>
+  
+    <url>
+      <loc>/rest-and-grpc-in-parallel</loc>
+      <lastmod>2021-05-14T00:00:00.000Z</lastmod>
+    </url>
+  
+    <url>
+      <loc>/jvm-lightweight-csv-to-jsonb-persistence</loc>
+      <lastmod>2021-06-10T00:00:00.000Z</lastmod>
+    </url>
+  
+    <url>
+      <loc>/building-base-images-for-multiple-languages-and-versions</loc>
+      <lastmod>2021-07-08T00:00:00.000Z</lastmod>
+    </url>
+  
+    <url>
+      <loc>/postgresql-default-suffixes</loc>
+      <lastmod>2022-12-20T00:00:00.000Z</lastmod>
+    </url>
+  
+    <url>
+      <loc>/vercel-monorepo-preview-only-builds</loc>
+      <lastmod>2023-02-25T00:00:00.000Z</lastmod>
+    </url>
+  
+    <url>
+      <loc>/postgres-docker-flyway-migrations-integration-testing</loc>
+      <lastmod>2023-03-04T00:00:00.000Z</lastmod>
+    </url>
+  
+    <url>
+      <loc>/</loc>
+      <lastmod>2023-11-16T14:38:10.755Z</lastmod>
+    </url>
+  
+    <url>
+      <loc>/404</loc>
+      <lastmod>2023-11-16T14:38:18.570Z</lastmod>
+    </url>
+  
+    <url>
+      <loc>/about</loc>
+      <lastmod>2023-11-16T14:38:18.570Z</lastmod>
+    </url>
+  
+    <url>
+      <loc>/legal</loc>
+      <lastmod>2023-11-16T14:38:18.570Z</lastmod>
+    </url>
+  
+    <url>
+      <loc>/privacy</loc>
+      <lastmod>2023-11-16T14:38:18.570Z</lastmod>
+    </url>
+  
+    <url>
+      <loc>/conditional-git-configs</loc>
+      <lastmod>2023-11-21T00:00:00.000Z</lastmod>
+    </url>
+  
+    <url>
+      <loc>/mui-x-data-grid-many-pages</loc>
+      <lastmod>2023-12-01T00:00:00.000Z</lastmod>
+    </url>
+  
+    <url>
+      <loc>/react-hook-form-auto-save</loc>
+      <lastmod>2023-12-12T00:00:00.000Z</lastmod>
+    </url>
+  
+    <url>
+      <loc>/the-ways-of-writing-functions-in-javascript</loc>
+      <lastmod>2023-12-12T00:00:00.000Z</lastmod>
+    </url>
+  
+    <url>
+      <loc>/graph-ql-codegen-with-react-query</loc>
+      <lastmod>2024-01-31T00:00:00.000Z</lastmod>
+    </url>
+  
+    <url>
+      <loc>/zod-refine-conditional-validation</loc>
+      <lastmod>2024-01-31T00:00:00.000Z</lastmod>
+    </url>
+  
+</urlset>

@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Date &amp; Time with Hibernate and Postgres || Chrysanthium</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="akullpp" />
+    <meta name="description" content="About software engineering" />
+    <meta name="email" content="akullpp@gmail.com" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:creator" content="" />
+    <meta name="twitter:title" content="Date &amp; Time with Hibernate and Postgres" />
+    <meta name="twitter:image" content="https://chrysanthium.com/logo.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5" />
+    <link rel="stylesheet" href="/css/index.css">
+    <link rel="stylesheet" href="/css/post.css">
+    <link rel="stylesheet" href="/css/tomorrow.css">
+  </head>
+
+  <body>
+    <header class="navigation">
+      <ul>
+        <li>
+          <a href="/">Blog</a>
+        </li>
+
+        <li>
+          <a href="/about">About</a>
+        </li>
+      </ul>
+    </header>
+
+    <h1>Date &amp; Time with Hibernate and Postgres</h1>
+    
+      <h6>2020/05</h6>
+    
+
+    <p>The Java 8 Date &amp; Time API provides the following new classes which in contrast to <code>Date</code> and <code>Calendar</code> are immutable and thread-safe:</p>
+<ul>
+<li>Instant – represents a point in time (timestamp)</li>
+<li><strong>LocalDate</strong> – represents a date (year, month, day)</li>
+<li><strong>LocalDateTime</strong> – same as LocalDate, but includes time with nanosecond precision</li>
+<li>OffsetDateTime – same as LocalDateTime, but with time zone offset</li>
+<li><strong>LocalTime</strong> – time with nanosecond precision and without date information</li>
+<li>OffsetLocalTime – same as LocalTime, but with time zone offset</li>
+<li>ZonedDateTime – same as OffsetDateTime, but includes a time zone ID</li>
+<li>MonthDay – month and day, without year or time</li>
+<li>YearMonth – month and year, without day or time</li>
+<li>Duration – amount of time represented in seconds, minutes and hours. Has nanosecond precision</li>
+<li>Period – amount of time represented in days, months and years</li>
+</ul>
+<p>The ones in bold are pretty safe and easy to use with Hibernate and PostgreSQL. You should primary use them if you don't know where to start. Otherwise you might need to create your own convertors or rely on Hibernate’s conversion features which are proprietary since PostgreSQL doesn’t store <code>Instant</code>, <code>ZonedDateTime</code> and <code>OffsetTime</code>.</p>
+<p>In regard to timezone it’s safer if you use the just use the <code>Offset*</code> versions of the bold classes.</p>
+<p>Here's the conversion table for Java/SQL:</p>
+<table>
+<thead>
+<tr>
+<th>Java</th>
+<th>SQL</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>LocalDate</td>
+<td>DATE</td>
+</tr>
+<tr>
+<td>LocalTime</td>
+<td>TIME</td>
+</tr>
+<tr>
+<td>LocalDateTime</td>
+<td>TIMESTAMP</td>
+</tr>
+<tr>
+<td>OffsetTime</td>
+<td>TIME_WITH_TIMEZONE</td>
+</tr>
+<tr>
+<td>OffsetDateTime</td>
+<td>TIMESTAMP_WITH_TIMEZONE</td>
+</tr>
+<tr>
+<td>Duration</td>
+<td>BIGINT</td>
+</tr>
+<tr>
+<td>Instant</td>
+<td>TIMESTAMP</td>
+</tr>
+<tr>
+<td>ZonedDateTime</td>
+<td>TIMESTAMP</td>
+</tr>
+</tbody>
+</table>
+
+
+    <footer class="navigation">
+      <ul>
+        <li>
+          <a href="/privacy">Privacy</a>
+        </li>
+
+        <li>
+          <a href="/legal">Legal</a>
+        </li>
+      </ul>
+    </footer>
+  </body>
+</html>

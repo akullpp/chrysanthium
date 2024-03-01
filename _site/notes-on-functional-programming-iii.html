@@ -1,0 +1,191 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Notes on Functional Programming III: Functor, Applicative &amp; Monad || Chrysanthium</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="akullpp" />
+    <meta name="description" content="About software engineering" />
+    <meta name="email" content="akullpp@gmail.com" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:creator" content="" />
+    <meta name="twitter:title" content="Notes on Functional Programming III: Functor, Applicative &amp; Monad" />
+    <meta name="twitter:image" content="https://chrysanthium.com/logo.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5" />
+    <link rel="stylesheet" href="/css/index.css">
+    <link rel="stylesheet" href="/css/post.css">
+    <link rel="stylesheet" href="/css/tomorrow.css">
+  </head>
+
+  <body>
+    <header class="navigation">
+      <ul>
+        <li>
+          <a href="/">Blog</a>
+        </li>
+
+        <li>
+          <a href="/about">About</a>
+        </li>
+      </ul>
+    </header>
+
+    <h1>Notes on Functional Programming III: Functor, Applicative &amp; Monad</h1>
+    
+      <h6>2017/03</h6>
+    
+
+    <p>Preliminary: <a href="https://github.com/fantasyland/fantasy-land">The Fantasy Land</a> algebra is a specification which many good functional libraries implement and covers additional laws of algebraic structures which I won't cover.</p>
+<h2>Functor</h2>
+<p>A <strong>functor</strong> is just a container for values with a <code>map</code> method that applies a function to the values while consistently returning the new values in the same container.</p>
+<p>According to this definition an array is a functor:</p>
+<pre class="language-js"><code class="language-js"><span class="token keyword">const</span> xs <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">]</span>
+<span class="token comment">// Array.isArray(xs) === true</span>
+<span class="token keyword">const</span> ys <span class="token operator">=</span> xs<span class="token punctuation">.</span><span class="token function">map</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token parameter">x</span><span class="token punctuation">)</span> <span class="token operator">=></span> x<span class="token punctuation">)</span>
+<span class="token comment">// Array.isArray(ys) === true</span></code></pre>
+<p>You have an array with values, apply a function via <code>map</code> to each of the values and get an array with values back.</p>
+<p>Unfortunately, not all data structures have a map function so you might need to write a wrapper which could be as simple as:</p>
+<pre class="language-js"><code class="language-js"><span class="token keyword">class</span> <span class="token class-name">Wrapper</span> <span class="token punctuation">{</span>
+  <span class="token function">constructor</span><span class="token punctuation">(</span><span class="token parameter">value</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>value <span class="token operator">=</span> value
+  <span class="token punctuation">}</span>
+
+  <span class="token function">map</span><span class="token punctuation">(</span><span class="token parameter">f</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">Wrapper</span><span class="token punctuation">(</span><span class="token function">f</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>value<span class="token punctuation">)</span><span class="token punctuation">)</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre>
+<h3>Advantages of a functor</h3>
+<p><strong>A functor enables generalized behavior</strong></p>
+<p>It allows you to map over values without being tied to a specific structure.</p>
+<p>Furthermore, all advantages of <code>map</code> over <code>for</code> loops apply to which is mainly compactness and expressiveness.</p>
+<h2>Applicative</h2>
+<p>An <strong>applicative</strong> is an extension of a functor and is used to be able to apply functors to each other. In order to do this, it wraps a function around the value which is wrapped by the functor. The required <code>ap</code> method is used to automatically apply the already partially applied and wrapped function via <code>map</code> to the wrapped value of another functor:</p>
+<pre class="language-js"><code class="language-js"><span class="token class-name">Wrapper</span><span class="token punctuation">.</span>prototype<span class="token punctuation">.</span><span class="token function-variable function">ap</span> <span class="token operator">=</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token parameter">wrapped</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> wrapped<span class="token punctuation">.</span><span class="token function">map</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>value<span class="token punctuation">)</span>
+<span class="token punctuation">}</span></code></pre>
+<p>Additionally, an applicative must provide an <code>of</code> method which is used to create an instance with default minimal context:</p>
+<pre class="language-js"><code class="language-js">Wrapper<span class="token punctuation">.</span><span class="token function-variable function">of</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token parameter">x</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token keyword">new</span> <span class="token class-name">Wrapper</span><span class="token punctuation">(</span>x<span class="token punctuation">)</span></code></pre>
+<blockquote>
+<p>Functors which only have an <code>ap</code> method are called Apply. Functors which only have an <code>of</code> method are called Pointed Functors. If they have both they are called Applicatives.</p>
+</blockquote>
+<p>We will use <code>of</code> to write a new <code>map</code> method:</p>
+<pre class="language-js"><code class="language-js"><span class="token class-name">Wrapper</span><span class="token punctuation">.</span>prototype<span class="token punctuation">.</span><span class="token function-variable function">map</span> <span class="token operator">=</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token parameter">f</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> Wrapper<span class="token punctuation">.</span><span class="token function">of</span><span class="token punctuation">(</span><span class="token function">f</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>value<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span></code></pre>
+<p>Let's assume we have the following setup:</p>
+<pre class="language-js"><code class="language-js"><span class="token keyword">const</span> <span class="token function-variable function">add</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token parameter">x</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">(</span><span class="token parameter">y</span><span class="token punctuation">)</span> <span class="token operator">=></span> x <span class="token operator">+</span> y
+<span class="token keyword">const</span> wrapperOne <span class="token operator">=</span> Wrapper<span class="token punctuation">.</span><span class="token function">of</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span>
+<span class="token keyword">const</span> wrapperTwo <span class="token operator">=</span> Wrapper<span class="token punctuation">.</span><span class="token function">of</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span>
+<span class="token keyword">const</span> wrapperOneAdd <span class="token operator">=</span> wrapperOne<span class="token punctuation">.</span><span class="token function">map</span><span class="token punctuation">(</span>add<span class="token punctuation">)</span></code></pre>
+<p>where <code>add</code> is a curried function and <code>wrapperOneAdd</code> is an object of type <code>Wrapper</code> with the wrapped value of <code>y =&gt; 1 + y</code>.</p>
+<p>To be explicit:
+The first box contains the integer <code>1</code>. The second box the result, i.e. <code>y =&gt; 1 + y</code>, of the function <code>add</code> which was applied to the boxed <code>1</code>. So we are two levels deep now.</p>
+<p>Using the <code>ap</code> method would result in a new wrapped value:</p>
+<pre class="language-js"><code class="language-js">wrapperOneAdd<span class="token punctuation">.</span><span class="token function">ap</span><span class="token punctuation">(</span>wrapperTwo<span class="token punctuation">)</span>
+<span class="token comment">// Wrapper {value: 3}</span></code></pre>
+<p>The wrapped partial function <code>y =&gt; 1 + x</code> is applied to the unwrapped value of <code>2</code>, i.e. <code>y =&gt; 1 + 2</code> which is then returned as a wrapped value <code>3</code>.</p>
+<p>Keep in mind the box is always of the same type, the values not necessarily.</p>
+<h3>Advantages of an Applicative</h3>
+<p>An applicative is best used if you have several tasks which don't depend on each other, e.g. if you have several independent calls you could write the following interface:</p>
+<pre class="language-js"><code class="language-js">Task<span class="token punctuation">.</span><span class="token function">of</span><span class="token punctuation">(</span>renderPage<span class="token punctuation">)</span>
+  <span class="token punctuation">.</span><span class="token function">ap</span><span class="token punctuation">(</span>Http<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token string">'orders'</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+  <span class="token punctuation">.</span><span class="token function">ap</span><span class="token punctuation">(</span>Http<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token string">'billing'</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">.</span><span class="token function">ap</span><span class="token punctuation">(</span>Http<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token string">'ads'</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">.</span><span class="token function">ap</span><span class="token punctuation">(</span>Http<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token string">'tracking'</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<p><strong>An applicative promotes simplicity</strong></p>
+<p>Generally speaking it creates a simple interface for complex code. However the real advantages can only be grasped if a specific applicative is used. General applicatives like the one described above are rather rare. Further information will be provided in the monad section.</p>
+<h2>Monads</h2>
+<p>A <strong>monad</strong> applies a function which returns a wrapped value to a wrapped value. The main advantage over applicatives is that they run sequentially by providing the <code>chain</code> method. Here is an implementation of a general monad:</p>
+<pre class="language-js"><code class="language-js"><span class="token keyword">class</span> <span class="token class-name">Monad</span> <span class="token punctuation">{</span>
+  <span class="token keyword">static</span> <span class="token keyword">of</span><span class="token punctuation">(</span>value<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">Monad</span><span class="token punctuation">(</span>value<span class="token punctuation">)</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token function">constructor</span><span class="token punctuation">(</span><span class="token parameter">value</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>value <span class="token operator">=</span> value
+  <span class="token punctuation">}</span>
+
+  <span class="token function">map</span><span class="token punctuation">(</span><span class="token parameter">f</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> Monad<span class="token punctuation">.</span><span class="token function">of</span><span class="token punctuation">(</span><span class="token function">f</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>value<span class="token punctuation">)</span><span class="token punctuation">)</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token function">ap</span><span class="token punctuation">(</span><span class="token parameter">monad</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> monad<span class="token punctuation">.</span><span class="token function">map</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>value<span class="token punctuation">)</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token function">chain</span><span class="token punctuation">(</span><span class="token parameter">f</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">map</span><span class="token punctuation">(</span>f<span class="token punctuation">)</span><span class="token punctuation">.</span>value
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre>
+<p>Normally you would also implement the <code>join</code> method which is a straight forward helper method to return the value which helps us to flatten monads when chained:</p>
+<pre class="language-js"><code class="language-js"><span class="token function">join</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">.</span>value<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token function">chain</span><span class="token punctuation">(</span><span class="token parameter">f</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">map</span><span class="token punctuation">(</span>f<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">join</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
+<p>However, just like general applicatives, a general implementation of a monad doesn't make much sense. One of the most common practical examples of a specific monad is the <strong>Maybe monad</strong>:</p>
+<pre class="language-js"><code class="language-js"><span class="token keyword">class</span> <span class="token class-name">Maybe</span> <span class="token keyword">extends</span> <span class="token class-name">Monad</span> <span class="token punctuation">{</span>
+  <span class="token keyword">static</span> <span class="token keyword">of</span><span class="token punctuation">(</span>value<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">Maybe</span><span class="token punctuation">(</span>value<span class="token punctuation">)</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token function">constructor</span><span class="token punctuation">(</span><span class="token parameter">value</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">super</span><span class="token punctuation">(</span>value<span class="token punctuation">)</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token function">isNothing</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">.</span>value <span class="token operator">===</span> <span class="token keyword">null</span> <span class="token operator">||</span> <span class="token keyword">this</span><span class="token punctuation">.</span>value <span class="token operator">===</span> <span class="token keyword">undefined</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token function">map</span><span class="token punctuation">(</span><span class="token parameter">f</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">isNothing</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">?</span> Maybe<span class="token punctuation">.</span><span class="token function">of</span><span class="token punctuation">(</span><span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token operator">:</span> Maybe<span class="token punctuation">.</span><span class="token function">of</span><span class="token punctuation">(</span><span class="token function">f</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>value<span class="token punctuation">)</span><span class="token punctuation">)</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre>
+<p>It just checks whether the wrapped value is <code>null</code> or <code>undefined</code> and if it is, returns a wrapped <code>null</code>. Why is this interesting? Well, first of all it avoids pesky null checks. Additionally, it provides safety from runtime errors when chaining several methods where one may fail to return a value:</p>
+<pre class="language-js"><code class="language-js"><span class="token keyword">const</span> <span class="token function-variable function">prop</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token parameter">p</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">(</span><span class="token parameter">o</span><span class="token punctuation">)</span> <span class="token operator">=></span> o<span class="token punctuation">[</span>p<span class="token punctuation">]</span>
+
+<span class="token keyword">const</span> <span class="token function-variable function">getUsername</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token parameter">account</span><span class="token punctuation">)</span> <span class="token operator">=></span>
+  Maybe<span class="token punctuation">.</span><span class="token function">of</span><span class="token punctuation">(</span>account<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">map</span><span class="token punctuation">(</span><span class="token function">prop</span><span class="token punctuation">(</span><span class="token string">'personal'</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">map</span><span class="token punctuation">(</span><span class="token function">prop</span><span class="token punctuation">(</span><span class="token string">'user'</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">map</span><span class="token punctuation">(</span><span class="token function">prop</span><span class="token punctuation">(</span><span class="token string">'name'</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+<span class="token comment">// Might be retrieved async!</span>
+<span class="token keyword">const</span> user <span class="token operator">=</span> <span class="token punctuation">{</span>
+  <span class="token literal-property property">personal</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token literal-property property">user</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+      <span class="token literal-property property">name</span><span class="token operator">:</span> <span class="token string">'John Doe'</span><span class="token punctuation">,</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span>
+
+<span class="token function">getUsername</span><span class="token punctuation">(</span>user<span class="token punctuation">)</span>
+<span class="token comment">// Maybe { value: 'John Doe' }</span></code></pre>
+<p>If one property in the path wouldn't exist, we wouldn't get an error but a <code>Maybe</code> with value <code>null</code>.</p>
+<p>Right now you probably think you have a déjà vu and yes you are correct <em>Promise</em> is a monad.</p>
+<h3>Advantages of a monad</h3>
+<p>In general monads are concise and expressive with the ability to encapsulate side-effects.</p>
+<p>The advantages of specific monads are as numerous as their implementations ranging from the simple forms of <em>State</em> ensuring the correct state flow, <em>Sequence</em> where <code>;</code> can be a monad for control flow, <em>Maybe</em> handling null checks, <em>Promise</em> handling asynchronicity up to the complex ones of <em>Probability Distribution</em> or <em>Transaction</em> for databases.</p>
+<h2>Links</h2>
+<ul>
+<li><a href="/notes-on-functional-programming-i">Notes on Functional Programming I: First-class, Pure, Curried Functions</a></li>
+<li><a href="/notes-on-functional-programming-ii">Notes on Functional Programming II: Composition &amp; Point-free Style</a></li>
+</ul>
+
+
+    <footer class="navigation">
+      <ul>
+        <li>
+          <a href="/privacy">Privacy</a>
+        </li>
+
+        <li>
+          <a href="/legal">Legal</a>
+        </li>
+      </ul>
+    </footer>
+  </body>
+</html>

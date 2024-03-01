@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Java: Generate Secure Random String || Chrysanthium</title>
+    <link rel="stylesheet" href="/css/index.css">
+    <link rel="stylesheet" href="/css/post.css">
+    <link rel="stylesheet" href="/css/tomorrow.css">
+  </head>
+
+  <body>
+    <header class="navigation">
+      <ul>
+        <li>
+          <a href="/">Blog</a>
+        </li>
+
+        <li>
+          <a href="/about">About</a>
+        </li>
+      </ul>
+    </header>
+
+    <h1>Java: Generate Secure Random String</h1>
+    
+      <h6>2019/08</h6>
+    
+
+    <p>One neat little exercise is to generate a relatively random strings with a specific amount of certain characters. Of course you could use an Apache library for this but I think it is simple enough to do it yourself.</p>
+<p>First of all you need to define the token set:</p>
+<pre class="language-java"><code class="language-java"><span class="token keyword">private</span> <span class="token keyword">static</span> <span class="token keyword">final</span> <span class="token class-name">String</span> <span class="token constant">UPPERCASE</span> <span class="token operator">=</span> <span class="token string">"ABCDEFGHIJKLMNOPQRSTUVWXYZ"</span><span class="token punctuation">;</span>
+<span class="token keyword">private</span> <span class="token keyword">static</span> <span class="token keyword">final</span> <span class="token class-name">String</span> <span class="token constant">LOWERCASE</span> <span class="token operator">=</span> <span class="token string">"abcdefghijklmnopqrstuvwxyz"</span><span class="token punctuation">;</span>
+<span class="token keyword">private</span> <span class="token keyword">static</span> <span class="token keyword">final</span> <span class="token class-name">String</span> <span class="token constant">NUMBERS</span> <span class="token operator">=</span> <span class="token string">"0123456789"</span><span class="token punctuation">;</span>
+<span class="token comment">// https://www.owasp.org/index.php/Password_special_characters</span>
+<span class="token keyword">private</span> <span class="token keyword">static</span> <span class="token keyword">final</span> <span class="token class-name">String</span> <span class="token constant">SPECIAL</span> <span class="token operator">=</span> <span class="token string">"!\"#$%&amp;'()*+,-./:;&lt;=>?@[\\]^_`{|}~"</span><span class="token punctuation">;</span>
+<span class="token keyword">private</span> <span class="token keyword">static</span> <span class="token keyword">final</span> <span class="token class-name">String</span> <span class="token constant">ALL</span> <span class="token operator">=</span> <span class="token constant">UPPERCASE</span> <span class="token operator">+</span> <span class="token constant">LOWERCASE</span> <span class="token operator">+</span> <span class="token constant">NUMBERS</span> <span class="token operator">+</span> <span class="token constant">SPECIAL</span><span class="token punctuation">;</span></code></pre>
+<p>To select random tokens from the sets we will use the <code>SecureRandom</code> implementation as it is a cryptographically strong random number generator:</p>
+<pre class="language-java"><code class="language-java"><span class="token keyword">private</span> <span class="token keyword">static</span> <span class="token keyword">final</span> <span class="token class-name">SecureRandom</span> random <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">SecureRandom</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<p>Then we actually select the specified amount of random tokens from a single set:</p>
+<pre class="language-java"><code class="language-java"><span class="token keyword">private</span> <span class="token keyword">static</span> <span class="token class-name">String</span> <span class="token function">selectRandomTokens</span><span class="token punctuation">(</span><span class="token keyword">int</span> n<span class="token punctuation">,</span> <span class="token class-name">String</span> tokens<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token class-name">StringBuilder</span> randomTokens <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">StringBuilder</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> n<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        randomTokens<span class="token punctuation">.</span><span class="token function">append</span><span class="token punctuation">(</span>tokens<span class="token punctuation">.</span><span class="token function">charAt</span><span class="token punctuation">(</span>random<span class="token punctuation">.</span><span class="token function">nextInt</span><span class="token punctuation">(</span>tokens<span class="token punctuation">.</span><span class="token function">length</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">return</span> randomTokens<span class="token punctuation">.</span><span class="token function">toString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
+<p>The API method could look like the following, providing parameters to define a minimum of tokens for each set and a maximum length:</p>
+<pre class="language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token class-name">String</span> <span class="token function">generate</span><span class="token punctuation">(</span><span class="token keyword">int</span> nUppercase<span class="token punctuation">,</span> <span class="token keyword">int</span> nLowercase<span class="token punctuation">,</span> <span class="token keyword">int</span> nNumbers<span class="token punctuation">,</span> <span class="token keyword">int</span> nSpecial<span class="token punctuation">,</span> <span class="token keyword">int</span> maxlength<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">int</span> fill <span class="token operator">=</span> maxlength <span class="token operator">-</span> <span class="token punctuation">(</span>nUppercase <span class="token operator">+</span> nLowercase <span class="token operator">+</span> nNumbers <span class="token operator">+</span> nSpecial<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>fill <span class="token operator">&lt;</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">throw</span> <span class="token keyword">new</span> <span class="token class-name">IllegalArgumentException</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">return</span> <span class="token function">shuffle</span><span class="token punctuation">(</span>
+        <span class="token function">selectRandomTokens</span><span class="token punctuation">(</span>nUppercase<span class="token punctuation">,</span> <span class="token constant">UPPERCASE</span><span class="token punctuation">)</span>
+            <span class="token operator">+</span> <span class="token function">selectRandomTokens</span><span class="token punctuation">(</span>nLowercase<span class="token punctuation">,</span> <span class="token constant">LOWERCASE</span><span class="token punctuation">)</span>
+            <span class="token operator">+</span> <span class="token function">selectRandomTokens</span><span class="token punctuation">(</span>nNumbers<span class="token punctuation">,</span> <span class="token constant">NUMBERS</span><span class="token punctuation">)</span>
+            <span class="token operator">+</span> <span class="token function">selectRandomTokens</span><span class="token punctuation">(</span>nSpecial<span class="token punctuation">,</span> <span class="token constant">SPECIAL</span><span class="token punctuation">)</span>
+            <span class="token operator">+</span> <span class="token function">selectRandomTokens</span><span class="token punctuation">(</span>fill<span class="token punctuation">,</span> <span class="token constant">ALL</span><span class="token punctuation">)</span>
+    <span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
+<p>Finally we provide the method to shuffle the entire string:</p>
+<pre class="language-java"><code class="language-java"><span class="token keyword">private</span> <span class="token keyword">static</span> <span class="token class-name">String</span> <span class="token function">shuffle</span><span class="token punctuation">(</span><span class="token class-name">String</span> s<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token class-name">List</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">String</span><span class="token punctuation">></span></span> tokens <span class="token operator">=</span> <span class="token class-name">Arrays</span><span class="token punctuation">.</span><span class="token function">asList</span><span class="token punctuation">(</span>s<span class="token punctuation">.</span><span class="token function">split</span><span class="token punctuation">(</span><span class="token string">""</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token class-name">Collections</span><span class="token punctuation">.</span><span class="token function">shuffle</span><span class="token punctuation">(</span>tokens<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> <span class="token class-name">String</span><span class="token punctuation">.</span><span class="token function">join</span><span class="token punctuation">(</span><span class="token string">""</span><span class="token punctuation">,</span> tokens<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
+<p>The entire code can be found on <a href="https://github.com/akullpp/random/blob/master/src/de/akull/random/RandomString.java">GitHub</a>.</p>
+
+
+    <footer class="navigation">
+      <ul>
+        <li>
+          <a href="/privacy">Privacy</a>
+        </li>
+
+        <li>
+          <a href="/legal">Legal</a>
+        </li>
+      </ul>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,41 @@
+.post {
+  position: relative;
+  margin-bottom: 0.25em;
+}
+
+.post:after {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 0;
+  z-index: -1;
+  transition: width 0.25s ease 0s;
+  content: '';
+  background: #e81c4f;
+  transform: skew(-20deg);
+}
+
+.post:hover:after {
+  width: 100%;
+}
+
+.post > a {
+  display: block;
+}
+
+.post > a:hover {
+  font-weight: 300 !important;
+}
+
+.post-date {
+  width: 100%;
+  margin-left: 1em;
+  margin-right: 1em;
+  font-family: Consolas, monospace;
+  color: #b7b5c0;
+}
+
+.post-title {
+  color: #d9d7e0;
+}

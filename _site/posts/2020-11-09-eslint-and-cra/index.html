@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ESLint and CRA || Chrysanthium</title>
+    <link rel="stylesheet" href="/css/index.css">
+    <link rel="stylesheet" href="/css/post.css">
+    <link rel="stylesheet" href="/css/tomorrow.css">
+  </head>
+
+  <body>
+    <header class="navigation">
+      <ul>
+        <li>
+          <a href="/">Blog</a>
+        </li>
+
+        <li>
+          <a href="/about">About</a>
+        </li>
+      </ul>
+    </header>
+
+    <h1>ESLint and CRA</h1>
+    
+      <h6>2020/11</h6>
+    
+
+    <p>create-react-app's handling of ESLint was always bad in the past but with recent changes has become unbearable. There is not only the issue that the dependencies are extremely outdated, extending the configuration is next to impossible - and flaky at best - but also the lacking feature of disabling ESLint has become a near blocker in term of performance for large code bases that do not want to eject.</p>
+<p>Additionally, many projects nowadays use commit hooks and/or have their CI configured correctly for running the lint task which makes the linting of the entire source during <strong>every</strong> recompilation, no matter how small the change, unnecessary waiting time. The actual straw that broke the camel's back was the frequent <a href="https://github.com/facebook/create-react-app/issues/9887">blocking of rendering</a> which occurs much more frequent in CRA v4 and totally breaks the development flow.</p>
+<p>So here's how to set up CRA and ESLint in a sensible manner:</p>
+<h2>Use CRA v3</h2>
+<pre class="language-shell"><code class="language-shell"><span class="token function">npm</span> i <span class="token parameter variable">-DE</span> react-scripts@3</code></pre>
+<h2>Use library to overwrite CRA's settings</h2>
+<pre class="language-shell"><code class="language-shell"><span class="token function">npm</span> i <span class="token parameter variable">-DE</span> @craco/@craco</code></pre>
+<p>I currently use the &quot;Create React App Configuration Override&quot; library but there are a lot of alternatives, e.g.:</p>
+<ul>
+<li><a href="https://github.com/timarney/react-app-rewired">react-app-rewired</a></li>
+<li><a href="https://github.com/arackaf/customize-cra">customize-cra</a></li>
+<li><a href="https://github.com/harrysolovay/rescripts">rescripts</a></li>
+</ul>
+<p>Add a <code>craco.config.js</code> at the root with the following content:</p>
+<pre class="language-js"><code class="language-js">module<span class="token punctuation">.</span>exports <span class="token operator">=</span> <span class="token punctuation">{</span>
+  <span class="token literal-property property">eslint</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token literal-property property">enable</span><span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span></code></pre>
+<h2>Substitute <code>react-scripts</code> with <code>craco</code></h2>
+<p>In the scripts section of your <code>package.json</code>:</p>
+<pre class="language-json"><code class="language-json">  <span class="token property">"scripts"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token property">"start"</span><span class="token operator">:</span> <span class="token string">"craco start"</span><span class="token punctuation">,</span>
+    <span class="token property">"build"</span><span class="token operator">:</span> <span class="token string">"craco build"</span><span class="token punctuation">,</span>
+    <span class="token property">"test"</span><span class="token operator">:</span> <span class="token string">"craco test"</span><span class="token punctuation">,</span>
+  <span class="token punctuation">}</span></code></pre>
+<p>If you want to additionally improve your linting experience I suggest the following two steps:</p>
+<h2>Update libraries</h2>
+<pre class="language-shell"><code class="language-shell"><span class="token function">npm</span> i <span class="token parameter variable">-DE</span> eslint eslint-config-airbnb eslint-config-prettier eslint-plugin-import eslint-plugin-jsx-a11y eslint-plugin-prettier eslint-plugin-react eslint-plugin-react-hooks</code></pre>
+<pre class="language-json"><code class="language-json">	<span class="token property">"eslintConfig"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+		<span class="token property">"env"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+			<span class="token property">"browser"</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+			<span class="token property">"es6"</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+			<span class="token property">"jest"</span><span class="token operator">:</span> <span class="token boolean">true</span>
+		<span class="token punctuation">}</span><span class="token punctuation">,</span>
+		<span class="token property">"parser"</span><span class="token operator">:</span> <span class="token string">"babel-eslint"</span><span class="token punctuation">,</span>
+		<span class="token property">"settings"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+			<span class="token property">"import/resolver"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+				<span class="token property">"node"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+					<span class="token property">"paths"</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+						<span class="token string">"src"</span>
+					<span class="token punctuation">]</span>
+				<span class="token punctuation">}</span>
+			<span class="token punctuation">}</span>
+		<span class="token punctuation">}</span><span class="token punctuation">,</span>
+		<span class="token property">"extends"</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+			<span class="token string">"plugin:react/recommended"</span><span class="token punctuation">,</span>
+			<span class="token string">"airbnb"</span><span class="token punctuation">,</span>
+			<span class="token string">"airbnb/hooks"</span><span class="token punctuation">,</span>
+			<span class="token string">"prettier"</span><span class="token punctuation">,</span>
+			<span class="token string">"prettier/react"</span><span class="token punctuation">,</span>
+			<span class="token string">"plugin:prettier/recommended"</span>
+		<span class="token punctuation">]</span><span class="token punctuation">,</span>
+		<span class="token property">"parserOptions"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+			<span class="token property">"ecmaFeatures"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+				<span class="token property">"jsx"</span><span class="token operator">:</span> <span class="token boolean">true</span>
+			<span class="token punctuation">}</span><span class="token punctuation">,</span>
+			<span class="token property">"ecmaVersion"</span><span class="token operator">:</span> <span class="token number">2018</span><span class="token punctuation">,</span>
+			<span class="token property">"sourceType"</span><span class="token operator">:</span> <span class="token string">"module"</span>
+		<span class="token punctuation">}</span><span class="token punctuation">,</span>
+		<span class="token property">"plugins"</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+			<span class="token string">"react"</span><span class="token punctuation">,</span>
+			<span class="token string">"prettier"</span>
+		<span class="token punctuation">]</span><span class="token punctuation">,</span>
+		<span class="token property">"rules"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+			<span class="token property">"prettier/prettier"</span><span class="token operator">:</span> <span class="token string">"error"</span><span class="token punctuation">,</span>
+		<span class="token punctuation">}</span>
+	<span class="token punctuation">}</span><span class="token punctuation">,</span></code></pre>
+<p>I strongly suggest to use <a href="https://prettier.io/">Prettier</a> if you don't yet.</p>
+<h2>Commit hook</h2>
+<pre class="language-shell"><code class="language-shell"><span class="token function">npm</span> i <span class="token parameter variable">-DE</span> husky lint-staged pretty-quick</code></pre>
+<pre class="language-json"><code class="language-json">	<span class="token property">"husky"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+		<span class="token property">"hooks"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+			<span class="token property">"pre-commit"</span><span class="token operator">:</span> <span class="token string">"lint-staged"</span>
+		<span class="token punctuation">}</span>
+	<span class="token punctuation">}</span><span class="token punctuation">,</span>
+	<span class="token property">"lint-staged"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+		<span class="token property">"src/**/*.js"</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+			<span class="token string">"pretty-quick --staged"</span><span class="token punctuation">,</span>
+			<span class="token string">"eslint --fix"</span>
+		<span class="token punctuation">]</span>
+	<span class="token punctuation">}</span><span class="token punctuation">,</span></code></pre>
+
+
+    <footer class="navigation">
+      <ul>
+        <li>
+          <a href="/privacy">Privacy</a>
+        </li>
+
+        <li>
+          <a href="/legal">Legal</a>
+        </li>
+      </ul>
+    </footer>
+  </body>
+</html>

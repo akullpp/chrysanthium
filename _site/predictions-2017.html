@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Predictions 2017 || Chrysanthium</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="akullpp" />
+    <meta name="description" content="About software engineering" />
+    <meta name="email" content="akullpp@gmail.com" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:creator" content="" />
+    <meta name="twitter:title" content="Predictions 2017" />
+    <meta name="twitter:image" content="https://chrysanthium.com/logo.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5" />
+    <link rel="stylesheet" href="/css/index.css">
+    <link rel="stylesheet" href="/css/post.css">
+    <link rel="stylesheet" href="/css/tomorrow.css">
+  </head>
+
+  <body>
+    <header class="navigation">
+      <ul>
+        <li>
+          <a href="/">Blog</a>
+        </li>
+
+        <li>
+          <a href="/about">About</a>
+        </li>
+      </ul>
+    </header>
+
+    <h1>Predictions 2017</h1>
+    
+      <h6>2017/01</h6>
+    
+
+    <p>What does the new year bring to professional enterprise-centric development?</p>
+<p>I don't expect much technological disruption to be honest which is good once in a while. Many technologies will stabilize and provide further automation and abstraction layers.</p>
+<p>And don't believe anybody who says that this year will be the great disruption by AI, VR/AR, IoT or machine learning, that's something these people for decades. The technologies will continue to evolve, we will see and use them, but your bread and butter will still be the next CRUD dashboard.</p>
+<p>I guess the best advice this year is to deepen the understanding of the basic tools like your VCS, dependency management, editor and devtools.</p>
+<h2>Frontend</h2>
+<p>JavaScript's usage will increase and become more natural for companies, whether it's frameworks like <a href="https://www.meteor.com/">Meteor</a> or just a plain <a href="https://nodejs.org/">Node</a> server, e.g. for proxy functionality. Full-stack JavaScript will be a good option for companies which have adapted to the previous changes.</p>
+<p>We will see a lot of improved tooling which will shift the focus from manual labor to automatization (e.g. <a href="https://github.com/angular/angular-cli">angular-cli</a>) and a better development experience in general (e.g. <a href="https://yarnpkg.com/">yarn</a>).</p>
+<p><a href="https://angularjs.org/">Angular 2</a> adoption rate won't be steep enough to conquer it's predecessor's throne since the learning curve is high and the technologies involved require a rather different mindset (e.g. <a href="https://github.com/Reactive-Extensions/RxJS">RxJS</a>). I even think, that it's possible it will never gain the popularity of Angular 1 and become a niche framework like Ember.</p>
+<p><a href="https://facebook.github.io/react/">React</a> and all it's direct offsprings, e.g. <a href="https://facebook.github.io/react-native/">React Native</a>, or lesser known indirect offsprings, e.g. <a href="https://github.com/developit/preact">Preact</a>, are the first choice for their respective use case. Especially, React Native will gain a lot of traction in scenarios where native mobile applications aren't absolutely necessary.</p>
+<p>The closely related ecosystem, e.g. <a href="https://github.com/reactjs/redux">Redux</a> or <a href="http://graphql.org/">GraphQL</a>, will be recognized as independent and continue to perform strong and probably become the de facto standard.</p>
+<p>Functional programming skills will be the most viable technical quality for a programmer. In the same vain, immutability (e.g. <a href="https://facebook.github.io/immutable-js/">Immutable</a>) is a must — independent of the framework you actually use.</p>
+<h2>Backend</h2>
+<p><a href="https://projects.spring.io/spring-boot/">Spring Boot</a> is the only choice for conservative enterprise anyway but we have a lot of options with specific frameworks like <a href="http://sparkjava.com/">Spark</a>, <a href="http://www.ninjaframework.org/">Ninja</a>, <a href="https://ratpack.io/">Ratpack</a> or even another JVM language. However the existing ecosystem around Spring is so strong, that it is hard to justify any deviation right now.</p>
+<p>As I said last year and before, the language you choose on the server is becoming less important and with the new paradigms you are much more flexible in choosing different languages suited for specific tasks.</p>
+<p>I think that TIOBE's language of 2016, <a href="https://golang.org/">Go</a>, is ready to take over most classic scenarios where Java dominated. However, we won't see a gigantic adoption rate, it will continue to do its work for smaller standalone parts of larger projects until most developers (and their environment) are comfortable with it.</p>
+<p>Unfortunately, <a href="http://elixir-lang.org/">Elixir</a> and <a href="http://www.phoenixframework.org/">Phoenix</a> probably won't be considered in enterprise environments with Meteor being more approachable for similar tasks. However, the Ruby community will continue to hype it and I'm happy about it.</p>
+<p>While everyone would agree that there's no single person who can do everything, in practice there are many customers who think that there's one group of developers or a company who can do everything perfectly. Hint: There isn't.</p>
+<p>A mistake developers can make is implementing cryptography without having a PhD in a related field and I think the same applies to authentication. I hope <em>Authentication-as-a-Service</em> (e.g. <a href="https://auth0.com/">Auth0</a>) will gain more influence but it probably won't and developers will continue doing costly mistakes and implement new identity providers for every new project.</p>
+<h2>The Rest</h2>
+<p>Jenkins worked for the old world but it won't handle the new challenges even with the proposed changes. Furthermore strengthens the bad practice of providing one instance for everyone.</p>
+<p>What we need is a deployment pipeline which handles containers and environments without adding a ton of hacks, <a href="https://concourse.ci/">concourse</a> looks nice. I don't know whether it will be used or if another tool will emerge, the pain is not strong enough right now it seems.</p>
+<p>Consumer-driven contract development is a must to ensure stable services which provide a clean and extensible interface, <a href="https://github.com/realestate-com-au/pact">Pact</a> is the tool of choice but the concept also spans communication between consumers, providers and requirements analysis.</p>
+<p>For certain industries like finance, I'm pretty certain that 2017 will be a year that increases the pressure on those companies which don't want to adopt or don't have a business plan to buy innovation, e.g. via start-ups. It won't probably be enough for a collapse, but it will be another nail in their coffin.</p>
+
+
+    <footer class="navigation">
+      <ul>
+        <li>
+          <a href="/privacy">Privacy</a>
+        </li>
+
+        <li>
+          <a href="/legal">Legal</a>
+        </li>
+      </ul>
+    </footer>
+  </body>
+</html>

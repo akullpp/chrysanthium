@@ -1,0 +1,178 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notes on Functional Programming I: First-class, Pure, Curried Functions || Chrysanthium</title>
+    <link rel="stylesheet" href="/css/index.css">
+    <link rel="stylesheet" href="/css/post.css">
+    <link rel="stylesheet" href="/css/tomorrow.css">
+  </head>
+
+  <body>
+    <header class="navigation">
+      <ul>
+        <li>
+          <a href="/">Blog</a>
+        </li>
+
+        <li>
+          <a href="/about">About</a>
+        </li>
+      </ul>
+    </header>
+
+    <h1>Notes on Functional Programming I: First-class, Pure, Curried Functions</h1>
+    
+      <h6>2016/09</h6>
+    
+
+    <h2>First-class functions</h2>
+<p>A necessity for functional programming is the concept of <strong>first-class functions</strong>. Functions are <em>first-class citizens</em> of a language if they can be:</p>
+<ul>
+<li>stored</li>
+<li>passed as argument</li>
+<li>returned</li>
+</ul>
+<p>JavaScript is one of many languages which consider functions to be just another kind of object and allow their assignment:</p>
+<pre class="language-js"><code class="language-js"><span class="token keyword">const</span> <span class="token function-variable function">square</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token parameter">x</span><span class="token punctuation">)</span> <span class="token operator">=></span> x <span class="token operator">*</span> x<span class="token punctuation">;</span>
+<span class="token comment">// square(2) = 4</span></code></pre>
+<p>Or to pass them as argument to other functions:</p>
+<pre class="language-js"><code class="language-js"><span class="token keyword">const</span> <span class="token function-variable function">twice</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token parameter">f</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">(</span><span class="token parameter">x</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token function">f</span><span class="token punctuation">(</span>x<span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token function">f</span><span class="token punctuation">(</span>x<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// twice(square)(2) = 8</span></code></pre>
+<p>The constant <code>twice</code> takes a function <code>f</code> and returns a function which takes an argument <code>x</code> and applies <code>f</code> to <code>x</code>. This is done separately two times and then the two results are summed up. Interestingly, in a non-functional context this is might not always be equivalent to doubling the result of a function.</p>
+<h3>What are the advantages of using first-class functions?</h3>
+<p><strong>First-class functions remove layers of indirection which would result in visual/cognitive strain and maintenance complexity.</strong></p>
+<pre class="language-js"><code class="language-js"><span class="token comment">// Indirection</span>
+<span class="token keyword">const</span> Controller <span class="token operator">=</span> <span class="token punctuation">{</span>
+  <span class="token function-variable function">create</span><span class="token operator">:</span> <span class="token punctuation">(</span><span class="token parameter">args</span><span class="token punctuation">)</span> <span class="token operator">=></span> Db<span class="token punctuation">.</span><span class="token function">create</span><span class="token punctuation">(</span>args<span class="token punctuation">)</span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span></code></pre>
+<p>The explicit wrapping in another function is unnecessary. We can pass the function like any other object to be executed later:</p>
+<pre class="language-js"><code class="language-js"><span class="token comment">// Without indirection</span>
+<span class="token keyword">const</span> Controller <span class="token operator">=</span> <span class="token punctuation">{</span>
+  <span class="token literal-property property">create</span><span class="token operator">:</span> Db<span class="token punctuation">.</span>create<span class="token punctuation">,</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span></code></pre>
+<p><strong>First-class functions allow the maintenance of the application to become less complex since refactoring happens in one place.</strong></p>
+<pre class="language-js"><code class="language-js"><span class="token comment">// Indirection</span>
+<span class="token function">getPost</span><span class="token punctuation">(</span><span class="token string">"/api/post"</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token parameter">json</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token function">renderPost</span><span class="token punctuation">(</span>json<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<p>If we need to add another parameter, we need make a change in two places:</p>
+<pre class="language-js"><code class="language-js"><span class="token comment">// Refactoring</span>
+<span class="token function">getPost</span><span class="token punctuation">(</span><span class="token string">"/api/post"</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token parameter">json<span class="token punctuation">,</span> err</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token function">renderPost</span><span class="token punctuation">(</span>json<span class="token punctuation">,</span> err<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<p>Using the same technique as above, passing the function as object, we move the parameter definition to the implementation:</p>
+<pre class="language-js"><code class="language-js"><span class="token comment">// Better</span>
+<span class="token function">getPost</span><span class="token punctuation">(</span><span class="token string">"/api/post"</span><span class="token punctuation">,</span> renderPost<span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<p><strong>First-class functions minimize naming issues which are introduced by coupling to a specific naming. Subjectivity, competence or changing requirements often introduce misnomers.</strong></p>
+<pre class="language-js"><code class="language-js"><span class="token comment">// Specifc</span>
+<span class="token keyword">const</span> <span class="token function-variable function">validPosts</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token parameter">posts</span><span class="token punctuation">)</span> <span class="token operator">=></span>
+  posts<span class="token punctuation">.</span><span class="token function">filter</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token parameter">post</span><span class="token punctuation">)</span> <span class="token operator">=></span> post <span class="token operator">!==</span> <span class="token keyword">null</span> <span class="token operator">&amp;&amp;</span> post <span class="token operator">!==</span> <span class="token keyword">undefined</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<p>The code above is specifically tied to a certain domain where it doesn't have to be.</p>
+<pre class="language-js"><code class="language-js"><span class="token comment">// Abstract</span>
+<span class="token keyword">const</span> <span class="token function-variable function">compact</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token parameter">xs</span><span class="token punctuation">)</span> <span class="token operator">=></span> xs<span class="token punctuation">.</span><span class="token function">filter</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token parameter">x</span><span class="token punctuation">)</span> <span class="token operator">=></span> x <span class="token operator">!==</span> <span class="token keyword">null</span> <span class="token operator">&amp;&amp;</span> x <span class="token operator">!==</span> <span class="token keyword">undefined</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<p><code>xs</code> being the plural of <code>x</code> which is common in functional languages, e.g. <a href="http://dev.clojure.org/display/community/Library+Coding+Standards">Clojure</a>.</p>
+<h2>Pure functions</h2>
+<p>Mutable state is probably the number one reason for software complexity [<a href="http://shaffner.us/cs/papers/tarpit.pdf">Moseley &amp; Marks 2006</a>].
+However state is a necessity therefore it has to be encapsulated. <strong>Pure functions</strong> help you to reduce the complexity since it is self-contained and specifies everything it needs to produce a result:</p>
+<pre class="language-js"><code class="language-js"><span class="token comment">// Pure</span>
+<span class="token keyword">const</span> <span class="token function-variable function">above</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token parameter">n<span class="token punctuation">,</span> limit</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token keyword">return</span> n <span class="token operator">></span> limit<span class="token punctuation">;</span></code></pre>
+<p>Therefore functions that rely on external state are not pure:</p>
+<pre class="language-js"><code class="language-js"><span class="token comment">// Impure</span>
+<span class="token keyword">let</span> limit <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> <span class="token function-variable function">above</span> <span class="token operator">=</span> <span class="token parameter">n</span> <span class="token operator">=></span> <span class="token keyword">return</span> n <span class="token operator">></span> limit<span class="token punctuation">;</span></code></pre>
+<p>Given the same input it always returns the same output without observable side effects:</p>
+<pre class="language-js"><code class="language-js"><span class="token keyword">let</span> foo <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+
+<span class="token comment">// No side effect</span>
+foo<span class="token punctuation">.</span><span class="token function">slice</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// foo = [1, 2, 3]</span>
+
+<span class="token comment">// Side effect</span>
+foo<span class="token punctuation">.</span><span class="token function">splice</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// foo = [2, 3]</span></code></pre>
+<p>Described in this way, a programmatic function becomes identical to the mathematical definition of a function and can be understood as a mapping from one value to another, e.g. the values <code>[1, 2, 3]</code> could be mapped to <code>[2, 3, 4]</code> with:</p>
+<pre class="language-js"><code class="language-js"><span class="token keyword">const</span> addOne <span class="token operator">=</span> <span class="token punctuation">{</span>
+  <span class="token number">1</span><span class="token operator">:</span> <span class="token number">2</span><span class="token punctuation">,</span>
+  <span class="token number">2</span><span class="token operator">:</span> <span class="token number">3</span><span class="token punctuation">,</span>
+  <span class="token number">3</span><span class="token operator">:</span> <span class="token number">4</span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span></code></pre>
+<p>Indeed the function <code>f(x) = x + 1</code> is just a convenience.</p>
+<h3>What are the advantages of using pure functions?</h3>
+<p>Given the example:</p>
+<pre class="language-js"><code class="language-js"><span class="token keyword">const</span> <span class="token function-variable function">signUp</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token parameter">db<span class="token punctuation">,</span> credentials</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span> <span class="token operator">...</span> <span class="token punctuation">}</span><span class="token punctuation">;</span></code></pre>
+<p><strong>Pure functions are self-documenting via signature.</strong></p>
+<p>Everything required to sign up a user is clear by the signature alone, you need a database for persistence and the credentials to persist.</p>
+<p><strong>Pure functions are flexible due to parameterization.</strong></p>
+<p>We have all dependencies as parameters and the implementation details of the database are irrelevant.</p>
+<p><strong>Pure functions reduce the cognitive load and complexity introduced by introducing external environments.</strong></p>
+<p>The implementation of the dependency is not relevant for the caller if the API is defined via signature.</p>
+<p><strong>Pure functions are easier to test since we don't need complex mocks.</strong></p>
+<p>Since we pass the dependencies as argument, we can pass the most simplistic version that satisfies the minimal requirements for the function to run.</p>
+<p><strong>Pure functions enable cacheability via memoization.</strong></p>
+<p>The behavior of a pure function is deterministic. No matter how often the function is executed, if the input stays the same so does the output. Therefore we can cache the result for a specific input.</p>
+<p><strong>Pure functions have referential transparency which allows for easier refactoring and understanding of the code.</strong></p>
+<blockquote>
+<p><strong>Referential Transparency</strong>: If an expression can be replaced by its value without changing the behavior of the program.</p>
+</blockquote>
+<pre class="language-js"><code class="language-js"><span class="token comment">// Referential transparency</span>
+<span class="token keyword">const</span> <span class="token function-variable function">foo</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token string">"Hello world"</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> foo <span class="token operator">=</span> <span class="token string">"Hello world"</span><span class="token punctuation">;</span></code></pre>
+<p>Because a pure function is deterministic, we can replace it with its evaluated value. In fact, if our program would only consist of pure functions, we could mathematically proof its behavior and result.</p>
+<p>On a smaller scale however, this becomes also handy in smaller chains of pure functions which are easier to refactor since you can reason about them a lot easier.</p>
+<p><strong>Pure functions are parallelizable.</strong></p>
+<p>They don't have shared memory and therefore can't have a race condition.</p>
+<h2>Currying</h2>
+<p><strong>Currying</strong> is the technique to translate a function with <code>n</code> arguments into <code>n</code> functions with one argument. The terminology is to say that the arity is reduced to one:</p>
+<blockquote>
+<p><strong>Arity</strong>: The number of arguments a function takes.</p>
+</blockquote>
+<pre class="language-js"><code class="language-js"><span class="token comment">// Uncurried</span>
+<span class="token keyword">const</span> <span class="token function-variable function">add</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token parameter">x<span class="token punctuation">,</span> y</span><span class="token punctuation">)</span> <span class="token operator">=></span> x <span class="token operator">+</span> y<span class="token punctuation">;</span>
+
+<span class="token comment">// Curried</span>
+<span class="token keyword">const</span> <span class="token function-variable function">add</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token parameter">x</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">(</span><span class="token parameter">y</span><span class="token punctuation">)</span> <span class="token operator">=></span> x <span class="token operator">+</span> y<span class="token punctuation">;</span></code></pre>
+<p>There are libraries which can help to create curried functions like <a href="https://www.npmjs.com/package/lodash.curry">lodash.curry</a> and functional libraries like <a href="https://github.com/lodash/lodash/wiki/FP-Guide">lodash/fp</a> or <a href="http://ramdajs.com/">Ramda</a> provide curried functions by default.</p>
+<h3>Advantages of currying?</h3>
+<p><strong>Currying enables syntactical conciseness and expressiveness.</strong></p>
+<p>Unfortunately, it is extremely difficult to find simple examples that convey the advantages of currying.</p>
+<p>With growing complexity, the usefulness of currying increases, especially if you use a library like React with higher-order components or just plain higher-order functions.</p>
+<blockquote>
+<p><strong>Higher-order Function</strong>: A function receiving a function and/or returning a function.</p>
+</blockquote>
+<p>Let's look at an artificial example:</p>
+<pre class="language-js"><code class="language-js"><span class="token keyword">const</span> <span class="token function-variable function">get</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token parameter">prop</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">(</span><span class="token parameter">obj</span><span class="token punctuation">)</span> <span class="token operator">=></span> obj<span class="token punctuation">[</span>prop<span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> <span class="token function-variable function">map</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token parameter">fn</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">(</span><span class="token parameter">xs</span><span class="token punctuation">)</span> <span class="token operator">=></span> xs<span class="token punctuation">.</span><span class="token function">map</span><span class="token punctuation">(</span>fn<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">const</span> getIds <span class="token operator">=</span> <span class="token function">map</span><span class="token punctuation">(</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token string">"id"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">getId</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token punctuation">{</span> <span class="token literal-property property">id</span><span class="token operator">:</span> <span class="token number">1</span> <span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token punctuation">{</span> <span class="token literal-property property">id</span><span class="token operator">:</span> <span class="token number">2</span> <span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token punctuation">{</span> <span class="token literal-property property">id</span><span class="token operator">:</span> <span class="token number">3</span> <span class="token punctuation">}</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// [1, 2, 3]</span></code></pre>
+<p>You can create a specific function from an abstract one with no cost at all.</p>
+<h2>Bonus: Partial Application</h2>
+<p>Often confused with currying, <strong>partial application</strong> is the pre-filling of some arguments to create a new function. Curried functions are therefore always partially applied. For the example we use lodash's <code>_.partial</code> method to enable placeholders:</p>
+<pre class="language-js"><code class="language-js"><span class="token keyword">const</span> <span class="token function-variable function">getPersons</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token parameter">division<span class="token punctuation">,</span> active<span class="token punctuation">,</span> external</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span> <span class="token operator">...</span> <span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> getActivePersons <span class="token operator">=</span> _<span class="token punctuation">.</span><span class="token function">partial</span><span class="token punctuation">(</span>getPersons<span class="token punctuation">,</span> _<span class="token punctuation">,</span> <span class="token boolean">true</span><span class="token punctuation">,</span> _<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> getActiveInternalPersons <span class="token operator">=</span> _<span class="token punctuation">.</span><span class="token function">partial</span><span class="token punctuation">(</span>getPersons<span class="token punctuation">,</span> _<span class="token punctuation">,</span> <span class="token boolean">true</span><span class="token punctuation">,</span> <span class="token boolean">true</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<p>If the order is not important, you can use JavaScript's <code>bind</code>:</p>
+<pre class="language-js"><code class="language-js"><span class="token keyword">const</span> <span class="token function-variable function">add</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token parameter">x<span class="token punctuation">,</span> y<span class="token punctuation">,</span> z</span><span class="token punctuation">)</span> <span class="token operator">=></span> x <span class="token operator">+</span> y <span class="token operator">+</span> z<span class="token punctuation">;</span>
+<span class="token keyword">const</span> addOneMore <span class="token operator">=</span> <span class="token function">add</span><span class="token punctuation">.</span><span class="token function">bind</span><span class="token punctuation">(</span><span class="token keyword">null</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">addOneMore</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// 1 + 2 + 3 = 6</span></code></pre>
+<p><strong>Partial Application creates concise and fluent APIs without repetition.</strong></p>
+<p>By deriving specific functions from an abstract one, partial application makes your code more readable.</p>
+<h2>Links</h2>
+<ul>
+<li><a href="/notes-on-functional-programming-ii">Notes on Functional Programming II: Composition &amp; Point-free Style</a></li>
+</ul>
+
+
+    <footer class="navigation">
+      <ul>
+        <li>
+          <a href="/privacy">Privacy</a>
+        </li>
+
+        <li>
+          <a href="/legal">Legal</a>
+        </li>
+      </ul>
+    </footer>
+  </body>
+</html>
